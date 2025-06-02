@@ -21,7 +21,10 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 
-trait BaseSpec
+trait 
+
+
+BaseSpec
     extends AnyFeatureSpec
     with GivenWhenThen
     with Matchers
