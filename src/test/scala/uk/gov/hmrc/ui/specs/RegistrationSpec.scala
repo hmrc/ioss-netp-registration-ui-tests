@@ -16,18 +16,28 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.Registration
+import uk.gov.hmrc.ui.pages.{Auth, Registration}
 
 class RegistrationSpec extends BaseSpec {
 
-  private val registration = Registration
+  lazy val registration = Registration
+  lazy val auth         = Auth
 
   Feature("Registration journeys") {
 
-    Scenario("Trader accesses the IOSS Intermediary NETP Registration Service") {
+    Scenario("Intermediary registers on behalf of a NETP using the IOSS NETP Registration service") {
 
-      Given("the trader accesses the IOSS Intermediary NETP Registration Service")
-      registration.goToRegistrationJourney()
+      Given("the intermediary accesses the IOSS Intermediary Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard()
+      registration.checkJourneyUrl("client-uk-based")
+
+      And("the intermediary answers all of the vat details questions as a UK Based NETP with VRN")
+      registration.answerVatDetailsUkVrn()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetails("yes")
+
+//      The rest of the journey is not developed yet
 
     }
   }
