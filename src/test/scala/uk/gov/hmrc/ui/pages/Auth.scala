@@ -35,11 +35,11 @@ object Auth extends BasePage {
     getCurrentUrl should startWith(authUrl)
 
     sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl")
-    
+
     selectByValue(By.id("affinityGroupSelect"), "Organisation")
 
     click(By.cssSelector("Input[value='Submit']"))
-    
+
   }
 
 }

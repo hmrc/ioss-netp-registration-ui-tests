@@ -21,7 +21,7 @@ import uk.gov.hmrc.ui.pages.{Auth, Registration}
 class VatDetailsSpec extends BaseSpec {
 
   lazy val registration = Registration
-  lazy val auth = Auth
+  lazy val auth         = Auth
 
   Feature("UK and Non-UK Vat Details Variations") {
 
@@ -90,7 +90,6 @@ class VatDetailsSpec extends BaseSpec {
       registration.checkJourneyUrl("client-address")
       registration.enterAddress("1 Street Name", "", "City", "", "")
 
-
       Then(
         "the intermediary selects continue on the confirm-vat-details page"
       )
@@ -136,7 +135,6 @@ class VatDetailsSpec extends BaseSpec {
       registration.checkJourneyUrl("client-address")
       registration.enterAddress("1 Street Name", "Suburb", "Town", "Region", "AA1 1AA")
 
-
       Then(
         "the intermediary selects continue on the confirm-vat-details page"
       )
@@ -177,7 +175,6 @@ class VatDetailsSpec extends BaseSpec {
       )
       registration.checkJourneyUrl("client-address")
       registration.enterAddress("1 Street Name", "", "City-Name", "", "12345")
-
 
       Then(
         "the intermediary selects continue on the confirm-vat-details page"

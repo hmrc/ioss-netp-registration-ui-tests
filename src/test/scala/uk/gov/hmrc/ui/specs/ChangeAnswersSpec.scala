@@ -21,11 +21,11 @@ import uk.gov.hmrc.ui.pages.{Auth, Registration}
 class ChangeAnswersSpec extends BaseSpec {
 
   lazy val registration = Registration
-  lazy val auth = Auth
+  lazy val auth         = Auth
 
   Feature("Changing answers within the IOSS NETP Registration journeys") {
 
-    Scenario("Intermediary changes NETP tax details from UK based to Non-UK based") {
+    Scenario("Intermediary changes NETP tax details from UK based to Non-UK based and changes country") {
 
       Given("the intermediary accesses the IOSS Intermediary Registration Service")
       auth.goToAuthorityWizard()
@@ -45,7 +45,7 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("client-uk-based")
       registration.answerRadioButton("no")
 
-      Then("the intermediary selects Jamaica on the client-country-based page")
+      Then("the intermediary selects Cape Verde on the client-country-based page")
       registration.checkJourneyUrl("client-country-based")
       registration.selectCountry("Cape Verde")
 
@@ -67,6 +67,16 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("client-address")
       registration.enterAddress("1 Street Name", "", "City-Name", "", "12345")
 
+      When(
+        "the intermediary selects change for Country based in on the client-country-based page"
+      )
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.selectChangeOrRemoveLink("client-country-based\\?waypoints\\=check-vat-details")
+
+      Then("the intermediary selects Benin on the client-country-based page")
+      registration.checkJourneyUrl("client-country-based")
+      registration.clearCountry()
+      registration.selectCountry("Benin")
 
       Then(
         "the intermediary selects continue on the confirm-vat-details page"
@@ -153,9 +163,6 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("client-has-vat-number")
       registration.answerRadioButton("no")
 
-      //bug:
-      //ended up back at confirm-vat-details instead of client-business-name
-
       And(
         "the intermediary enters a business name on the client-business-name page"
       )
@@ -201,7 +208,9 @@ class ChangeAnswersSpec extends BaseSpec {
       //      The rest of the journey is still in development
     }
 
-    Scenario("Intermediary changes NETP tax details from Non-UK based to UK based with NINO then amends Business Name") {
+    Scenario(
+      "Intermediary changes NETP tax details from Non-UK based to UK based with NINO then amends Business Name"
+    ) {
 
       Given("the intermediary accesses the IOSS Intermediary Registration Service")
       auth.goToAuthorityWizard()
@@ -225,9 +234,6 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("client-has-vat-number")
       registration.answerRadioButton("no")
 
-      //bug:
-      //ended up back at confirm-vat-details instead of client-business-name
-
       And(
         "the intermediary enters a business name on the client-business-name page"
       )
@@ -250,7 +256,15 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("client-address")
       registration.enterAddress("1 Street Name", "Suburb", "Town", "Region", "AA1 1AA")
 
-//      Go back and change business name when this functionality is enabled
+      When(
+        "the intermediary selects change for Client's Business Name on the confirm-vat-details page"
+      )
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.selectChangeOrRemoveLink("client-business-name\\?waypoints\\=check-vat-details")
+
+      Then("the intermediary amends the business name on the client-uk-based page")
+      registration.checkJourneyUrl("client-business-name")
+      registration.enterAnswer("A new and different business name")
 
       Then(
         "the intermediary selects continue on the confirm-vat-details page"

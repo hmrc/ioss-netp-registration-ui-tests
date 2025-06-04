@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.pages
 
-import org.openqa.selenium.By
+import org.openqa.selenium.{By, Keys}
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import org.scalatest.matchers.should.Matchers.*
 import uk.gov.hmrc.configuration.TestEnvironment
@@ -75,6 +75,14 @@ object Registration extends BasePage {
     waitForElement(By.id(inputId))
     click(By.cssSelector("li#value__option--0"))
     click(continueButton)
+  }
+
+  def clearCountry(): Unit = {
+    val input = Driver.instance.findElement(By.id("value")).getAttribute("value")
+    if (input != null) {
+      for (n <- input)
+        Driver.instance.findElement(By.id("value")).sendKeys(Keys.BACK_SPACE)
+    }
   }
 
   def answerVatDetailsUkVrn(): Unit = {
