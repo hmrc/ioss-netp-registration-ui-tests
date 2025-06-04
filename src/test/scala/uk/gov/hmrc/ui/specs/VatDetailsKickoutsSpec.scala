@@ -52,7 +52,9 @@ class VatDetailsKickoutsSpec extends BaseSpec {
       registration.checkJourneyUrl("registration-service-error")
     }
 
-    Scenario("Internal server error for VAT details when intermediary registers on behalf of a UK based NETP with a VAT Number") {
+    Scenario(
+      "Internal server error for VAT details when intermediary registers on behalf of a UK based NETP with a VAT Number"
+    ) {
 
       Given("the intermediary accesses the IOSS Intermediary Registration Service")
       auth.goToAuthorityWizard()
@@ -78,7 +80,9 @@ class VatDetailsKickoutsSpec extends BaseSpec {
       registration.checkJourneyUrl("registration-service-error")
     }
 
-    Scenario("Incomplete VAT details retrieved when intermediary registers on behalf of a UK based NETP with a VAT Number") {
+    Scenario(
+      "Incomplete VAT details retrieved when intermediary registers on behalf of a UK based NETP with a VAT Number"
+    ) {
 
       Given("the intermediary accesses the IOSS Intermediary Registration Service")
       auth.goToAuthorityWizard()
