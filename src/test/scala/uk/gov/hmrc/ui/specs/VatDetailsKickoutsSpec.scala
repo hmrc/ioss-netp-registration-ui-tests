@@ -45,11 +45,10 @@ class VatDetailsKickoutsSpec extends BaseSpec {
       registration.checkJourneyUrl("client-vat-number")
       registration.enterAnswer("900000001")
 
-      //      Will likely change to its own page rather than the generic kickout
       Then(
-        "the registration-service error page is displayed"
+        "the vat-number-not-found page is displayed"
       )
-      registration.checkJourneyUrl("registration-service-error")
+      registration.checkJourneyUrl("vat-number-not-found")
     }
 
     Scenario(
