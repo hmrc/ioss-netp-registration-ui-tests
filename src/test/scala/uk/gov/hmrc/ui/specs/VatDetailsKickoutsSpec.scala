@@ -27,7 +27,7 @@ class VatDetailsKickoutsSpec extends BaseSpec {
 
     Scenario("Not found for VAT details when intermediary registers on behalf of a UK based NETP with a VAT Number") {
 
-      Given("the intermediary accesses the IOSS Intermediary Registration Service")
+      Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard()
       registration.checkJourneyUrl("client-uk-based")
@@ -55,7 +55,7 @@ class VatDetailsKickoutsSpec extends BaseSpec {
       "Internal server error for VAT details when intermediary registers on behalf of a UK based NETP with a VAT Number"
     ) {
 
-      Given("the intermediary accesses the IOSS Intermediary Registration Service")
+      Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard()
       registration.checkJourneyUrl("client-uk-based")
@@ -83,7 +83,7 @@ class VatDetailsKickoutsSpec extends BaseSpec {
       "Incomplete VAT details retrieved when intermediary registers on behalf of a UK based NETP with a VAT Number"
     ) {
 
-      Given("the intermediary accesses the IOSS Intermediary Registration Service")
+      Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard()
       registration.checkJourneyUrl("client-uk-based")
