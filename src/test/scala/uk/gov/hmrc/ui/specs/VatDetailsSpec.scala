@@ -27,7 +27,7 @@ class VatDetailsSpec extends BaseSpec {
 
     Scenario("Intermediary registers on behalf of a UK based NETP with a VAT Number") {
 
-      Given("the intermediary accesses the IOSS Intermediary Registration Service")
+      Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard()
       registration.checkJourneyUrl("client-uk-based")
@@ -56,7 +56,7 @@ class VatDetailsSpec extends BaseSpec {
 
     Scenario("Intermediary registers on behalf of a UK based NETP with a UTR") {
 
-      Given("the intermediary accesses the IOSS Intermediary Registration Service")
+      Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard()
       registration.checkJourneyUrl("client-uk-based")
@@ -101,7 +101,7 @@ class VatDetailsSpec extends BaseSpec {
 
     Scenario("Intermediary registers on behalf of a UK based NETP with a NINO") {
 
-      Given("the intermediary accesses the IOSS Intermediary Registration Service")
+      Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard()
       registration.checkJourneyUrl("client-uk-based")
@@ -146,7 +146,7 @@ class VatDetailsSpec extends BaseSpec {
 
     Scenario("Intermediary registers on behalf of a Non-UK based NETP") {
 
-      Given("the intermediary accesses the IOSS Intermediary Registration Service")
+      Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard()
       registration.checkJourneyUrl("client-uk-based")

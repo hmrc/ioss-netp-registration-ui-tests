@@ -27,7 +27,7 @@ class ChangeAnswersSpec extends BaseSpec {
 
     Scenario("Intermediary changes NETP tax details from UK based to Non-UK based and changes country") {
 
-      Given("the intermediary accesses the IOSS Intermediary Registration Service")
+      Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard()
       registration.checkJourneyUrl("client-uk-based")
@@ -90,7 +90,7 @@ class ChangeAnswersSpec extends BaseSpec {
 
     Scenario("Intermediary changes NETP tax details from Non-UK based to UK based with Vat Number") {
 
-      Given("the intermediary accesses the IOSS Intermediary Registration Service")
+      Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard()
       registration.checkJourneyUrl("client-uk-based")
@@ -141,7 +141,7 @@ class ChangeAnswersSpec extends BaseSpec {
 
     Scenario("Intermediary changes NETP tax details from Non-UK based to UK based with UTR then amends Address") {
 
-      Given("the intermediary accesses the IOSS Intermediary Registration Service")
+      Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard()
       registration.checkJourneyUrl("client-uk-based")
@@ -212,7 +212,7 @@ class ChangeAnswersSpec extends BaseSpec {
       "Intermediary changes NETP tax details from Non-UK based to UK based with NINO then amends Business Name"
     ) {
 
-      Given("the intermediary accesses the IOSS Intermediary Registration Service")
+      Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard()
       registration.checkJourneyUrl("client-uk-based")
@@ -278,7 +278,7 @@ class ChangeAnswersSpec extends BaseSpec {
 
     Scenario("Intermediary registers on behalf of a UK based NETP with a VAT Number") {
 
-      Given("the intermediary accesses the IOSS Intermediary Registration Service")
+      Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard()
       registration.checkJourneyUrl("client-uk-based")
@@ -301,6 +301,66 @@ class ChangeAnswersSpec extends BaseSpec {
       )
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetails("yes")
+
+      //      The rest of the journey is still in development
+    }
+
+    Scenario("Intermediary changes website details on their NETP registration") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard()
+      registration.checkJourneyUrl("client-uk-based")
+
+      And("the intermediary answers questions for a UK based NETP")
+      registration.answerVatDetailsUkVrn()
+
+      When(
+        "the intermediary selects change for Based in UK on the confirm-vat-details page"
+      )
+      registration.checkJourneyUrl("confirm-vat-details")
+
+      //      manual navigation to website section until rest of journey is developed
+      Then("the intermediary adds the first client website address")
+      registration.goToPage("website-address/1")
+      registration.checkJourneyUrl("website-address/1")
+      registration.enterAnswer("www.first-website.com")
+
+      Then("the intermediary answers yes to add another client website address")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("yes")
+
+      Then("the intermediary adds the second client website address")
+      registration.checkJourneyUrl("website-address/2")
+      registration.enterAnswer("http://websiteno2.co.uk")
+
+      Then("the intermediary selects change on the second client website address")
+      registration.checkJourneyUrl("add-website-address")
+      registration.selectChangeOrRemoveLink("website-address\\/2\\?waypoints\\=change-add-website-address")
+
+      Then("the intermediary changes the second client website address")
+      registration.checkJourneyUrl("website-address/2")
+      registration.enterAnswer("www.website1.com")
+
+      Then("the intermediary selects remove on the first client website address")
+      registration.checkJourneyUrl("add-website-address")
+      registration.selectChangeOrRemoveLink("remove-website-address\\/1")
+
+      Then("the intermediary answers yes on the remove-website-address/1 page")
+      registration.checkJourneyUrl("remove-website-address/1")
+      registration.answerRadioButton("yes")
+
+      Then("the intermediary answers yes to add another client website address")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("yes")
+
+      Then("the intermediary adds another client website address")
+      registration.checkJourneyUrl("website-address/2")
+      registration.enterAnswer("newnumbertwo-website.test")
+
+      Then("the intermediary answers no to add another client website address")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
 
       //      The rest of the journey is still in development
     }

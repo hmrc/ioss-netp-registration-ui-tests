@@ -120,4 +120,7 @@ object Registration extends BasePage {
   def updateField(id: String, text: String): Unit =
     sendKeys(By.id(id), text)
 
+  def goToPage(page: String): Unit =
+    get(s"$registrationUrl$journeyUrl/$page")
+
 }
