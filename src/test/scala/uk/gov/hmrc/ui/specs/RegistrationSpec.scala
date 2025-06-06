@@ -27,7 +27,7 @@ class RegistrationSpec extends BaseSpec {
 
     Scenario("Intermediary registers on behalf of a NETP using the IOSS NETP Registration service") {
 
-      Given("the intermediary accesses the IOSS Intermediary Registration Service")
+      Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard()
       registration.checkJourneyUrl("client-uk-based")
@@ -38,6 +38,26 @@ class RegistrationSpec extends BaseSpec {
       registration.answerVatDetails("yes")
 
 //      The rest of the journey is not developed yet
+
+//      manual navigation to website section until rest of journey is developed
+      Then("the intermediary adds the first client website address")
+      registration.goToPage("website-address/1")
+      registration.checkJourneyUrl("website-address/1")
+      registration.enterAnswer("www.first-website.com")
+
+      Then("the intermediary answers yes to add another client website address")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("yes")
+
+      Then("the intermediary adds the second client website address")
+      registration.checkJourneyUrl("website-address/2")
+      registration.enterAnswer("http://websiteno2.co.uk")
+
+      Then("the intermediary answers no to add another client website address")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
+
+      //      The rest of the journey is not developed yet
 //      manually navigate to the Url
 
       Then("the intermediary enters credentials on contact-details page")
