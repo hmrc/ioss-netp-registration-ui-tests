@@ -38,7 +38,14 @@ class RegistrationSpec extends BaseSpec {
       registration.answerVatDetails("yes")
 
 //      The rest of the journey is not developed yet
+//      manually navigate to the Url
 
+      Then("the intermediary enters credentials on contact-details page")
+      registration.goToPage("business-contact-details")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Testname", "12345678", "exampletest@mail.com")
+
+      //      The rest of the journey is not developed yet
     }
   }
 }

@@ -35,6 +35,9 @@ object Registration extends BasePage {
   def checkJourneyUrl(page: String): Unit =
     getCurrentUrl should startWith(s"$registrationUrl$journeyUrl/$page")
 
+  def goToPage(page: String): Unit =
+    get(s"$registrationUrl$journeyUrl/$page")
+
   def answerRadioButton(answer: String): Unit = {
 
     answer match {
@@ -120,4 +123,11 @@ object Registration extends BasePage {
   def updateField(id: String, text: String): Unit =
     sendKeys(By.id(id), text)
 
+  def fillContactDetails(name: String, phone: String, email: String): Unit = {
+    sendKeys(By.id("fullName"), name)
+    sendKeys(By.id("telephoneNumber"), phone)
+    sendKeys(By.id("emailAddress"), email)
+    click(continueButton)
+
+  }
 }
