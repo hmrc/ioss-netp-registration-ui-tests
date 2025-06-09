@@ -29,7 +29,7 @@ class ChangeAnswersSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS Intermediary Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true)
       registration.checkJourneyUrl("client-uk-based")
 
       And("the intermediary answers questions for a UK based NETP")
@@ -92,7 +92,7 @@ class ChangeAnswersSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS Intermediary Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true)
       registration.checkJourneyUrl("client-uk-based")
 
       And("the intermediary answers questions for a Non-UK based NETP")
@@ -143,7 +143,7 @@ class ChangeAnswersSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS Intermediary Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true)
       registration.checkJourneyUrl("client-uk-based")
 
       And("the intermediary answers questions for a Non-UK based NETP")
@@ -214,7 +214,7 @@ class ChangeAnswersSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS Intermediary Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true)
       registration.checkJourneyUrl("client-uk-based")
 
       And("the intermediary answers questions for a Non-UK based NETP")
@@ -280,7 +280,7 @@ class ChangeAnswersSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS Intermediary Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true)
       registration.checkJourneyUrl("client-uk-based")
 
       When("the intermediary selects yes on the client-uk-based page")

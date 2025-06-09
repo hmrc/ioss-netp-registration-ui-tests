@@ -29,7 +29,7 @@ class RegistrationSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS Intermediary Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true)
       registration.checkJourneyUrl("client-uk-based")
 
       And("the intermediary answers all of the vat details questions as a UK Based NETP with VRN")
