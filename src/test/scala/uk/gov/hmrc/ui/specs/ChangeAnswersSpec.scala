@@ -301,14 +301,8 @@ class ChangeAnswersSpec extends BaseSpec {
       )
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetails("yes")
-      
-      //      The rest of the journey is still in development
 
-//        manually navigate to the url   
-      Then("the intermedairy enters credentials on contact-details page")
-      registration.checkJourneyUrl("contact-details")
-      registration.fillContactDetails("Testname", "12345678", "exampletest@mail.com")
-      
+      //      The rest of the journey is still in development
     }
   }
 }

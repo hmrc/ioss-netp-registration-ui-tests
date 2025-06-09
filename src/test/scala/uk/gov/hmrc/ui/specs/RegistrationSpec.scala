@@ -40,10 +40,12 @@ class RegistrationSpec extends BaseSpec {
 //      The rest of the journey is not developed yet
 //      manually navigate to the Url
 
-      Then("the intermedairy enters credentials on contact-details page")
-      registration.goToPage("contact-details")
-      registration.checkJourneyUrl("contact-details")
+      Then("the intermediary enters credentials on contact-details page")
+      registration.goToPage("business-contact-details")
+      registration.checkJourneyUrl("business-contact-details")
       registration.fillContactDetails("Testname", "12345678", "exampletest@mail.com")
+
+      //      The rest of the journey is not developed yet
     }
   }
 }
