@@ -29,7 +29,7 @@ class VatDetailsKickoutsSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true)
       registration.checkJourneyUrl("client-uk-based")
 
       When("the intermediary selects yes on the client-uk-based page")
@@ -57,7 +57,7 @@ class VatDetailsKickoutsSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true)
       registration.checkJourneyUrl("client-uk-based")
 
       When("the intermediary selects yes on the client-uk-based page")
@@ -85,7 +85,7 @@ class VatDetailsKickoutsSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true)
       registration.checkJourneyUrl("client-uk-based")
 
       When("the intermediary selects yes on the client-uk-based page")

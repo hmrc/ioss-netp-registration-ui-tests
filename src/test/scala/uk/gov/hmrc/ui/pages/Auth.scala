@@ -30,13 +30,19 @@ object Auth extends BasePage {
   def goToAuthorityWizard(): Unit =
     get(authUrl)
 
-  def loginUsingAuthorityWizard(): Unit = {
+  def loginUsingAuthorityWizard(withIntEnrolment: Boolean): Unit = {
 
     getCurrentUrl should startWith(authUrl)
 
     sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl")
 
     selectByValue(By.id("affinityGroupSelect"), "Organisation")
+
+    if (withIntEnrolment) {
+      sendKeys(By.id("enrolment[0].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-0-0-name"), "IntNumber")
+      sendKeys(By.id("input-0-0-value"), "IN2431234567")
+    }
 
     click(By.cssSelector("Input[value='Submit']"))
 
