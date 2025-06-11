@@ -309,7 +309,7 @@ class ChangeAnswersSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true)
       registration.checkJourneyUrl("client-uk-based")
 
       And("the intermediary answers questions for a UK based NETP")
