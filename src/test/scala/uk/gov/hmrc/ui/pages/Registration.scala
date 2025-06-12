@@ -21,6 +21,7 @@ import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import org.scalatest.matchers.should.Matchers.*
 import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.selenium.webdriver.Driver
+import org.junit.Assert
 import uk.gov.hmrc.ui.pages.Registration.continueButton
 
 object Registration extends BasePage {
@@ -133,5 +134,10 @@ object Registration extends BasePage {
   def selectCheckbox(): Unit = {
     click(By.id("declaration"))
     click(continueButton)
+  }
+
+  def checkProblemPage(): Unit = {
+    val h1 = Driver.instance.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(h1.equals("Sorry, there is a problem with the service"))
   }
 }

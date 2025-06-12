@@ -30,7 +30,7 @@ object Auth extends BasePage {
   def goToAuthorityWizard(): Unit =
     get(authUrl)
 
-  def loginUsingAuthorityWizard(withIntEnrolment: Boolean): Unit = {
+  def loginUsingAuthorityWizard(withIntEnrolment: Boolean, withVatEnrolment: Boolean, vrnType: String): Unit = {
 
     getCurrentUrl should startWith(authUrl)
 
@@ -38,10 +38,19 @@ object Auth extends BasePage {
 
     selectByValue(By.id("affinityGroupSelect"), "Organisation")
 
+    if (withVatEnrolment) {
+      sendKeys(By.id("enrolment[0].name"), "HMRC-MTD-VAT")
+      sendKeys(By.id("input-0-0-name"), "VRN")
+      if (vrnType == "notFound") {
+        sendKeys(By.id("input-0-0-value"), "800000001")
+      } else {
+        sendKeys(By.id("input-0-0-value"), "100000001")
+      }
+    }
     if (withIntEnrolment) {
-      sendKeys(By.id("enrolment[0].name"), "HMRC-IOSS-INT")
-      sendKeys(By.id("input-0-0-name"), "IntNumber")
-      sendKeys(By.id("input-0-0-value"), "IN2431234567")
+      sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-1-0-name"), "IntNumber")
+      sendKeys(By.id("input-1-0-value"), "IN2431234567")
     }
 
     click(By.cssSelector("Input[value='Submit']"))
