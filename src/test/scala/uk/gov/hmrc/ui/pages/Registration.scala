@@ -128,6 +128,10 @@ object Registration extends BasePage {
     sendKeys(By.id("telephoneNumber"), phone)
     sendKeys(By.id("emailAddress"), email)
     click(continueButton)
+  }
 
+  def selectCheckbox(): Unit = {
+    click(By.id("declaration"))
+    click(continueButton)
   }
 }
