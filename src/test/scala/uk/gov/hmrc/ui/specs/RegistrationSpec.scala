@@ -29,7 +29,7 @@ class RegistrationSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(true)
+      auth.loginUsingAuthorityWizard(true, true, "standard")
       registration.checkJourneyUrl("client-uk-based")
 
       And("the intermediary answers all of the vat details questions as a UK Based NETP with VRN")
@@ -61,7 +61,14 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("business-contact-details")
       registration.fillContactDetails("Testname", "12345678", "exampletest@mail.com")
 
-      //      The rest of the journey is not developed yet
+      //  CYA to be added here when developed
+
+      When("the intermediary accepts the declaration")
+      registration.goToPage("declaration")
+      registration.checkJourneyUrl("declaration")
+      registration.selectCheckbox()
+
+      // Registration Pending to be added here when developed
     }
   }
 }

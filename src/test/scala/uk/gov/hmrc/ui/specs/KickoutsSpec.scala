@@ -29,7 +29,7 @@ class KickoutsSpec extends BaseSpec {
 
       Given("a user who is not registered on the Intermediary service accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(false)
+      auth.loginUsingAuthorityWizard(false, true, "standard")
 
       Then("the intermediary is on the cannot-use-this-service page")
       registration.checkJourneyUrl("cannot-use-this-service")

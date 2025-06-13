@@ -29,7 +29,7 @@ class VatDetailsKickoutsSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(true)
+      auth.loginUsingAuthorityWizard(true, true, "standard")
       registration.checkJourneyUrl("client-uk-based")
 
       When("the intermediary selects yes on the client-uk-based page")
@@ -57,7 +57,7 @@ class VatDetailsKickoutsSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(true)
+      auth.loginUsingAuthorityWizard(true, true, "standard")
       registration.checkJourneyUrl("client-uk-based")
 
       When("the intermediary selects yes on the client-uk-based page")
@@ -85,7 +85,7 @@ class VatDetailsKickoutsSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(true)
+      auth.loginUsingAuthorityWizard(true, true, "standard")
       registration.checkJourneyUrl("client-uk-based")
 
       When("the intermediary selects yes on the client-uk-based page")
@@ -106,6 +106,32 @@ class VatDetailsKickoutsSpec extends BaseSpec {
         "the registration-service error page is displayed"
       )
       registration.checkJourneyUrl("registration-service-error")
+    }
+
+    Scenario(
+      "Internal Server Error for Intermediary VAT details when intermediary logs into NETP Registration service"
+    ) {
+
+      Given(
+        "the intermediary accesses the IOSS NETP Registration Service where an internal server error occurs on their vat details"
+      )
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "notFound")
+
+      Then("the intermediary is shown the sorry there is a problem page")
+      registration.checkProblemPage()
+    }
+
+    Scenario("No VAT enrolment when intermediary logs into NETP Registration service") {
+
+      Given(
+        "the intermediary accesses the IOSS NETP Registration Service without a VAT enrolment"
+      )
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, false, "notRequired")
+
+      Then("the intermediary is shown the sorry there is a problem page")
+      registration.checkProblemPage()
     }
   }
 }
