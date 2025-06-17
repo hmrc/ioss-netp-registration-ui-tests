@@ -305,7 +305,7 @@ class ChangeAnswersSpec extends BaseSpec {
       //      The rest of the journey is still in development
     }
 
-    Scenario("Intermediary changes website details on their NETP registration") {
+    Scenario("Intermediary changes trading name and website details on their NETP registration") {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
@@ -319,6 +319,44 @@ class ChangeAnswersSpec extends BaseSpec {
         "the intermediary selects change for Based in UK on the confirm-vat-details page"
       )
       registration.checkJourneyUrl("confirm-vat-details")
+
+      When("the intermediary selects yes on the have-uk-trading-name page")
+      // Manual navigation until fix goes in for confirm-vat-details page
+      registration.goToPage("have-uk-trading-name")
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("yes")
+
+      Then("the intermediary adds the first trading name")
+      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.enterAnswer("1")
+
+      And("the intermediary selects yes on the add-uk-trading-name page")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("yes")
+
+      And("the intermediary adds the second trading name")
+      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.enterAnswer("2")
+
+      Then("the intermediary selects change on the second trading name")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.selectChangeOrRemoveLink("uk-trading-name\\/2\\?waypoints\\=change-add-uk-trading-name")
+
+      And("the intermediary updates the second trading name")
+      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.enterAnswer("A new 2nd trading name")
+
+      Then("the intermediary selects remove on the first trading name")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.selectChangeOrRemoveLink("remove-uk-trading-name\\/1")
+
+      Then("the intermediary answers yes on the remove-uk-trading-name/1 page")
+      registration.checkJourneyUrl("remove-uk-trading-name/1")
+      registration.answerRadioButton("yes")
+
+      And("the intermediary selects no on the add-uk-trading-name page")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("no")
 
       //      manual navigation to website section until rest of journey is developed
       Then("the intermediary adds the first client website address")
