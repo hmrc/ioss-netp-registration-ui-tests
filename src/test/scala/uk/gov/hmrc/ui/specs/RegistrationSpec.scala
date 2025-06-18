@@ -83,14 +83,16 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("business-contact-details")
       registration.fillContactDetails("Testname", "12345678", "exampletest@mail.com")
 
-      //  CYA to be added here when developed
+      And("the intermediary continues through the check-your-answers page")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.continue()
 
       When("the intermediary accepts the declaration")
-      registration.goToPage("declaration")
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
 
-      // Registration Pending to be added here when developed
+      Then("the intermediary is on the client-application-complete page")
+      registration.checkJourneyUrl("client-application-complete")
     }
 
     Scenario(
@@ -128,14 +130,16 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("business-contact-details")
       registration.fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
 
-      //  CYA to be added here when developed
+      And("the intermediary continues through the check-your-answers page")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.continue()
 
       When("the intermediary accepts the declaration")
-      registration.goToPage("declaration")
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
 
-      // Registration Pending to be added here when developed
+      Then("the intermediary is on the client-application-complete page")
+      registration.checkJourneyUrl("client-application-complete")
     }
 
   }
