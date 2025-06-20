@@ -99,23 +99,16 @@ object Registration extends BasePage {
 
   def answerVatDetailsNonUk(): Unit = {
     answerRadioButton("no")
+    checkJourneyUrl("client-has-vat-number")
+    answerRadioButton("yes")
+    checkJourneyUrl("client-vat-number")
+    enterAnswer("GB123456789")
     checkJourneyUrl("client-country-based")
     selectCountry("Angola")
     checkJourneyUrl("client-business-name")
     enterAnswer("Business name")
-    checkJourneyUrl("client-tax-reference")
-    enterAnswer("BUS98765")
     checkJourneyUrl("client-address")
     enterAddress("House Name", "Suburb", "City-Name", "", "12345")
-  }
-
-  def answerVatDetails(answer: String): Unit = {
-    answer match {
-      case "yes" => click(By.id("value_0"))
-      case "no"  => click(By.id("value_1"))
-      case _     => throw new Exception("Option doesn't exist")
-    }
-    click(continueButton)
   }
 
   def selectChangeOrRemoveLink(link: String): Unit =

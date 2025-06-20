@@ -49,9 +49,9 @@ class VatDetailsSpec extends BaseSpec {
         "the intermediary selects yes on the confirm-vat-details page"
       )
       registration.checkJourneyUrl("confirm-vat-details")
-      registration.answerVatDetails("yes")
+      registration.continue()
 
-//      The rest of the journey is still in development
+      // Will add rest of journey to these scenarios once all pages are there
     }
 
     Scenario("Intermediary registers on behalf of a UK based NETP with a UTR") {
@@ -96,7 +96,7 @@ class VatDetailsSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
 
-      //      The rest of the journey is still in development
+      // Will add rest of journey to these scenarios once all pages are there
     }
 
     Scenario("Intermediary registers on behalf of a UK based NETP with a NINO") {
@@ -141,10 +141,10 @@ class VatDetailsSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
 
-      //      The rest of the journey is still in development
+      // Will add rest of journey to these scenarios once all pages are there
     }
 
-    Scenario("Intermediary registers on behalf of a Non-UK based NETP") {
+    Scenario("Intermediary registers on behalf of a Non-UK based NETP with a UK VAT registration number") {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
@@ -153,6 +153,14 @@ class VatDetailsSpec extends BaseSpec {
 
       When("the intermediary selects no on the client-uk-based page")
       registration.answerRadioButton("no")
+
+      And("the intermediary selects yes on the client-has-vat-number page")
+      registration.checkJourneyUrl("client-has-vat-number")
+      registration.answerRadioButton("yes")
+
+      And("the intermediary enters a UK Vat Number on the client-vat-number page")
+      registration.checkJourneyUrl("client-vat-number")
+      registration.enterAnswer("741221471")
 
       Then("the intermediary selects Jamaica on the client-country-based page")
       registration.checkJourneyUrl("client-country-based")
@@ -163,12 +171,6 @@ class VatDetailsSpec extends BaseSpec {
       )
       registration.checkJourneyUrl("client-business-name")
       registration.enterAnswer("Jamaican Company")
-
-      And(
-        "the intermediary enters a Tax Reference Number on the client-tax-reference page"
-      )
-      registration.checkJourneyUrl("client-tax-reference")
-      registration.enterAnswer("JAM123AICA 45")
 
       And(
         "the intermediary enters an address on the client-address page"
@@ -182,7 +184,52 @@ class VatDetailsSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
 
-      //      The rest of the journey is still in development
+      // Will add rest of journey to these scenarios once all pages are there
+    }
+
+    Scenario("Intermediary registers on behalf of a Non-UK based NETP without a UK VAT registration number") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary selects no on the client-uk-based page")
+      registration.answerRadioButton("no")
+
+      And("the intermediary selects yes on the client-has-vat-number page")
+      registration.checkJourneyUrl("client-has-vat-number")
+      registration.answerRadioButton("no")
+
+      Then("the intermediary selects Jamaica on the client-country-based page")
+      registration.checkJourneyUrl("client-country-based")
+      registration.selectCountry("Luxembourg")
+
+      And(
+        "the intermediary enters a Tax Reference Number on the client-tax-reference page"
+      )
+      registration.checkJourneyUrl("client-tax-reference")
+      registration.enterAnswer("LUX 123")
+
+      And(
+        "the intermediary enters a business name on the client-business-name page"
+      )
+      registration.checkJourneyUrl("client-business-name")
+      registration.enterAnswer("Luxembourg Company")
+
+      And(
+        "the intermediary enters an address on the client-address page"
+      )
+      registration.checkJourneyUrl("client-address")
+      registration.enterAddress("1 Street Name", "Suburb", "City Name", "", "")
+
+      Then(
+        "the intermediary selects continue on the confirm-vat-details page"
+      )
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.continue()
+
+      // Will add rest of journey to these scenarios once all pages are there
     }
   }
 }

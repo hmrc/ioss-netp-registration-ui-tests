@@ -35,11 +35,9 @@ class RegistrationSpec extends BaseSpec {
       And("the intermediary answers all of the vat details questions as a UK Based NETP with VRN")
       registration.answerVatDetailsUkVrn()
       registration.checkJourneyUrl("confirm-vat-details")
-      registration.answerVatDetails("yes")
+      registration.continue()
 
       When("the intermediary selects yes on the have-uk-trading-name page")
-      // Manual navigation until fix goes in for confirm-vat-details page
-      registration.goToPage("have-uk-trading-name")
       registration.checkJourneyUrl("have-uk-trading-name")
       registration.answerRadioButton("yes")
 
@@ -107,11 +105,9 @@ class RegistrationSpec extends BaseSpec {
       And("the intermediary answers all of the vat details questions as a UK Based NETP with VRN")
       registration.answerVatDetailsUkVrn()
       registration.checkJourneyUrl("confirm-vat-details")
-      registration.answerVatDetails("yes")
+      registration.continue()
 
       When("the intermediary selects no on the have-uk-trading-name page")
-      // Manual navigation until fix goes in for confirm-vat-details page
-      registration.goToPage("have-uk-trading-name")
       registration.checkJourneyUrl("have-uk-trading-name")
       registration.answerRadioButton("no")
 
