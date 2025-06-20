@@ -101,7 +101,6 @@ class VatDetailsKickoutsSpec extends BaseSpec {
       registration.checkJourneyUrl("client-vat-number")
       registration.enterAnswer("700000001")
 
-      //      Will likely change to its own page rather than the generic kickout
       Then(
         "the registration-service error page is displayed"
       )
@@ -132,6 +131,30 @@ class VatDetailsKickoutsSpec extends BaseSpec {
 
       Then("the intermediary is shown the sorry there is a problem page")
       registration.checkProblemPage()
+    }
+
+    Scenario("Intermediary cannot register on behalf of a NETP with an expired VAT Number") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary selects no on the client-uk-based page")
+      registration.answerRadioButton("no")
+
+      And("the intermediary selects yes on the client-has-vat-number page")
+      registration.checkJourneyUrl("client-has-vat-number")
+      registration.answerRadioButton("yes")
+
+      And("the intermediary enters a UK Vat Number on the client-vat-number page")
+      registration.checkJourneyUrl("client-vat-number")
+      registration.enterAnswer("700000002")
+
+      Then(
+        "the expired-vrn-date page is displayed"
+      )
+      registration.checkJourneyUrl("expired-vrn-date")
     }
   }
 }
