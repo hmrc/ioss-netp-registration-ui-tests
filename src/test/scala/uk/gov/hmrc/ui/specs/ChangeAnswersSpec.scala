@@ -443,8 +443,6 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.answerRadioButton("no")
 
       And("the intermediary selects no on the previous-oss page")
-      //      temporary manual navigation
-      registration.goToPage("previous-oss")
       registration.checkJourneyUrl("previous-oss")
       registration.answerRadioButton("no")
 
@@ -577,10 +575,9 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("remove-previous-scheme/1/3?waypoints=change-previous-schemes-overview")
       registration.answerRadioButton("yes")
 
-//      Currently skipping this page
-//      And("the intermediary selects no on the previous-scheme-answers page")
-//      registration.checkJourneyUrl("previous-scheme-answers/1")
-//      registration.answerRadioButton("no")
+      And("the intermediary selects no on the previous-scheme-answers page")
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+      registration.answerRadioButton("no")
 
       And("the intermediary selects yes on the previous-schemes-overview page")
       registration.checkJourneyUrl("previous-schemes-overview")
@@ -596,7 +593,6 @@ class ChangeAnswersSpec extends BaseSpec {
 
       And("the intermediary adds an IOSS scheme number")
       registration.checkJourneyUrl("previous-ioss-number/2/1")
-      //      Currently still remembering IOSS number from first scheme
       registration.enterAnswer("IM2087773331")
 
       Then("the intermediary selects yes on the previous-scheme-answers/2 page")

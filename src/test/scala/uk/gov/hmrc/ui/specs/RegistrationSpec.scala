@@ -58,8 +58,6 @@ class RegistrationSpec extends BaseSpec {
       registration.answerRadioButton("no")
 
       When("the intermediary selects yes on the previous-oss page")
-//      temporary manual navigation
-      registration.goToPage("previous-oss")
       registration.checkJourneyUrl("previous-oss")
       registration.answerRadioButton("yes")
 
@@ -117,7 +115,6 @@ class RegistrationSpec extends BaseSpec {
 
       And("the intermediary adds an IOSS scheme number")
       registration.checkJourneyUrl("previous-ioss-number/2/1")
-//      Currently still remembering IOSS number from first scheme
       registration.enterAnswer("IM6167773331")
 
       Then("the intermediary selects no on the previous-scheme-answers/2 page")
