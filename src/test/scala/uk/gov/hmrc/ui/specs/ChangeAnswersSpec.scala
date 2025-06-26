@@ -442,6 +442,10 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("add-uk-trading-name")
       registration.answerRadioButton("no")
 
+      And("the intermediary selects no on the previous-oss page")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+
       //      manual navigation to website section until rest of journey is developed
       Then("the intermediary adds the first client website address")
       registration.goToPage("website-address/1")
@@ -482,6 +486,163 @@ class ChangeAnswersSpec extends BaseSpec {
 
       Then("the intermediary answers no to add another client website address")
       registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
+
+      //      The rest of the journey is still in development
+    }
+
+    Scenario("Intermediary changes previous registration details on their NETP registration") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      And("the intermediary answers questions for a UK based NETP")
+      registration.answerVatDetailsUkVrn()
+
+      When(
+        "the intermediary selects change for Based in UK on the confirm-vat-details page"
+      )
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.continue()
+
+      When("the intermediary selects no on the have-uk-trading-name page")
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("no")
+
+      When("the intermediary selects yes on the previous-oss page")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("yes")
+
+      Then("the intermediary selects which country was it registered in on previous-country page")
+      registration.checkJourneyUrl("previous-country/1")
+      registration.selectCountry("Bulgaria")
+
+      When("the intermediary selects OSS on the first previous-scheme page for Bulgaria")
+      registration.checkJourneyUrl("previous-scheme/1/1")
+      registration.answerSchemeType("OSS")
+
+      And("the intermediary adds an OSS non-union scheme number")
+      registration.checkJourneyUrl("previous-oss-scheme-number/1/1")
+      registration.enterAnswer("EU111222333")
+
+      When("the intermediary selects yes on the previous-scheme-answers/1 page")
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+      registration.answerRadioButton("yes")
+
+      When("the intermediary selects OSS on the second previous-scheme page for Bulgaria")
+      registration.checkJourneyUrl("previous-scheme/1/2")
+      registration.answerSchemeType("OSS")
+
+      And("the intermediary adds an OSS union scheme number")
+      registration.checkJourneyUrl("previous-oss-scheme-number/1/2")
+      registration.enterAnswer("BG123456789")
+
+      When("the intermediary selects yes on the previous-scheme-answers/1 page")
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+      registration.answerRadioButton("yes")
+
+      When("the intermediary selects IOSS on the third previous-scheme page for Bulgaria")
+      registration.checkJourneyUrl("previous-scheme/1/3")
+      registration.answerSchemeType("IOSS")
+
+      And("the intermediary adds an IOSS scheme number")
+      registration.checkJourneyUrl("previous-ioss-number/1/3")
+      registration.enterAnswer("IM1001233211")
+
+      And("the intermediary selects continue after adding all three schemes for Bulgaria")
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+      registration.continue()
+
+      When(
+        "the intermediary selects change for Bulgaria on the previous-schemes-overview page"
+      )
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.selectChangeOrRemoveLink(
+        "previous-scheme-answers\\/1\\?waypoints\\=change-previous-schemes-overview"
+      )
+
+      And(
+        "the intermediary selects remove for the OSS union scheme on the remove-previous-scheme page"
+      )
+      registration.checkJourneyUrl("previous-scheme-answers/1?waypoints=change-previous-schemes-overview")
+      registration.selectChangeOrRemoveLink(
+        "remove-previous-scheme\\/1\\/3\\?waypoints\\=change-previous-schemes-overview"
+      )
+
+      Then("the intermediary answers yes on the remove-previous-scheme page")
+      registration.checkJourneyUrl("remove-previous-scheme/1/3?waypoints=change-previous-schemes-overview")
+      registration.answerRadioButton("yes")
+
+      And("the intermediary selects no on the previous-scheme-answers page")
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+      registration.answerRadioButton("no")
+
+      And("the intermediary selects yes on the previous-schemes-overview page")
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.answerRadioButton("yes")
+
+      Then("the intermediary selects another country on the previous-country/2 page")
+      registration.checkJourneyUrl("previous-country/2")
+      registration.selectCountry("Denmark")
+
+      When("the intermediary selects IOSS on the first previous-scheme page for Denmark")
+      registration.checkJourneyUrl("previous-scheme/2/1")
+      registration.answerSchemeType("IOSS")
+
+      And("the intermediary adds an IOSS scheme number")
+      registration.checkJourneyUrl("previous-ioss-number/2/1")
+      registration.enterAnswer("IM2087773331")
+
+      Then("the intermediary selects yes on the previous-scheme-answers/2 page")
+      registration.checkJourneyUrl("previous-scheme-answers/2")
+      registration.answerRadioButton("yes")
+
+      When("the intermediary selects OSS on the second previous-scheme page for Denmark")
+      registration.checkJourneyUrl("previous-scheme/2/2")
+      registration.answerSchemeType("OSS")
+
+      And("the intermediary adds an OSS union scheme number")
+      registration.checkJourneyUrl("previous-oss-scheme-number/2/2")
+      registration.enterAnswer("DK12345678")
+
+      Then("the intermediary selects no on the previous-scheme-answers/2 page")
+      registration.checkJourneyUrl("previous-scheme-answers/2")
+      registration.answerRadioButton("no")
+
+      And("the intermediary selects yes on the previous-schemes-overview page")
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.answerRadioButton("yes")
+
+      Then("the intermediary selects which country was it registered in on previous-country page")
+      registration.checkJourneyUrl("previous-country/3")
+      registration.selectCountry("Greece")
+
+      When("the intermediary selects OSS on the first previous-scheme page for Greece")
+      registration.checkJourneyUrl("previous-scheme/3/1")
+      registration.answerSchemeType("OSS")
+
+      And("the intermediary adds an OSS non-union scheme number")
+      registration.checkJourneyUrl("previous-oss-scheme-number/3/1")
+      registration.enterAnswer("EU111222333")
+
+      When("the intermediary selects no on the previous-scheme-answers/3 page")
+      registration.checkJourneyUrl("previous-scheme-answers/3")
+      registration.answerRadioButton("no")
+
+      When(
+        "the intermediary selects remove for Greece on the previous-schemes-overview page"
+      )
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.selectChangeOrRemoveLink("remove-registration\\/3")
+
+      Then("the intermediary selects yes on the remove-registration/3 page")
+      registration.checkJourneyUrl("remove-registration/3")
+      registration.answerRadioButton("yes")
+
+      And("the intermediary selects no on the previous-schemes-overview page")
+      registration.checkJourneyUrl("previous-schemes-overview")
       registration.answerRadioButton("no")
 
       //      The rest of the journey is still in development

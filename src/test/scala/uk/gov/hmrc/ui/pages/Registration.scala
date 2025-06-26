@@ -133,4 +133,13 @@ object Registration extends BasePage {
     val h1 = Driver.instance.findElement(By.tagName("h1")).getText
     Assert.assertTrue(h1.equals("Sorry, there is a problem with the service"))
   }
+
+  def answerSchemeType(answer: String): Unit = {
+    answer match {
+      case "OSS"  => click(By.id("value_0"))
+      case "IOSS" => click(By.id("value_1"))
+      case _      => throw new Exception("Option doesn't exist")
+    }
+    click(continueButton)
+  }
 }

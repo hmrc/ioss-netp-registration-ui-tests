@@ -57,6 +57,74 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("add-uk-trading-name")
       registration.answerRadioButton("no")
 
+      When("the intermediary selects yes on the previous-oss page")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("yes")
+
+      Then("the intermediary selects which country was it registered in on previous-country page")
+      registration.checkJourneyUrl("previous-country/1")
+      registration.selectCountry("Cyprus")
+
+      When("the intermediary selects OSS on the first previous-scheme page for Cyprus")
+      registration.checkJourneyUrl("previous-scheme/1/1")
+      registration.answerSchemeType("OSS")
+
+      And("the intermediary adds an OSS non-union scheme number")
+      registration.checkJourneyUrl("previous-oss-scheme-number/1/1")
+      registration.enterAnswer("EU111222333")
+
+      When("the intermediary selects yes on the previous-scheme-answers/1 page")
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+      registration.answerRadioButton("yes")
+
+      When("the intermediary selects OSS on the second previous-scheme page for Cyprus")
+      registration.checkJourneyUrl("previous-scheme/1/2")
+      registration.answerSchemeType("OSS")
+
+      And("the intermediary adds an OSS union scheme number")
+      registration.checkJourneyUrl("previous-oss-scheme-number/1/2")
+      registration.enterAnswer("CY44445555A")
+
+      When("the intermediary selects yes on the previous-scheme-answers/1 page")
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+      registration.answerRadioButton("yes")
+
+      When("the intermediary selects IOSS on the third previous-scheme page for Cyprus")
+      registration.checkJourneyUrl("previous-scheme/1/3")
+      registration.answerSchemeType("IOSS")
+
+      And("the intermediary adds an IOSS scheme number")
+      registration.checkJourneyUrl("previous-ioss-number/1/3")
+      registration.enterAnswer("IM1967773331")
+
+      And("the intermediary selects continue after adding all three schemes for Cyprus")
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+      registration.continue()
+
+      And("the intermediary selects yes on the previous-schemes-overview page")
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.answerRadioButton("yes")
+
+      Then("the intermediary selects another country on the previous-country/2 page")
+      registration.checkJourneyUrl("previous-country/2")
+      registration.selectCountry("Poland")
+
+      When("the intermediary selects IOSS on the first previous-scheme page for Poland")
+      registration.checkJourneyUrl("previous-scheme/2/1")
+      registration.answerSchemeType("IOSS")
+
+      And("the intermediary adds an IOSS scheme number")
+      registration.checkJourneyUrl("previous-ioss-number/2/1")
+      registration.enterAnswer("IM6167773331")
+
+      Then("the intermediary selects no on the previous-scheme-answers/2 page")
+      registration.checkJourneyUrl("previous-scheme-answers/2")
+      registration.answerRadioButton("no")
+
+      And("the intermediary selects no on the previous-schemes-overview page")
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.answerRadioButton("no")
+
 //      The rest of the journey is not developed yet
 
 //      manual navigation to website section until rest of journey is developed
@@ -109,6 +177,10 @@ class RegistrationSpec extends BaseSpec {
 
       When("the intermediary selects no on the have-uk-trading-name page")
       registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("no")
+
+      When("the intermediary selects no on the previous-oss page")
+      registration.checkJourneyUrl("previous-oss")
       registration.answerRadioButton("no")
 
       //      The rest of the journey is not developed yet
