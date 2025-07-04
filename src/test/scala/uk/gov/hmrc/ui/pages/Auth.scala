@@ -42,7 +42,7 @@ object Auth extends BasePage {
       sendKeys(By.id("enrolment[0].name"), "HMRC-MTD-VAT")
       sendKeys(By.id("input-0-0-name"), "VRN")
       if (vrnType == "notFound") {
-        sendKeys(By.id("input-0-0-value"), "800000001")
+        sendKeys(By.id("input-0-0-value"), "900000001")
       } else {
         sendKeys(By.id("input-0-0-value"), "100000001")
       }
