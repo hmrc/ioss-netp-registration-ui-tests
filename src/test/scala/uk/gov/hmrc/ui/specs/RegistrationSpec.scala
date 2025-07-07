@@ -125,11 +125,65 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("previous-schemes-overview")
       registration.answerRadioButton("no")
 
-//      The rest of the journey is not developed yet
+      Then("the intermediary selects yes on the eu-fixed-establishment page")
+      registration.checkJourneyUrl("eu-fixed-establishment")
+      registration.answerRadioButton("yes")
 
-//      manual navigation to website section until rest of journey is developed
+      And(
+        "the intermediary selects which country their fixed establishment is in on the vat-registered-eu-country page"
+      )
+      registration.checkJourneyUrl("vat-registered-eu-country/1")
+      registration.selectCountry("Spain")
+
+      And("the intermediary enters the fixed establishment details on the trading-name-business-address page")
+      registration.checkJourneyUrl("trading-name-business-address/1")
+      registration.enterFETradingName("Spanish Trading Name")
+      registration.enterAddress("123 Street Name", "", "Town", "", "ES12345")
+
+      And("the intermediary selects the VAT Number registration type on the registration-tax-type page")
+      registration.checkJourneyUrl("registration-tax-type/1")
+      registration.answerRegistrationType("VAT number")
+
+      And("the intermediary enters the VAT number on the eu-vat-number page")
+      registration.checkJourneyUrl("eu-vat-number/1")
+      registration.enterAnswer("EST5554441B")
+
+      And("the intermediary continues through the check-tax-details page")
+      registration.checkJourneyUrl("check-tax-details/1")
+      registration.continue()
+
+      Then("the intermediary selects yes on the add-tax-details page")
+      registration.checkJourneyUrl("add-tax-details")
+      registration.answerRadioButton("yes")
+
+      And(
+        "the intermediary selects which country their fixed establishment is in on the vat-registered-eu-country page"
+      )
+      registration.checkJourneyUrl("vat-registered-eu-country/2")
+      registration.selectCountry("Netherlands")
+
+      And("the intermediary enters the fixed establishment details on the trading-name-business-address page")
+      registration.checkJourneyUrl("trading-name-business-address/2")
+      registration.enterFETradingName("Netherlands Trading Name")
+      registration.enterAddress("1 Road Name", "Suburb", "City", "Region-Name", "NL5555 12")
+
+      And("the intermediary selects the Tax ID number registration type on the registration-tax-type page")
+      registration.checkJourneyUrl("registration-tax-type/2")
+      registration.answerRegistrationType("Tax ID number")
+
+      And("the intermediary enters the Tax ID number on the eu-tax-identification-number page")
+      registration.checkJourneyUrl("eu-tax-identification-number/2")
+      registration.enterAnswer("NL1 665544")
+
+      And("the intermediary continues through the check-tax-details page")
+      registration.checkJourneyUrl("check-tax-details/2")
+      registration.continue()
+
+      Then("the intermediary selects no on the add-tax-details page")
+      registration.checkJourneyUrl("add-tax-details")
+      registration.answerRadioButton("no")
+
       Then("the intermediary adds the first client website address")
-      registration.goToPage("website-address/1")
       registration.checkJourneyUrl("website-address/1")
       registration.enterAnswer("www.first-website.com")
 
@@ -183,10 +237,11 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("previous-oss")
       registration.answerRadioButton("no")
 
-      //      The rest of the journey is not developed yet
+      Then("the intermediary selects no on the eu-fixed-establishment page")
+      registration.checkJourneyUrl("eu-fixed-establishment")
+      registration.answerRadioButton("no")
 
       Then("the intermediary adds the first client website address")
-      registration.goToPage("website-address/1")
       registration.checkJourneyUrl("website-address/1")
       registration.enterAnswer("www.1st-website.co.uk")
 

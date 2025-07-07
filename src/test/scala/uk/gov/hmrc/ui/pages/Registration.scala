@@ -142,4 +142,16 @@ object Registration extends BasePage {
     }
     click(continueButton)
   }
+
+  def enterFETradingName(tradingName: String): Unit =
+    sendKeys(By.id("tradingName"), tradingName)
+
+  def answerRegistrationType(answer: String): Unit = {
+    answer match {
+      case "VAT number"    => click(By.id("value_0"))
+      case "Tax ID number" => click(By.id("value_1"))
+      case _               => throw new Exception("Option doesn't exist")
+    }
+    click(continueButton)
+  }
 }
