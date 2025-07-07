@@ -51,7 +51,8 @@ class VatDetailsSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
 
-      // Will add rest of journey to these scenarios once all pages are there
+      And("the intermediary completes the rest of the journey")
+      registration.completeRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario("Intermediary registers on behalf of a UK based NETP with a UTR") {
@@ -96,7 +97,8 @@ class VatDetailsSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
 
-      // Will add rest of journey to these scenarios once all pages are there
+      And("the intermediary completes the rest of the journey")
+      registration.completeRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario("Intermediary registers on behalf of a UK based NETP with a NINO") {
@@ -141,7 +143,8 @@ class VatDetailsSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
 
-      // Will add rest of journey to these scenarios once all pages are there
+      And("the intermediary completes the rest of the journey")
+      registration.completeRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario("Intermediary registers on behalf of a Non-UK based NETP with a UK VAT registration number") {
@@ -184,7 +187,8 @@ class VatDetailsSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
 
-      // Will add rest of journey to these scenarios once all pages are there
+      And("the intermediary completes the rest of the journey")
+      registration.completeRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario("Intermediary registers on behalf of a Non-UK based NETP without a UK VAT registration number") {
@@ -229,7 +233,8 @@ class VatDetailsSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
 
-      // Will add rest of journey to these scenarios once all pages are there
+      And("the intermediary completes the rest of the journey")
+      registration.completeRegistrationCompulsoryAnswersOnly()
     }
   }
 }

@@ -121,8 +121,8 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
 
-      //      The rest of the journey is still in development
-
+      And("the intermediary completes the rest of the journey")
+      registration.completeRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario("Intermediary changes NETP tax details from Non-UK based with National Tax Number to UK VAT Number") {
@@ -198,7 +198,8 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
 
-      //      The rest of the journey is still in development
+      And("the intermediary completes the rest of the journey")
+      registration.completeRegistrationCompulsoryAnswersOnly()
 
     }
 
@@ -250,7 +251,8 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
 
-      //      The rest of the journey is still in development
+      And("the intermediary completes the rest of the journey")
+      registration.completeRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario("Intermediary changes NETP tax details from Non-UK based to UK based with UTR then amends Address") {
@@ -319,7 +321,8 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
 
-      //      The rest of the journey is still in development
+      And("the intermediary completes the rest of the journey")
+      registration.completeRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario(
@@ -386,8 +389,8 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
 
-      //      The rest of the journey is still in development
-
+      And("the intermediary completes the rest of the journey")
+      registration.completeRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario("Intermediary changes trading name and website details on their NETP registration") {
@@ -490,7 +493,20 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("add-website-address")
       registration.answerRadioButton("no")
 
-      //      The rest of the journey is still in development
+      Then("the intermediary enters credentials on contact-details page")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
+
+      And("the intermediary continues through the check-your-answers page")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.continue()
+
+      When("the intermediary accepts the declaration")
+      registration.checkJourneyUrl("declaration")
+      registration.selectCheckbox()
+
+      Then("the intermediary is on the client-application-complete page")
+      registration.checkJourneyUrl("client-application-complete")
     }
 
     Scenario("Intermediary changes previous registration details on their NETP registration") {
@@ -647,7 +663,32 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("previous-schemes-overview")
       registration.answerRadioButton("no")
 
-      //      The rest of the journey is still in development
+      And("the intermediary selects no on the eu-fixed-establishment page")
+      registration.checkJourneyUrl("eu-fixed-establishment")
+      registration.answerRadioButton("no")
+
+      Then("the intermediary adds the first client website address")
+      registration.checkJourneyUrl("website-address/1")
+      registration.enterAnswer("www.1stwebsite.com")
+
+      Then("the intermediary answers no to add another client website address")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
+
+      Then("the intermediary enters credentials on contact-details page")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
+
+      And("the intermediary continues through the check-your-answers page")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.continue()
+
+      When("the intermediary accepts the declaration")
+      registration.checkJourneyUrl("declaration")
+      registration.selectCheckbox()
+
+      Then("the intermediary is on the client-application-complete page")
+      registration.checkJourneyUrl("client-application-complete")
     }
 
     Scenario("Intermediary changes EU registration details on their NETP registration") {
@@ -826,6 +867,29 @@ class ChangeAnswersSpec extends BaseSpec {
       Then("the intermediary selects no on the add-tax-details page")
       registration.checkJourneyUrl("add-tax-details")
       registration.answerRadioButton("no")
+
+      Then("the intermediary adds the first client website address")
+      registration.checkJourneyUrl("website-address/1")
+      registration.enterAnswer("www.website1.co.uk")
+
+      Then("the intermediary answers no to add another client website address")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
+
+      Then("the intermediary enters credentials on contact-details page")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Firstname Surname", "0123456789", "test-email@test.co.uk")
+
+      And("the intermediary continues through the check-your-answers page")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.continue()
+
+      When("the intermediary accepts the declaration")
+      registration.checkJourneyUrl("declaration")
+      registration.selectCheckbox()
+
+      Then("the intermediary is on the client-application-complete page")
+      registration.checkJourneyUrl("client-application-complete")
     }
   }
 }
