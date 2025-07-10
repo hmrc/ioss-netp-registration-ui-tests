@@ -155,6 +155,15 @@ object Registration extends BasePage {
     click(continueButton)
   }
 
+  def completeAndSubmitRegistrationCompulsoryAnswersOnly(): Unit = {
+    completeRegistrationCompulsoryAnswersOnly()
+    checkJourneyUrl("check-your-answers")
+    continue()
+    checkJourneyUrl("declaration")
+    selectCheckbox()
+    checkJourneyUrl("client-application-complete")
+  }
+
   def completeRegistrationCompulsoryAnswersOnly(): Unit = {
     checkJourneyUrl("have-uk-trading-name")
     answerRadioButton("no")
@@ -168,10 +177,5 @@ object Registration extends BasePage {
     answerRadioButton("no")
     checkJourneyUrl("business-contact-details")
     fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
-    checkJourneyUrl("check-your-answers")
-    continue()
-    checkJourneyUrl("declaration")
-    selectCheckbox()
-    checkJourneyUrl("client-application-complete")
   }
 }

@@ -122,7 +122,7 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
+      registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario("Intermediary changes NETP tax details from Non-UK based with National Tax Number to UK VAT Number") {
@@ -199,7 +199,7 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
+      registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
 
     }
 
@@ -252,7 +252,7 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
+      registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario("Intermediary changes NETP tax details from Non-UK based to UK based with UTR then amends Address") {
@@ -322,7 +322,7 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
+      registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario(
@@ -390,7 +390,7 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
+      registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario("Intermediary changes trading name and website details on their NETP registration") {
@@ -891,5 +891,214 @@ class ChangeAnswersSpec extends BaseSpec {
       Then("the intermediary is on the client-application-complete page")
       registration.checkJourneyUrl("client-application-complete")
     }
+
+    Scenario("Intermediary removes all trading names via remove-all-trading-names page") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      And("the intermediary adds answers all the way through to the check-your-answers page")
+      registration.answerVatDetailsUkVrn()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.continue()
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.enterAnswer("1st trading-name")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.enterAnswer("Another Trading Name!")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("eu-fixed-establishment")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("website-address/1")
+      registration.enterAnswer("www.1st-website.co.uk")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
+
+      When("the intermediary selects change for Have a different UK trading name on the check-your-answers page")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.selectChangeOrRemoveLink("have-uk-trading-name\\?waypoints\\=check-your-answers")
+
+      And("the intermediary changes the answer to no on the have-uk-trading-name page")
+      registration.checkJourneyUrl("have-uk-trading-name?waypoints=check-your-answers")
+      registration.answerRadioButton("no")
+
+      Then("the intermediary selects yes on the remove-all-trading-names page")
+      registration.checkJourneyUrl("remove-all-trading-names?waypoints=check-your-answers")
+      registration.answerRadioButton("yes")
+
+      And("the intermediary submits their registration successfully")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.continue()
+      registration.checkJourneyUrl("declaration")
+      registration.selectCheckbox()
+      registration.checkJourneyUrl("client-application-complete")
+    }
+
+    Scenario(
+      "Intermediary removes all previous registrations via remove-all-previous-intermediary-registrations page"
+    ) {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      And("the intermediary adds answers all the way through to the check-your-answers page")
+      registration.answerVatDetailsUkVrn()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.continue()
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-country/1")
+      registration.selectCountry("Cyprus")
+      registration.checkJourneyUrl("previous-scheme/1/1")
+      registration.answerSchemeType("OSS")
+      registration.checkJourneyUrl("previous-oss-scheme-number/1/1")
+      registration.enterAnswer("EU111222333")
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-scheme/1/2")
+      registration.answerSchemeType("OSS")
+      registration.checkJourneyUrl("previous-oss-scheme-number/1/2")
+      registration.enterAnswer("CY44445555A")
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-scheme/1/3")
+      registration.answerSchemeType("IOSS")
+      registration.checkJourneyUrl("previous-ioss-number/1/3")
+      registration.enterAnswer("IM1967773331")
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+      registration.continue()
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-country/2")
+      registration.selectCountry("Poland")
+      registration.checkJourneyUrl("previous-scheme/2/1")
+      registration.answerSchemeType("IOSS")
+      registration.checkJourneyUrl("previous-ioss-number/2/1")
+      registration.enterAnswer("IM6167773331")
+      registration.checkJourneyUrl("previous-scheme-answers/2")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("eu-fixed-establishment")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("website-address/1")
+      registration.enterAnswer("www.1st-website.co.uk")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
+
+      When(
+        "the intermediary selects change for Previously registered for an IOSS scheme on the check-your-answers page"
+      )
+      registration.checkJourneyUrl("check-your-answers")
+      registration.selectChangeOrRemoveLink("previous-oss\\?waypoints\\=check-your-answers")
+
+      And("the intermediary changes the answer to no on the previous-oss page")
+      registration.checkJourneyUrl("previous-oss?waypoints=check-your-answers")
+      registration.answerRadioButton("no")
+
+      Then("the intermediary selects yes on the remove-all-previous-registrations page")
+      registration.checkJourneyUrl("remove-all-previous-registrations?waypoints=check-your-answers")
+      registration.answerRadioButton("yes")
+
+      And("the intermediary submits their registration successfully")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.continue()
+      registration.checkJourneyUrl("declaration")
+      registration.selectCheckbox()
+      registration.checkJourneyUrl("client-application-complete")
+    }
+
+    Scenario("Intermediary removes all tax details via remove-all-tax-details page") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      And("the intermediary adds answers all the way through to the check-your-answers page")
+      registration.answerVatDetailsUkVrn()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.continue()
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("eu-fixed-establishment")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("vat-registered-eu-country/1")
+      registration.selectCountry("Spain")
+      registration.checkJourneyUrl("trading-name-business-address/1")
+      registration.enterFETradingName("Spanish Trading Name")
+      registration.enterAddress("123 Street Name", "", "Town", "", "ES12345")
+      registration.checkJourneyUrl("registration-tax-type/1")
+      registration.answerRegistrationType("VAT number")
+      registration.checkJourneyUrl("eu-vat-number/1")
+      registration.enterAnswer("EST5554441B")
+      registration.checkJourneyUrl("check-tax-details/1")
+      registration.continue()
+      registration.checkJourneyUrl("add-tax-details")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("vat-registered-eu-country/2")
+      registration.selectCountry("Netherlands")
+      registration.checkJourneyUrl("trading-name-business-address/2")
+      registration.enterFETradingName("Netherlands Trading Name")
+      registration.enterAddress("1 Road Name", "Suburb", "City", "Region-Name", "NL5555 12")
+      registration.checkJourneyUrl("registration-tax-type/2")
+      registration.answerRegistrationType("Tax ID number")
+      registration.checkJourneyUrl("eu-tax-identification-number/2")
+      registration.enterAnswer("NL1 665544")
+      registration.checkJourneyUrl("check-tax-details/2")
+      registration.continue()
+      registration.checkJourneyUrl("add-tax-details")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("website-address/1")
+      registration.enterAnswer("www.1st-website.co.uk")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
+
+      When(
+        "the intermediary selects change for Have a fixed establishment in an EU country on the check-your-answers page"
+      )
+      registration.checkJourneyUrl("check-your-answers")
+      registration.selectChangeOrRemoveLink("eu-fixed-establishment\\?waypoints\\=check-your-answers")
+
+      And("the intermediary changes the answer to no on the eu-fixed-establishment page")
+      registration.checkJourneyUrl("eu-fixed-establishment?waypoints=check-your-answers")
+      registration.answerRadioButton("no")
+
+      Then("the intermediary selects yes on the remove-all-tax-details page")
+      registration.checkJourneyUrl("remove-all-tax-details?waypoints=check-your-answers")
+      registration.answerRadioButton("yes")
+
+      And("the intermediary submits their registration successfully")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.continue()
+      registration.checkJourneyUrl("declaration")
+      registration.selectCheckbox()
+      registration.checkJourneyUrl("client-application-complete")
+    }
+
+    // CYA with no to yes
+
+    // CYA changing existing answers
+
   }
 }

@@ -52,7 +52,7 @@ class VatDetailsSpec extends BaseSpec {
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
+      registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario("Intermediary registers on behalf of a UK based NETP with a UTR") {
@@ -98,7 +98,7 @@ class VatDetailsSpec extends BaseSpec {
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
+      registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario("Intermediary registers on behalf of a UK based NETP with a NINO") {
@@ -144,7 +144,7 @@ class VatDetailsSpec extends BaseSpec {
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
+      registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario("Intermediary registers on behalf of a Non-UK based NETP with a UK VAT registration number") {
@@ -188,7 +188,7 @@ class VatDetailsSpec extends BaseSpec {
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
+      registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
     }
 
     Scenario("Intermediary registers on behalf of a Non-UK based NETP without a UK VAT registration number") {
@@ -234,7 +234,7 @@ class VatDetailsSpec extends BaseSpec {
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
+      registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
     }
   }
 }
