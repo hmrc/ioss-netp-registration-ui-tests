@@ -324,8 +324,7 @@ class CheckYourAnswersSpec extends BaseSpec {
 
       Then("the intermediary adds another website")
       registration.checkJourneyUrl("check-your-answers")
-      registration.selectChangeOrRemoveLink(
-        "add-website-address\\?waypoints\\=check-your-answers")
+      registration.selectChangeOrRemoveLink("add-website-address\\?waypoints\\=check-your-answers")
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("website-address/2")
       registration.enterAnswer("http://websiteno2.co.uk")
@@ -339,6 +338,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       )
       registration.checkJourneyUrl("business-contact-details?waypoints=check-your-answers")
       registration.updateField("emailAddress", "new-email@test.co.uk")
+      registration.continue()
 
       And("the intermediary submits their registration successfully")
       registration.checkJourneyUrl("check-your-answers")
