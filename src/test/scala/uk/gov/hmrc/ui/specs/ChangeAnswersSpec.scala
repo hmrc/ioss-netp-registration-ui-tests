@@ -25,374 +25,6 @@ class ChangeAnswersSpec extends BaseSpec {
 
   Feature("Changing answers within the IOSS NETP Registration journeys") {
 
-    Scenario(
-      "Intermediary changes NETP tax details from UK based to Non-UK based and changes country then removes UK VAT number"
-    ) {
-
-      Given("the intermediary accesses the IOSS NETP Registration Service")
-      auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(true, true, "standard")
-      registration.checkJourneyUrl("client-uk-based")
-
-      And("the intermediary answers questions for a UK based NETP")
-      registration.answerVatDetailsUkVrn()
-
-      When(
-        "the intermediary selects change for Based in UK on the confirm-vat-details page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.selectChangeOrRemoveLink("client-uk-based\\?waypoints\\=check-vat-details")
-
-      Then("the intermediary selects no on the client-uk-based page")
-      registration.checkJourneyUrl("client-uk-based")
-      registration.answerRadioButton("no")
-
-      And("the intermediary selects yes on the client-has-vat-number page")
-      registration.checkJourneyUrl("client-has-vat-number")
-      registration.answerRadioButton("yes")
-
-      And("the intermediary enters a UK Vat Number on the client-vat-number page")
-      registration.checkJourneyUrl("client-vat-number")
-      registration.enterAnswer("741221471")
-
-      Then("the intermediary selects Cape Verde on the client-country-based page")
-      registration.checkJourneyUrl("client-country-based")
-      registration.selectCountry("Cape Verde")
-
-      And(
-        "the intermediary enters a business name on the client-business-name page"
-      )
-      registration.checkJourneyUrl("client-business-name")
-      registration.enterAnswer("Business Name")
-
-      And(
-        "the intermediary enters an address on the client-address page"
-      )
-      registration.checkJourneyUrl("client-address")
-      registration.enterAddress("1 Street Name", "", "City-Name", "", "12345")
-
-      When(
-        "the intermediary selects change for Country based in on the client-country-based page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.selectChangeOrRemoveLink("client-country-based\\?waypoints\\=check-vat-details")
-
-      Then("the intermediary selects Benin on the client-country-based page")
-      registration.checkJourneyUrl("client-country-based")
-      registration.clearCountry()
-      registration.selectCountry("Benin")
-
-      When(
-        "the intermediary selects change for UK VAT Number on the client-has-vat-number page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.selectChangeOrRemoveLink("client-has-vat-number\\?waypoints\\=check-vat-details")
-
-      And("the intermediary selects no on the client-has-vat-number page")
-      registration.checkJourneyUrl("client-has-vat-number")
-      registration.answerRadioButton("no")
-
-      Then("the intermediary selects Benin on the client-country-based page")
-      registration.checkJourneyUrl("client-country-based")
-      registration.clearCountry()
-      registration.selectCountry("Benin")
-
-      And(
-        "the intermediary enters a National Tax Number on the client-tax-reference page"
-      )
-      registration.checkJourneyUrl("client-tax-reference")
-      registration.enterAnswer("123ABCDEF")
-
-      And(
-        "the intermediary enters a business name on the client-business-name page"
-      )
-      registration.checkJourneyUrl("client-business-name")
-      registration.enterAnswer("Business Name")
-
-      And(
-        "the intermediary enters an address on the client-address page"
-      )
-      registration.checkJourneyUrl("client-address")
-      registration.enterAddress("1 Street Name", "", "City-Name", "", "12345")
-
-      Then(
-        "the intermediary selects continue on the confirm-vat-details page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.continue()
-
-      And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
-    }
-
-    Scenario("Intermediary changes NETP tax details from Non-UK based with National Tax Number to UK VAT Number") {
-
-      Given("the intermediary accesses the IOSS NETP Registration Service")
-      auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(true, true, "standard")
-      registration.checkJourneyUrl("client-uk-based")
-
-      When("the intermediary selects no on the client-uk-based page")
-      registration.answerRadioButton("no")
-
-      And("the intermediary selects yes on the client-has-vat-number page")
-      registration.checkJourneyUrl("client-has-vat-number")
-      registration.answerRadioButton("no")
-
-      Then("the intermediary selects Argentina on the client-country-based page")
-      registration.checkJourneyUrl("client-country-based")
-      registration.selectCountry("Argentina")
-
-      And(
-        "the intermediary enters a National Tax Number on the client-tax-reference page"
-      )
-      registration.checkJourneyUrl("client-tax-reference")
-      registration.enterAnswer("AR123T")
-
-      And(
-        "the intermediary enters a business name on the client-business-name page"
-      )
-      registration.checkJourneyUrl("client-business-name")
-      registration.enterAnswer("Argentina Company")
-
-      And(
-        "the intermediary enters an address on the client-address page"
-      )
-      registration.checkJourneyUrl("client-address")
-      registration.enterAddress("1 Street Name", "Suburb", "City Name", "", "")
-
-      When(
-        "the intermediary selects change for UK VAT Number on the client-has-vat-number page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.selectChangeOrRemoveLink("client-has-vat-number\\?waypoints\\=check-vat-details")
-
-      And("the intermediary selects yes on the client-has-vat-number page")
-      registration.checkJourneyUrl("client-has-vat-number")
-      registration.answerRadioButton("yes")
-
-      And("the intermediary enters a UK Vat Number on the client-vat-number page")
-      registration.checkJourneyUrl("client-vat-number")
-      registration.enterAnswer("741221471")
-
-      Then("the intermediary selects Argentina on the client-country-based page")
-      registration.checkJourneyUrl("client-country-based")
-      registration.clearCountry()
-      registration.selectCountry("Argentina")
-
-      And(
-        "the intermediary enters a business name on the client-business-name page"
-      )
-      registration.checkJourneyUrl("client-business-name")
-      registration.enterAnswer("Argentina Company")
-
-      And(
-        "the intermediary enters an address on the client-address page"
-      )
-      registration.checkJourneyUrl("client-address")
-      registration.enterAddress("1 Street Name", "", "City-Name", "", "12345")
-
-      Then(
-        "the intermediary selects continue on the confirm-vat-details page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.continue()
-
-      And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
-
-    }
-
-    Scenario("Intermediary changes NETP tax details from Non-UK based to UK based with Vat Number") {
-
-      Given("the intermediary accesses the IOSS NETP Registration Service")
-      auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(true, true, "standard")
-      registration.checkJourneyUrl("client-uk-based")
-
-      And("the intermediary answers questions for a Non-UK based NETP")
-      registration.answerVatDetailsNonUk()
-
-      When(
-        "the intermediary selects change for Based in UK on the confirm-vat-details page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.selectChangeOrRemoveLink("client-uk-based\\?waypoints\\=check-vat-details")
-
-      Then("the intermediary selects yes on the client-uk-based page")
-      registration.checkJourneyUrl("client-uk-based")
-      registration.answerRadioButton("yes")
-
-      Then("the intermediary selects yes on the client-has-vat-number page")
-      registration.checkJourneyUrl("client-has-vat-number")
-      registration.answerRadioButton("yes")
-
-      And(
-        "the intermediary enters a UK Vat Number on the client-vat-number page"
-      )
-      registration.checkJourneyUrl("client-vat-number")
-      registration.enterAnswer("GB999888777")
-
-      When(
-        "the intermediary amends the UK Vat Number they just entered via the confirm-vat-details page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.selectChangeOrRemoveLink("client-vat-number\\?waypoints\\=check-vat-details")
-
-      And(
-        "the intermediary adds a different UK Vat Number on the client-vat-number page"
-      )
-      registration.checkJourneyUrl("client-vat-number")
-      registration.enterAnswer("412589652")
-
-      Then(
-        "the intermediary selects yes on the confirm-vat-details page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.continue()
-
-      And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
-    }
-
-    Scenario("Intermediary changes NETP tax details from Non-UK based to UK based with UTR then amends Address") {
-
-      Given("the intermediary accesses the IOSS NETP Registration Service")
-      auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(true, true, "standard")
-      registration.checkJourneyUrl("client-uk-based")
-
-      And("the intermediary answers questions for a Non-UK based NETP")
-      registration.answerVatDetailsNonUk()
-
-      When(
-        "the intermediary selects change for Based in UK on the confirm-vat-details page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.selectChangeOrRemoveLink("client-uk-based\\?waypoints\\=check-vat-details")
-
-      Then("the intermediary selects yes on the client-uk-based page")
-      registration.checkJourneyUrl("client-uk-based")
-      registration.answerRadioButton("yes")
-
-      Then("the intermediary selects no on the client-has-vat-number page")
-      registration.checkJourneyUrl("client-has-vat-number")
-      registration.answerRadioButton("no")
-
-      And(
-        "the intermediary enters a business name on the client-business-name page"
-      )
-      registration.checkJourneyUrl("client-business-name")
-      registration.enterAnswer("Business name 123")
-
-      Then("the intermediary selects yes on the client-has-utr page")
-      registration.checkJourneyUrl("client-has-utr")
-      registration.answerRadioButton("yes")
-
-      And(
-        "the intermediary enters a UTR on the client-utr-number page"
-      )
-      registration.checkJourneyUrl("client-utr-number")
-      registration.enterAnswer("1112223334")
-
-      And(
-        "the intermediary enters an address on the client-address page"
-      )
-      registration.checkJourneyUrl("client-address")
-      registration.enterAddress("1 Street Name", "", "City", "", "")
-
-      When(
-        "the intermediary selects change for Based in UK on the confirm-vat-details page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.selectChangeOrRemoveLink("client-address\\?waypoints\\=check-vat-details")
-
-      And(
-        "the intermediary makes amendments to the address on the client-address page"
-      )
-      registration.checkJourneyUrl("client-address")
-      registration.updateField("line2", "Suburb")
-      registration.updateField("townOrCity", "New City")
-      registration.continue()
-
-      Then(
-        "the intermediary selects continue on the confirm-vat-details page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.continue()
-
-      And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
-    }
-
-    Scenario(
-      "Intermediary changes NETP tax details from Non-UK based to UK based with NINO then amends Business Name"
-    ) {
-
-      Given("the intermediary accesses the IOSS NETP Registration Service")
-      auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(true, true, "standard")
-      registration.checkJourneyUrl("client-uk-based")
-
-      And("the intermediary answers questions for a Non-UK based NETP")
-      registration.answerVatDetailsNonUk()
-
-      When(
-        "the intermediary selects change for Based in UK on the confirm-vat-details page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.selectChangeOrRemoveLink("client-uk-based\\?waypoints\\=check-vat-details")
-
-      Then("the intermediary selects yes on the client-uk-based page")
-      registration.checkJourneyUrl("client-uk-based")
-      registration.answerRadioButton("yes")
-
-      Then("the intermediary selects no on the client-has-vat-number page")
-      registration.checkJourneyUrl("client-has-vat-number")
-      registration.answerRadioButton("no")
-
-      And(
-        "the intermediary enters a business name on the client-business-name page"
-      )
-      registration.checkJourneyUrl("client-business-name")
-      registration.enterAnswer("Business name 123")
-
-      Then("the intermediary selects no on the client-has-utr page")
-      registration.checkJourneyUrl("client-has-utr")
-      registration.answerRadioButton("no")
-
-      And(
-        "the intermediary enters a NINO on the clients-nino-number page"
-      )
-      registration.checkJourneyUrl("clients-nino-number")
-      registration.enterAnswer("DD112233D")
-
-      And(
-        "the intermediary enters an address on the client-address page"
-      )
-      registration.checkJourneyUrl("client-address")
-      registration.enterAddress("1 Street Name", "Suburb", "Town", "Region", "AA1 1AA")
-
-      When(
-        "the intermediary selects change for Client's Business Name on the confirm-vat-details page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.selectChangeOrRemoveLink("client-business-name\\?waypoints\\=check-vat-details")
-
-      Then("the intermediary amends the business name on the client-uk-based page")
-      registration.checkJourneyUrl("client-business-name")
-      registration.enterAnswer("A new and different business name")
-
-      Then(
-        "the intermediary selects continue on the confirm-vat-details page"
-      )
-      registration.checkJourneyUrl("confirm-vat-details")
-      registration.continue()
-
-      And("the intermediary completes the rest of the journey")
-      registration.completeRegistrationCompulsoryAnswersOnly()
-    }
-
     Scenario("Intermediary changes trading name and website details on their NETP registration") {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
@@ -409,19 +41,13 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
 
-      When("the intermediary selects yes on the have-uk-trading-name page")
+      When("the intermediary enters two trading names")
       registration.checkJourneyUrl("have-uk-trading-name")
       registration.answerRadioButton("yes")
-
-      Then("the intermediary adds the first trading name")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("1")
-
-      And("the intermediary selects yes on the add-uk-trading-name page")
       registration.checkJourneyUrl("add-uk-trading-name")
       registration.answerRadioButton("yes")
-
-      And("the intermediary adds the second trading name")
       registration.checkJourneyUrl("uk-trading-name/2")
       registration.enterAnswer("2")
 
@@ -445,11 +71,9 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("add-uk-trading-name")
       registration.answerRadioButton("no")
 
-      And("the intermediary selects no on the previous-oss page")
+      And("the intermediary answers no for the EU registration sections of the registration journey")
       registration.checkJourneyUrl("previous-oss")
       registration.answerRadioButton("no")
-
-      Then("the intermediary selects no on the eu-fixed-establishment page")
       registration.checkJourneyUrl("eu-fixed-establishment")
       registration.answerRadioButton("no")
 
@@ -493,19 +117,13 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("add-website-address")
       registration.answerRadioButton("no")
 
-      Then("the intermediary enters credentials on contact-details page")
+      Then("the intermediary completes the rest of the registration journey")
       registration.checkJourneyUrl("business-contact-details")
       registration.fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
-
-      And("the intermediary continues through the check-your-answers page")
       registration.checkJourneyUrl("check-your-answers")
       registration.continue()
-
-      When("the intermediary accepts the declaration")
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
-
-      Then("the intermediary is on the client-application-complete page")
       registration.checkJourneyUrl("client-application-complete")
     }
 
@@ -533,43 +151,25 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("previous-oss")
       registration.answerRadioButton("yes")
 
-      Then("the intermediary selects which country was it registered in on previous-country page")
+      Then("the intermediary enters the details for one country they were previously registered in")
       registration.checkJourneyUrl("previous-country/1")
       registration.selectCountry("Bulgaria")
-
-      When("the intermediary selects OSS on the first previous-scheme page for Bulgaria")
       registration.checkJourneyUrl("previous-scheme/1/1")
       registration.answerSchemeType("OSS")
-
-      And("the intermediary adds an OSS non-union scheme number")
       registration.checkJourneyUrl("previous-oss-scheme-number/1/1")
       registration.enterAnswer("EU111222333")
-
-      When("the intermediary selects yes on the previous-scheme-answers/1 page")
       registration.checkJourneyUrl("previous-scheme-answers/1")
       registration.answerRadioButton("yes")
-
-      When("the intermediary selects OSS on the second previous-scheme page for Bulgaria")
       registration.checkJourneyUrl("previous-scheme/1/2")
       registration.answerSchemeType("OSS")
-
-      And("the intermediary adds an OSS union scheme number")
       registration.checkJourneyUrl("previous-oss-scheme-number/1/2")
       registration.enterAnswer("BG123456789")
-
-      When("the intermediary selects yes on the previous-scheme-answers/1 page")
       registration.checkJourneyUrl("previous-scheme-answers/1")
       registration.answerRadioButton("yes")
-
-      When("the intermediary selects IOSS on the third previous-scheme page for Bulgaria")
       registration.checkJourneyUrl("previous-scheme/1/3")
       registration.answerSchemeType("IOSS")
-
-      And("the intermediary adds an IOSS scheme number")
       registration.checkJourneyUrl("previous-ioss-number/1/3")
       registration.enterAnswer("IM1001233211")
-
-      And("the intermediary selects continue after adding all three schemes for Bulgaria")
       registration.checkJourneyUrl("previous-scheme-answers/1")
       registration.continue()
 
@@ -597,55 +197,33 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("previous-scheme-answers/1")
       registration.answerRadioButton("no")
 
-      And("the intermediary selects yes on the previous-schemes-overview page")
+      And("the intermediary adds details for another country with a previous registration")
       registration.checkJourneyUrl("previous-schemes-overview")
       registration.answerRadioButton("yes")
-
-      Then("the intermediary selects another country on the previous-country/2 page")
       registration.checkJourneyUrl("previous-country/2")
       registration.selectCountry("Denmark")
-
-      When("the intermediary selects IOSS on the first previous-scheme page for Denmark")
       registration.checkJourneyUrl("previous-scheme/2/1")
       registration.answerSchemeType("IOSS")
-
-      And("the intermediary adds an IOSS scheme number")
       registration.checkJourneyUrl("previous-ioss-number/2/1")
       registration.enterAnswer("IM2087773331")
-
-      Then("the intermediary selects yes on the previous-scheme-answers/2 page")
       registration.checkJourneyUrl("previous-scheme-answers/2")
       registration.answerRadioButton("yes")
-
-      When("the intermediary selects OSS on the second previous-scheme page for Denmark")
       registration.checkJourneyUrl("previous-scheme/2/2")
       registration.answerSchemeType("OSS")
-
-      And("the intermediary adds an OSS union scheme number")
       registration.checkJourneyUrl("previous-oss-scheme-number/2/2")
       registration.enterAnswer("DK12345678")
-
-      Then("the intermediary selects no on the previous-scheme-answers/2 page")
       registration.checkJourneyUrl("previous-scheme-answers/2")
       registration.answerRadioButton("no")
 
-      And("the intermediary selects yes on the previous-schemes-overview page")
+      And("the intermediary adds details for a third country they were previously registered in")
       registration.checkJourneyUrl("previous-schemes-overview")
       registration.answerRadioButton("yes")
-
-      Then("the intermediary selects which country was it registered in on previous-country page")
       registration.checkJourneyUrl("previous-country/3")
       registration.selectCountry("Greece")
-
-      When("the intermediary selects OSS on the first previous-scheme page for Greece")
       registration.checkJourneyUrl("previous-scheme/3/1")
       registration.answerSchemeType("OSS")
-
-      And("the intermediary adds an OSS non-union scheme number")
       registration.checkJourneyUrl("previous-oss-scheme-number/3/1")
       registration.enterAnswer("EU111222333")
-
-      When("the intermediary selects no on the previous-scheme-answers/3 page")
       registration.checkJourneyUrl("previous-scheme-answers/3")
       registration.answerRadioButton("no")
 
@@ -663,31 +241,19 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("previous-schemes-overview")
       registration.answerRadioButton("no")
 
-      And("the intermediary selects no on the eu-fixed-establishment page")
+      And("the intermediary completes the rest of the registration journey")
       registration.checkJourneyUrl("eu-fixed-establishment")
       registration.answerRadioButton("no")
-
-      Then("the intermediary adds the first client website address")
       registration.checkJourneyUrl("website-address/1")
       registration.enterAnswer("www.1stwebsite.com")
-
-      Then("the intermediary answers no to add another client website address")
       registration.checkJourneyUrl("add-website-address")
       registration.answerRadioButton("no")
-
-      Then("the intermediary enters credentials on contact-details page")
       registration.checkJourneyUrl("business-contact-details")
       registration.fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
-
-      And("the intermediary continues through the check-your-answers page")
       registration.checkJourneyUrl("check-your-answers")
       registration.continue()
-
-      When("the intermediary accepts the declaration")
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
-
-      Then("the intermediary is on the client-application-complete page")
       registration.checkJourneyUrl("client-application-complete")
     }
 
@@ -720,52 +286,32 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.answerRadioButton("yes")
 
       And(
-        "the intermediary selects which country their fixed establishment is in on the vat-registered-eu-country page"
+        "the intermediary adds fixed establishment details for the first country"
       )
       registration.checkJourneyUrl("vat-registered-eu-country/1")
       registration.selectCountry("Greece")
-
-      And("the intermediary enters the fixed establishment details on the trading-name-business-address page")
       registration.checkJourneyUrl("trading-name-business-address/1")
       registration.enterFETradingName("Greek Trading Name")
       registration.enterAddress("123 Street Name", "", "Town", "", "EL 12345")
-
-      And("the intermediary selects the VAT Number registration type on the registration-tax-type page")
       registration.checkJourneyUrl("registration-tax-type/1")
       registration.answerRegistrationType("VAT number")
-
-      And("the intermediary enters the VAT number on the eu-vat-number page")
       registration.checkJourneyUrl("eu-vat-number/1")
       registration.enterAnswer("EL987654321")
-
-      And("the intermediary continues through the check-tax-details page")
       registration.checkJourneyUrl("check-tax-details/1")
       registration.continue()
 
-      Then("the intermediary selects yes on the add-tax-details page")
+      Then("the intermediary adds details for a second country")
       registration.checkJourneyUrl("add-tax-details")
       registration.answerRadioButton("yes")
-
-      And(
-        "the intermediary selects which country their fixed establishment is in on the vat-registered-eu-country page"
-      )
       registration.checkJourneyUrl("vat-registered-eu-country/2")
       registration.selectCountry("Estonia")
-
-      And("the intermediary enters the fixed establishment details on the trading-name-business-address page")
       registration.checkJourneyUrl("trading-name-business-address/2")
       registration.enterFETradingName("Estonian Trading Name")
       registration.enterAddress("55 Test Avenue", "", "City", "", "E12541")
-
-      And("the intermediary selects the Tax ID number registration type on the registration-tax-type page")
       registration.checkJourneyUrl("registration-tax-type/2")
       registration.answerRegistrationType("Tax ID number")
-
-      And("the intermediary enters the Tax ID number on the eu-tax-identification-number page")
       registration.checkJourneyUrl("eu-tax-identification-number/2")
       registration.enterAnswer("E123S123B")
-
-      And("the intermediary continues through the check-tax-details page")
       registration.checkJourneyUrl("check-tax-details/2")
       registration.continue()
 
@@ -868,27 +414,17 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("add-tax-details")
       registration.answerRadioButton("no")
 
-      Then("the intermediary adds the first client website address")
+      Then("the intermediary completes the rest of the registration")
       registration.checkJourneyUrl("website-address/1")
       registration.enterAnswer("www.website1.co.uk")
-
-      Then("the intermediary answers no to add another client website address")
       registration.checkJourneyUrl("add-website-address")
       registration.answerRadioButton("no")
-
-      Then("the intermediary enters credentials on contact-details page")
       registration.checkJourneyUrl("business-contact-details")
       registration.fillContactDetails("Firstname Surname", "0123456789", "test-email@test.co.uk")
-
-      And("the intermediary continues through the check-your-answers page")
       registration.checkJourneyUrl("check-your-answers")
       registration.continue()
-
-      When("the intermediary accepts the declaration")
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
-
-      Then("the intermediary is on the client-application-complete page")
       registration.checkJourneyUrl("client-application-complete")
     }
   }
