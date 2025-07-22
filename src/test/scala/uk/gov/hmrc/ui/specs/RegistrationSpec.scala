@@ -93,6 +93,10 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("previous-scheme/1/3")
       registration.answerSchemeType("IOSS")
 
+      When("the intermediary answers yes to their client using an intermediary")
+      registration.checkJourneyUrl("previous-scheme-intermediary/1/3")
+      registration.answerRadioButton("yes")
+
       And("the intermediary adds an IOSS scheme number")
       registration.checkJourneyUrl("previous-ioss-number/1/3")
       registration.enterAnswer("IM1967773331")
@@ -112,6 +116,10 @@ class RegistrationSpec extends BaseSpec {
       When("the intermediary selects IOSS on the first previous-scheme page for Poland")
       registration.checkJourneyUrl("previous-scheme/2/1")
       registration.answerSchemeType("IOSS")
+
+      When("the intermediary answers no to their client using an intermediary")
+      registration.checkJourneyUrl("previous-scheme-intermediary/2/1")
+      registration.answerRadioButton("no")
 
       And("the intermediary adds an IOSS scheme number")
       registration.checkJourneyUrl("previous-ioss-number/2/1")

@@ -275,6 +275,8 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.selectCountry("Finland")
       registration.checkJourneyUrl("previous-scheme/3/1")
       registration.answerSchemeType("IOSS")
+      registration.checkJourneyUrl("previous-scheme-intermediary/3/1")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("previous-ioss-number/3/1")
       registration.enterAnswer("IM2468787877")
       registration.checkJourneyUrl("previous-scheme-answers/3")
