@@ -28,7 +28,7 @@ object Registration extends BasePage {
 
   private val registrationUrl: String =
     TestEnvironment.url("ioss-netp-registration-frontend")
-  private val journeyUrl: String      = "/intermediary-netp"
+  private val journeyUrl: String      = "/pay-clients-vat-on-eu-sales/register-new-ioss-client"
 
   def goToRegistrationJourney(): Unit =
     get(registrationUrl + journeyUrl)
