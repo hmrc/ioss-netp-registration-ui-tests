@@ -18,12 +18,12 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.{Auth, Registration}
 
-class InitialRegistrationDetailsChangeAnswersSpec extends BaseSpec {
+class BusinessDetailsChangeAnswersSpec extends BaseSpec {
 
   lazy val registration = Registration
   lazy val auth         = Auth
 
-  Feature("Changing answers within the initial Registration Details section of the IOSS NETP Registration journey") {
+  Feature("Changing answers within the Business Details section of the IOSS NETP Registration journey") {
 
     Scenario(
       "Intermediary changes NETP tax details from UK based to Non-UK based and changes country then removes UK VAT number"
