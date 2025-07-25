@@ -35,7 +35,6 @@ class EuTaxDetailsCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("client-uk-based")
 
       When("the intermediary enters an EU VAT Number that is already active in another member state")
-      registration.answerRadioButton("yes")
       registration.answerVatDetailsUkVrn()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
@@ -71,7 +70,6 @@ class EuTaxDetailsCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("client-uk-based")
 
       When("the intermediary enters an EU VAT Number that is quarantined in another member state")
-      registration.answerRadioButton("yes")
       registration.answerVatDetailsUkVrn()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
@@ -107,7 +105,6 @@ class EuTaxDetailsCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("client-uk-based")
 
       When("the intermediary enters an EU Tax ID that is already active in another member state")
-      registration.answerRadioButton("yes")
       registration.answerVatDetailsUkVrn()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
@@ -143,7 +140,6 @@ class EuTaxDetailsCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("client-uk-based")
 
       When("the intermediary enters an EU Tax ID that is quarantined in another member state")
-      registration.answerRadioButton("yes")
       registration.answerVatDetailsUkVrn()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
