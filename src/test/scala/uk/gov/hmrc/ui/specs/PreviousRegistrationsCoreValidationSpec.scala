@@ -34,7 +34,9 @@ class PreviousRegistrationsCoreValidationSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard(true, true, "standard")
       registration.checkJourneyUrl("client-uk-based")
 
-      When("the intermediary enters an OSS scheme for NI with a VAT Number that is already active in another member state")
+      When(
+        "the intermediary enters an OSS scheme for NI with a VAT Number that is already active in another member state"
+      )
       registration.answerVatDetailsUkVrn()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
@@ -110,7 +112,9 @@ class PreviousRegistrationsCoreValidationSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard(true, true, "standard")
       registration.checkJourneyUrl("client-uk-based")
 
-      When("the intermediary enters an OSS scheme for a non-NI country with a VAT Number that is already active in another member state")
+      When(
+        "the intermediary enters an OSS scheme for a non-NI country with a VAT Number that is already active in another member state"
+      )
       registration.answerVatDetailsUkVrn()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
@@ -156,7 +160,9 @@ class PreviousRegistrationsCoreValidationSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard(true, true, "standard")
       registration.checkJourneyUrl("client-uk-based")
 
-      When("the intermediary enters an OSS scheme for a non-NI country with a VAT Number that is quarantined in another member state")
+      When(
+        "the intermediary enters an OSS scheme for a non-NI country with a VAT Number that is quarantined in another member state"
+      )
       registration.answerVatDetailsUkVrn()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
