@@ -129,8 +129,7 @@ object Registration extends BasePage {
 
   def selectCheckbox(): Unit = {
     click(By.id("declaration"))
-    click(submitButton)
-//    click(continueButton)
+    click(continueButton)
   }
 
   def selectNETPCheckbox(): Unit = {
