@@ -22,7 +22,7 @@ import org.scalatest.matchers.should.Matchers.*
 import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.selenium.webdriver.Driver
 import org.junit.Assert
-import uk.gov.hmrc.ui.pages.Registration._
+import uk.gov.hmrc.ui.pages.Auth._
 
 object Registration extends BasePage {
 
@@ -311,10 +311,22 @@ object Registration extends BasePage {
 
   def enterActivationCode(): Unit = {
     get(
-      s"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-entry/$urlCode"
+      s"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-start/$urlCode"
     )
     sendKeys(By.id("value"), activationCode)
     click(continueButton)
+  }
+
+  def submitDeclarationAndRegistrationNETP(): Unit = {
+    setUrlCode()
+    goToAuthorityWizard()
+    loginUsingAuthorityWizard(false, false, "noVrn")
+    checkJourneyUrl("client-code-entry")
+    setActivationCode()
+    enterActivationCode()
+    checkJourneyUrl("declaration-client")
+    selectNETPCheckbox()
+    checkJourneyUrl("successful-registration")
   }
 
 }

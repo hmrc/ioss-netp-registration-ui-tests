@@ -71,6 +71,9 @@ class PreviousRegistrationsCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
       registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario(
@@ -149,6 +152,9 @@ class PreviousRegistrationsCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
       registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario(
