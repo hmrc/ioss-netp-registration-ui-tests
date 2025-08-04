@@ -19,6 +19,7 @@ package uk.gov.hmrc.ui.pages
 import org.openqa.selenium.By
 import org.scalatest.matchers.should.Matchers.*
 import uk.gov.hmrc.configuration.TestEnvironment
+import uk.gov.hmrc.ui.pages.Registration._
 
 object Auth extends BasePage {
 
@@ -34,7 +35,11 @@ object Auth extends BasePage {
 
     getCurrentUrl should startWith(authUrl)
 
-    sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl")
+    if (vrnType == "noVrn") {
+      sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/client-code-start/${getUrlCode()}")
+    } else {
+      sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl")
+    }
 
     selectByValue(By.id("affinityGroupSelect"), "Organisation")
 
