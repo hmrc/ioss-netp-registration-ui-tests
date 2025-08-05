@@ -305,7 +305,7 @@ object Registration extends BasePage {
       s"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/test-only/get-client-code/$urlCode"
     )
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
-    activationCode = htmlBody.split(":")(2).substring(1, 7)
+    activationCode = htmlBody.split(">")(1).substring(0, 6)
   }
 
   def enterActivationCode(): Unit = {

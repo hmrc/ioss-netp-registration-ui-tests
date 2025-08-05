@@ -53,6 +53,9 @@ class VatDetailsSpec extends BaseSpec {
 
       And("the intermediary completes the rest of the journey")
       registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario("Intermediary registers on behalf of a UK based NETP with a UTR") {
@@ -99,6 +102,9 @@ class VatDetailsSpec extends BaseSpec {
 
       And("the intermediary completes the rest of the journey")
       registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario("Intermediary registers on behalf of a UK based NETP with a NINO") {
@@ -145,6 +151,9 @@ class VatDetailsSpec extends BaseSpec {
 
       And("the intermediary completes the rest of the journey")
       registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario("Intermediary registers on behalf of a Non-UK based NETP with a UK VAT registration number") {
@@ -189,6 +198,9 @@ class VatDetailsSpec extends BaseSpec {
 
       And("the intermediary completes the rest of the journey")
       registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario("Intermediary registers on behalf of a Non-UK based NETP without a UK VAT registration number") {
@@ -235,6 +247,9 @@ class VatDetailsSpec extends BaseSpec {
 
       And("the intermediary completes the rest of the journey")
       registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
   }
 }
