@@ -123,6 +123,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
 
       And("the intermediary completes the rest of the journey")
       registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario("Intermediary changes NETP tax details from Non-UK based with National Tax Number to UK VAT Number") {
@@ -201,6 +204,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       And("the intermediary completes the rest of the journey")
       registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
 
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
+
     }
 
     Scenario("Intermediary changes NETP tax details from Non-UK based to UK based with Vat Number") {
@@ -253,6 +259,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
 
       And("the intermediary completes the rest of the journey")
       registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario("Intermediary changes NETP tax details from Non-UK based to UK based with UTR then amends Address") {
@@ -323,6 +332,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
 
       And("the intermediary completes the rest of the journey")
       registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario(
@@ -391,6 +403,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
 
       And("the intermediary completes the rest of the journey")
       registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
   }
 }

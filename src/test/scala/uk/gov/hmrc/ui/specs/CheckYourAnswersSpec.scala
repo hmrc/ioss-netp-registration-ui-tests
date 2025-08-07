@@ -75,6 +75,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
       registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario(
@@ -124,6 +127,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
       registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario("Intermediary removes all tax details via remove-all-tax-details page") {
@@ -171,6 +177,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
       registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario("Intermediary adds details to all non-compulsory sections via check-your-answers") {
@@ -216,6 +225,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
       registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario(
@@ -309,6 +321,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
       registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario("Intermediary changes answers in compulsory sections via check-your-answers") {
@@ -348,6 +363,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
       registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
   }
 }

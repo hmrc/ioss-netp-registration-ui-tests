@@ -221,6 +221,23 @@ class RegistrationSpec extends BaseSpec {
 
       Then("the intermediary is on the client-application-complete page")
       registration.checkJourneyUrl("client-application-complete")
+      registration.setUrlCode()
+
+      Given("the NETP can login and access the activation code page")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(false, false, "noVrn")
+      registration.checkJourneyUrl("client-code-entry")
+
+      When("the NETP submits their activation code")
+      registration.setActivationCode()
+      registration.enterActivationCode()
+
+      And("the NETP agrees to the declaration and submits the registration")
+      registration.checkJourneyUrl("declaration-client")
+      registration.selectNETPCheckbox()
+
+      Then("the NETP is on the successful-registration page")
+      registration.checkJourneyUrl("successful-registration")
     }
 
     Scenario(
@@ -271,6 +288,9 @@ class RegistrationSpec extends BaseSpec {
 
       Then("the intermediary is on the client-application-complete page")
       registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
   }

@@ -125,6 +125,9 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
       registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario("Intermediary changes previous registration details on their NETP registration") {
@@ -259,6 +262,9 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
       registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
 
     Scenario("Intermediary changes EU registration details on their NETP registration") {
@@ -430,6 +436,9 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("declaration")
       registration.selectCheckbox()
       registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
   }
 }

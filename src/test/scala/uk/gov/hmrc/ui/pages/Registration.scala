@@ -22,13 +22,16 @@ import org.scalatest.matchers.should.Matchers.*
 import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.selenium.webdriver.Driver
 import org.junit.Assert
-import uk.gov.hmrc.ui.pages.Registration.continueButton
+import uk.gov.hmrc.ui.pages.Auth._
 
 object Registration extends BasePage {
 
   private val registrationUrl: String =
     TestEnvironment.url("ioss-netp-registration-frontend")
   private val journeyUrl: String      = "/pay-clients-vat-on-eu-sales/register-new-ioss-client"
+
+  var urlCode        = ""
+  var activationCode = ""
 
   def goToRegistrationJourney(): Unit =
     get(registrationUrl + journeyUrl)
@@ -127,6 +130,11 @@ object Registration extends BasePage {
   def selectCheckbox(): Unit = {
     click(By.id("declaration"))
     click(continueButton)
+  }
+
+  def selectNETPCheckbox(): Unit = {
+    click(By.id("declaration"))
+    click(submitButton)
   }
 
   def checkProblemPage(): Unit = {
@@ -283,4 +291,41 @@ object Registration extends BasePage {
     checkJourneyUrl("previous-schemes-overview")
     answerRadioButton("no")
   }
+
+  def setUrlCode(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    urlCode = htmlBody.split("/")(6).substring(0, 6)
+  }
+
+  def getUrlCode(): String =
+    urlCode
+
+  def setActivationCode(): Unit = {
+    get(
+      s"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/test-only/get-client-code/$urlCode"
+    )
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    activationCode = htmlBody.split(">")(1).substring(0, 6)
+  }
+
+  def enterActivationCode(): Unit = {
+    get(
+      s"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-start/$urlCode"
+    )
+    sendKeys(By.id("value"), activationCode)
+    click(continueButton)
+  }
+
+  def submitDeclarationAndRegistrationNETP(): Unit = {
+    setUrlCode()
+    goToAuthorityWizard()
+    loginUsingAuthorityWizard(false, false, "noVrn")
+    checkJourneyUrl("client-code-entry")
+    setActivationCode()
+    enterActivationCode()
+    checkJourneyUrl("declaration-client")
+    selectNETPCheckbox()
+    checkJourneyUrl("successful-registration")
+  }
+
 }
