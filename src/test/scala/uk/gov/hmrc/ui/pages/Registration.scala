@@ -100,6 +100,14 @@ object Registration extends BasePage {
     enterAnswer("GB111222333")
   }
 
+  def answerVatDetailsRegistrationFailures(vrn: String): Unit = {
+    answerRadioButton("yes")
+    checkJourneyUrl("client-has-vat-number")
+    answerRadioButton("yes")
+    checkJourneyUrl("client-vat-number")
+    enterAnswer(vrn)
+  }
+
   def answerVatDetailsNonUk(): Unit = {
     answerRadioButton("no")
     checkJourneyUrl("client-has-vat-number")
