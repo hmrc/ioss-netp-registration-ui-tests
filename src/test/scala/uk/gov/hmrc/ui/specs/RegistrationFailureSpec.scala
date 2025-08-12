@@ -62,7 +62,7 @@ class RegistrationFailureSpec extends BaseSpec {
       registration.checkJourneyUrl("client-uk-based")
 
       And("the intermediary completes and submits the registration")
-      registration.answerVatDetailsRegistrationFailures("666000003")
+      registration.answerVatDetailsRegistrationFailures("666000000")
       registration.checkJourneyUrl("confirm-vat-details")
       registration.continue()
       registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
