@@ -336,4 +336,12 @@ object Registration extends BasePage {
     checkJourneyUrl("successful-registration")
   }
 
+  def expandDetails(): Unit =
+    waitForElement(By.className("govuk-details__summary-text"))
+    click(By.className("govuk-details__summary-text"))
+
+  def clickResendCodeLink(): Unit =
+    waitForElement(By.cssSelector(s"a[href*=resend-email\\/${getUrlCode()}]"))
+    click(By.cssSelector(s"a[href*=resend-email\\/${getUrlCode()}]"))
+
 }
