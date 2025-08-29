@@ -344,4 +344,8 @@ object Registration extends BasePage {
     waitForElement(By.cssSelector(s"a[href*=resend-email\\/${getUrlCode()}]"))
     click(By.cssSelector(s"a[href*=resend-email\\/${getUrlCode()}]"))
 
+  def checkHintText(): Unit =
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("We have emailed your 6-digit code to"))
+
 }

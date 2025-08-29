@@ -52,6 +52,9 @@ class ResendActivationCodeSpec extends BaseSpec {
       Then("the NETP clicks the request a new code link")
       registration.clickResendCodeLink()
 
+      And("the hint text has updated to show the code has been sent")
+      registration.checkHintText()
+
       And("the NETP submits their activation code")
       registration.setActivationCode()
       registration.enterActivationCode()
