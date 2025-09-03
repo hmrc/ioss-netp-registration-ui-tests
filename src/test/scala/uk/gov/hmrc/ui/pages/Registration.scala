@@ -336,4 +336,16 @@ object Registration extends BasePage {
     checkJourneyUrl("successful-registration")
   }
 
+  def expandDetails(): Unit =
+    waitForElement(By.className("govuk-details__summary-text"))
+    click(By.className("govuk-details__summary-text"))
+
+  def clickResendCodeLink(): Unit =
+    waitForElement(By.cssSelector(s"a[href*=resend-email\\/${getUrlCode()}]"))
+    click(By.cssSelector(s"a[href*=resend-email\\/${getUrlCode()}]"))
+
+  def checkHintText(): Unit =
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("We have emailed your 6-digit code to"))
+
 }
