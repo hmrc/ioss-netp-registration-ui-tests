@@ -55,11 +55,13 @@ object Auth extends BasePage {
     if (withIntEnrolment) {
       sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
       sendKeys(By.id("input-1-0-name"), "IntNumber")
-      sendKeys(By.id("input-1-0-value"), "IN9001234567")
+      if (vrnType == "pending") {
+        sendKeys(By.id("input-1-0-value"), "IN9001112223")
+      } else {
+        sendKeys(By.id("input-1-0-value"), "IN9001234567")
+      }
     }
-
     click(By.cssSelector("Input[value='Submit']"))
-
   }
 
 }
