@@ -37,6 +37,8 @@ object Auth extends BasePage {
 
     if (vrnType == "noVrn") {
       sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/client-code-start/${getUrlCode()}")
+    } else if (vrnType == "noVrnPending") {
+      sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/client-code-start/BRJRZF")
     } else {
       sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl")
     }

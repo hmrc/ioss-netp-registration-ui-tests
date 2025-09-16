@@ -62,7 +62,7 @@ class UpdateClientEmailSpec extends BaseSpec {
 
       And("the NETP can login, agree to the declaration and submit their registration")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(false, false, "noVrn")
+      auth.loginUsingAuthorityWizard(false, false, "noVrnPending")
       registration.checkJourneyUrl("client-code-entry")
       registration.completeActivationCodePendingClient()
       registration.checkJourneyUrl("declaration-client")
