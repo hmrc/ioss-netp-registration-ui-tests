@@ -19,7 +19,7 @@ package uk.gov.hmrc.ui.data
 import java.time.LocalDate
 
 object PendingRegistration {
-  val yesterday  = LocalDate.now().minusDays(1)
+  val yesterday = LocalDate.now().minusDays(1)
 
   val data: List[String] =
     List(

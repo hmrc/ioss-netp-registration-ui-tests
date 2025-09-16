@@ -18,7 +18,6 @@ package uk.gov.hmrc.ui.utils
 
 import org.mongodb.scala.{MongoClient, SingleObservableFuture}
 import org.mongodb.scala.bson.collection.immutable.Document
-import org.mongodb.scala.model.Filters
 
 import scala.concurrent.Await
 import scala.concurrent.duration.*
@@ -62,7 +61,6 @@ object MongoConnection {
       case e: Exception => println("Error: " + e)
     }
 
-  def dropPendingRegistrations(): Unit = {
+  def dropPendingRegistrations(): Unit =
     dropRecords("ioss-netp-registration", "pending-registration")
-  }
 }
