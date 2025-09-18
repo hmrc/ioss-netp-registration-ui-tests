@@ -29,6 +29,9 @@ object Registration extends BasePage {
   private val registrationUrl: String =
     TestEnvironment.url("ioss-netp-registration-frontend")
   private val journeyUrl: String      = "/pay-clients-vat-on-eu-sales/register-new-ioss-client"
+  private val dashboardUrl: String    = TestEnvironment.url(
+    "ioss-intermediary-dashboard-frontend"
+  ) + "/pay-clients-vat-on-eu-sales/manage-ioss-returns-payments-clients"
 
   var urlCode        = ""
   var activationCode = ""
@@ -347,5 +350,31 @@ object Registration extends BasePage {
   def checkHintText(): Unit =
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("We have emailed your 6-digit code to"))
+
+  def goToDashboard(): Unit =
+    get(dashboardUrl)
+
+  def checkDashboardJourneyUrl(page: String): Unit =
+    getCurrentUrl should startWith(s"$dashboardUrl/$page")
+
+  def clickLink(link: String): Unit =
+    click(By.id(link))
+
+  def selectClientLink(link: String): Unit =
+    click(By.cssSelector(s"a[href*=$link]"))
+
+  def completeActivationCodePendingClient(): Unit = {
+    get(
+      "http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/test-only/get-client-code/BRJRZF"
+    )
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    activationCode = htmlBody.split(">")(1).substring(0, 6)
+
+    get(
+      "http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-start/BRJRZF"
+    )
+    sendKeys(By.id("value"), activationCode)
+    click(continueButton)
+  }
 
 }

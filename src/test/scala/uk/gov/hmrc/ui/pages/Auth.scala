@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,6 +37,8 @@ object Auth extends BasePage {
 
     if (vrnType == "noVrn") {
       sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/client-code-start/${getUrlCode()}")
+    } else if (vrnType == "noVrnPending") {
+      sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/client-code-start/BRJRZF")
     } else {
       sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl")
     }
@@ -55,11 +57,13 @@ object Auth extends BasePage {
     if (withIntEnrolment) {
       sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
       sendKeys(By.id("input-1-0-name"), "IntNumber")
-      sendKeys(By.id("input-1-0-value"), "IN9001234567")
+      if (vrnType == "pending") {
+        sendKeys(By.id("input-1-0-value"), "IN9001112223")
+      } else {
+        sendKeys(By.id("input-1-0-value"), "IN9001234567")
+      }
     }
-
     click(By.cssSelector("Input[value='Submit']"))
-
   }
 
 }
