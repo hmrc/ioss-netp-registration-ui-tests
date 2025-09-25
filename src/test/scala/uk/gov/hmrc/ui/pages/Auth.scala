@@ -43,7 +43,7 @@ object Auth extends BasePage {
       sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/client-code-start/${getUrlCode()}")
     } else if (vrnType == "noVrnPending") {
       sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/client-code-start/BRJRZF")
-    } else if (vrnType == "multipleSaved" || vrnType == "oneSaved") {
+    } else if (vrnType == "multipleSaved" || vrnType == "oneSaved" || vrnType == "noSaved") {
       sendKeys(By.name("redirectionUrl"), dashboardUrl)
     } else {
       sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl")

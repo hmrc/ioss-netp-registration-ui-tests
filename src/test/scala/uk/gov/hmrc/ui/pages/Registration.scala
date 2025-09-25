@@ -377,4 +377,60 @@ object Registration extends BasePage {
     click(continueButton)
   }
 
+  def checkSavedRegistrationsList(numberOfRegistered: String): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+
+    if (numberOfRegistered == "five") {
+      Assert.assertTrue(htmlBody.contains("Company Name (VAT reference: 112233445)"))
+      Assert.assertTrue(htmlBody.contains("NINO client (National Insurance Number: AA121212A)"))
+      Assert.assertTrue(htmlBody.contains("UTR trading (tax reference: 1122331122333)"))
+      Assert.assertTrue(htmlBody.contains("Company Name (VAT reference: 544332211)"))
+      Assert.assertTrue(htmlBody.contains("FTR trading (tax reference: 123MCDONALD456)"))
+    }
+  }
+
+  def checkSavedRegistrationsHeading(numberOfRegistered: String): Unit = {
+    val heading = Driver.instance.findElement(By.tagName("h1")).getText
+
+    val textToCheck = numberOfRegistered match {
+      case "oneSaved"    =>
+        "Do you want to continue the registration for One saved registration trader (tax reference: AT123123123)"
+      case "threeOfFive" =>
+        "Do you want to continue the registration for UTR trading (tax reference: 1122331122333)"
+      case "fiveOfFive"  =>
+        "Do you want to continue the registration for FTR trading (tax reference: 123MCDONALD456)"
+      case "fiveSaved"   =>
+        "Which registration would you like to continue?"
+      case _             =>
+        "No other matches available"
+    }
+    Assert.assertTrue(heading.equals(textToCheck))
+  }
+
+  def checkSavedRegistrationsLink(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertFalse(htmlBody.contains("Continue a registration in progress"))
+  }
+
+  def goToSavedRegistrationJourney(): Unit =
+    get(s"$registrationUrl$journeyUrl/clients-continue-registration-selection")
+
+  def selectSavedRegistration(registration: String): Unit = {
+    val radioButtonToSelect = registration match {
+      case "first" | "only" => "0"
+      case "second"         => "1"
+      case "third"          => "2"
+      case "fourth"         => "3"
+      case "fifth"          => "4"
+      case _                =>
+        throw new Exception("Selection doesn't exist")
+    }
+    click(By.id(s"value_$radioButtonToSelect"))
+    click(continueButton)
+  }
+
+  def selectContinueRegistration(answer: String): Unit = {
+    click(By.id(answer))
+    click(continueButton)
+  }
 }

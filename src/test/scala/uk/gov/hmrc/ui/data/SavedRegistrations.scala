@@ -62,7 +62,7 @@ object SavedRegistrations {
          |  }
          |}
        """.stripMargin,
-       s"""
+      s"""
          |{
          |  "_id": {
          |    "$$oid": "68d51c55fe8b3f3aeaf44772"
@@ -75,7 +75,7 @@ object SavedRegistrations {
          |  }
          |}
         """.stripMargin,
-        s"""
+      s"""
          |{
          |  "_id": {
          |    "$$oid": "68d51ce5fe8b3f3aeaf45a85"
@@ -88,7 +88,7 @@ object SavedRegistrations {
          |  }
          |}
         """.stripMargin,
-        s"""
+      s"""
          |{
          |  "_id": {
          |    "$$oid": "68d53029fe8b3f3aeaf5d3f3"
