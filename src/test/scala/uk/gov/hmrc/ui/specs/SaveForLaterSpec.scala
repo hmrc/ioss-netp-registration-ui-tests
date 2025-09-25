@@ -25,7 +25,11 @@ class SaveForLaterSpec extends BaseSpec {
 
   Feature("Save and come back later journeys") {
 
-    Scenario("Intermediary can save and continue an in-progress registration in the same session") {}
+    Scenario("Intermediary can save and continue an in-progress registration in the same session") {
+
+//      Progress through a registration clicking save at various points and keep returning to carry on
+
+    }
 
     Scenario("Intermediary can return to a saved registration where they have multiple saved registrations") {
       Given("the intermediary logs in to the NETP registration service")
@@ -41,37 +45,16 @@ class SaveForLaterSpec extends BaseSpec {
       registration.checkSavedRegistrationsHeading("fiveSaved")
       registration.checkSavedRegistrationsList("five")
 
-      When("the intermediary selects the third saved registration")
-      registration.selectSavedRegistration("third")
+      When("the intermediary selects the first saved registration")
+      registration.selectSavedRegistration("first")
       registration.checkJourneyUrl("clients-continue-registration")
-      registration.checkSavedRegistrationsHeading("threeOfFive")
+      registration.checkSavedRegistrationsHeading("oneOfFive")
 
       Then("the intermediary answers yes to continue the registration")
       registration.selectContinueRegistration("continueProgress")
-      registration.checkJourneyUrl("trading-name-business-address/2")
 
-      And("the intermediary can complete the rest of the registration and submit their declaration")
-      registration.enterFETradingName("Finland Trading Name")
-      registration.enterAddress("1 Road Name", "Suburb", "City", "Region-Name", "")
-      registration.checkJourneyUrl("registration-tax-type/2")
-      registration.answerRegistrationType("Tax ID number")
-      registration.checkJourneyUrl("eu-tax-identification-number/2")
-      registration.enterAnswer("123123123")
-      registration.checkJourneyUrl("check-tax-details/2")
-      registration.continue()
-      registration.checkJourneyUrl("add-tax-details")
-      registration.answerRadioButton("no")
-      registration.checkJourneyUrl("website-address/1")
-      registration.enterAnswer("http://websiteone.net")
-      registration.checkJourneyUrl("add-website-address")
-      registration.answerRadioButton("no")
-      registration.checkJourneyUrl("business-contact-details")
-      registration.fillContactDetails("Test-Name Test", "01123456789", "email@test.com")
-      registration.checkJourneyUrl("check-your-answers")
-      registration.continue()
-      registration.checkJourneyUrl("declaration")
-      registration.selectCheckbox()
-      registration.checkJourneyUrl("client-application-complete")
+      And("the intermediary is redirected to the correct page of their saved registration")
+      registration.checkJourneyUrl("previous-country/1")
     }
 
     Scenario("Intermediary can return to a saved registration where they have one saved registration") {
@@ -135,6 +118,53 @@ class SaveForLaterSpec extends BaseSpec {
 
     Scenario(
       "Intermediary can return to a saved registration, submit their declaration and the registration is removed from the saved list"
-    ) {}
+    ) {
+      Given("the intermediary logs in to the NETP registration service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "multipleSaved")
+      registration.checkDashboardJourneyUrl("your-account")
+
+      And("the intermediary clicks the 'Continue a registration in progress' link on the dashboard")
+      registration.clickLink("continue-saved-answers")
+
+      Then("the intermediary is presented with a list of 5 saved registrations")
+      registration.checkJourneyUrl("clients-continue-registration-selection")
+      registration.checkSavedRegistrationsHeading("fiveSaved")
+      registration.checkSavedRegistrationsList("five")
+
+      When("the intermediary selects the third saved registration")
+      registration.selectSavedRegistration("third")
+      registration.checkJourneyUrl("clients-continue-registration")
+      registration.checkSavedRegistrationsHeading("threeOfFive")
+
+      Then("the intermediary answers yes to continue the registration")
+      registration.selectContinueRegistration("continueProgress")
+      registration.checkJourneyUrl("trading-name-business-address/2")
+
+      And("the intermediary can complete the rest of the registration and submit their declaration")
+      registration.enterFETradingName("Finland Trading Name")
+      registration.enterAddress("1 Road Name", "Suburb", "City", "Region-Name", "")
+      registration.checkJourneyUrl("registration-tax-type/2")
+      registration.answerRegistrationType("Tax ID number")
+      registration.checkJourneyUrl("eu-tax-identification-number/2")
+      registration.enterAnswer("123123123")
+      registration.checkJourneyUrl("check-tax-details/2")
+      registration.continue()
+      registration.checkJourneyUrl("add-tax-details")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("website-address/1")
+      registration.enterAnswer("http://websiteone.net")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Test-Name Test", "01123456789", "email@test.com")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.continue()
+      registration.checkJourneyUrl("declaration")
+      registration.selectCheckbox()
+      registration.checkJourneyUrl("client-application-complete")
+
+      // Go back to dashboard, saved registrations, check list
+    }
   }
 }

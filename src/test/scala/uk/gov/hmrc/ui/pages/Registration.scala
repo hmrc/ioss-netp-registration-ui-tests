@@ -395,6 +395,8 @@ object Registration extends BasePage {
     val textToCheck = numberOfRegistered match {
       case "oneSaved"    =>
         "Do you want to continue the registration for One saved registration trader (tax reference: AT123123123)"
+      case "oneOfFive"   =>
+        "Do you want to continue the registration for Company Name (VAT reference: 112233445)"
       case "threeOfFive" =>
         "Do you want to continue the registration for UTR trading (tax reference: 1122331122333)"
       case "fiveOfFive"  =>
