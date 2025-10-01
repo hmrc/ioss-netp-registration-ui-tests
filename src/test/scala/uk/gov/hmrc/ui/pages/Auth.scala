@@ -27,6 +27,10 @@ object Auth extends BasePage {
   private val registrationUrl: String =
     TestEnvironment.url("ioss-netp-registration-frontend")
   private val journeyUrl: String      = "/pay-clients-vat-on-eu-sales/register-new-ioss-client"
+  private val dashboardUrl: String    =
+    TestEnvironment.url(
+      "ioss-intermediary-dashboard-frontend"
+    ) + "/pay-clients-vat-on-eu-sales/manage-ioss-returns-payments-clients"
 
   def goToAuthorityWizard(): Unit =
     get(authUrl)
@@ -39,6 +43,8 @@ object Auth extends BasePage {
       sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/client-code-start/${getUrlCode()}")
     } else if (vrnType == "noVrnPending") {
       sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/client-code-start/BRJRZF")
+    } else if (vrnType == "multipleSaved" || vrnType == "oneSaved" || vrnType == "noSaved") {
+      sendKeys(By.name("redirectionUrl"), dashboardUrl)
     } else {
       sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl")
     }
@@ -50,6 +56,10 @@ object Auth extends BasePage {
       sendKeys(By.id("input-0-0-name"), "VRN")
       if (vrnType == "notFound") {
         sendKeys(By.id("input-0-0-value"), "900000001")
+      } else if (vrnType == "multipleSaved") {
+        sendKeys(By.id("input-0-0-value"), "100000111")
+      } else if (vrnType == "oneSaved") {
+        sendKeys(By.id("input-0-0-value"), "100000222")
       } else {
         sendKeys(By.id("input-0-0-value"), "100000001")
       }
@@ -59,6 +69,10 @@ object Auth extends BasePage {
       sendKeys(By.id("input-1-0-name"), "IntNumber")
       if (vrnType == "pending") {
         sendKeys(By.id("input-1-0-value"), "IN9001112223")
+      } else if (vrnType == "multipleSaved") {
+        sendKeys(By.id("input-1-0-value"), "IN9001114567")
+      } else if (vrnType == "oneSaved") {
+        sendKeys(By.id("input-1-0-value"), "IN9002224567")
       } else {
         sendKeys(By.id("input-1-0-value"), "IN9001234567")
       }

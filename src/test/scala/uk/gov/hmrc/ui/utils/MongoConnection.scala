@@ -63,4 +63,7 @@ object MongoConnection {
 
   def dropPendingRegistrations(): Unit =
     dropRecords("ioss-netp-registration", "pending-registration")
+
+  def dropSavedRegistrations(): Unit =
+    dropRecords("ioss-netp-registration", "save-for-later-user-answers")
 }
