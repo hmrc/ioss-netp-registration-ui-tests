@@ -78,9 +78,8 @@ class SaveForLaterSpec extends BaseSpec {
       When("if the intermediary manually navigates to the saved registration link")
       registration.goToSavedRegistrationJourney()
 
-//      Will be developed in VEI-515
-//      Then("the intermediary is redirected back to the dashboard")
-//      registration.checkDashboardJourneyUrl("your-account")
+      Then("the intermediary is redirected back to the dashboard")
+      registration.checkDashboardJourneyUrl("your-account")
     }
 
     Scenario("Intermediary can delete a saved registration and start again") {
@@ -105,9 +104,8 @@ class SaveForLaterSpec extends BaseSpec {
       Then("the intermediary answers no to delete the registration")
       registration.selectContinueRegistration("deleteProgress")
 
-      //      Will be developed in VEI-515
-      //      Then("the intermediary is redirected back to the dashboard")
-      //      registration.checkDashboardJourneyUrl("your-account")
+      Then("the intermediary is redirected back to the dashboard")
+      registration.checkDashboardJourneyUrl("your-account")
     }
 
     Scenario(
