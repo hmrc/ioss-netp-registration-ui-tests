@@ -22,7 +22,7 @@ import org.scalatest.matchers.should.Matchers.*
 import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.selenium.webdriver.Driver
 import org.junit.Assert
-import uk.gov.hmrc.ui.pages.Auth._
+import uk.gov.hmrc.ui.pages.Auth.*
 
 object Registration extends BasePage {
 
@@ -40,7 +40,9 @@ object Registration extends BasePage {
     get(registrationUrl + journeyUrl)
 
   def checkJourneyUrl(page: String): Unit =
-    getCurrentUrl should startWith(s"$registrationUrl$journeyUrl/$page")
+    val url = s"$registrationUrl$journeyUrl/$page"
+    fluentWait.until(ExpectedConditions.urlContains(url))
+    getCurrentUrl should startWith(url)
 
   def goToPage(page: String): Unit =
     get(s"$registrationUrl$journeyUrl/$page")
@@ -149,6 +151,7 @@ object Registration extends BasePage {
   }
 
   def checkProblemPage(): Unit = {
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("h1")))
     val h1 = Driver.instance.findElement(By.tagName("h1")).getText
     Assert.assertTrue(h1.equals("Sorry, there is a problem with the service"))
   }
@@ -312,17 +315,23 @@ object Registration extends BasePage {
     urlCode
 
   def setActivationCode(): Unit = {
-    get(
+    val testOnlyUrl =
       s"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/test-only/get-client-code/$urlCode"
-    )
+    get(testOnlyUrl)
+    fluentWait.until(ExpectedConditions.urlContains(testOnlyUrl))
+
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     activationCode = htmlBody.split(">")(1).substring(0, 6)
   }
 
   def enterActivationCode(): Unit = {
-    get(
-      s"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-start/$urlCode"
+    get(s"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-start/$urlCode")
+    fluentWait.until(
+      ExpectedConditions.urlContains(
+        s"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-entry/$urlCode"
+      )
     )
+
     sendKeys(By.id("value"), activationCode)
     click(continueButton)
   }
@@ -355,7 +364,9 @@ object Registration extends BasePage {
     get(dashboardUrl)
 
   def checkDashboardJourneyUrl(page: String): Unit =
-    getCurrentUrl should startWith(s"$dashboardUrl/$page")
+    val url = s"$dashboardUrl/$page"
+    fluentWait.until(ExpectedConditions.urlContains(url))
+    getCurrentUrl should startWith(url)
 
   def clickLink(link: String): Unit =
     click(By.id(link))
@@ -396,6 +407,7 @@ object Registration extends BasePage {
   }
 
   def checkSavedRegistrationsHeading(numberOfRegistered: String): Unit = {
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("h1")))
     val heading = Driver.instance.findElement(By.tagName("h1")).getText
 
     val textToCheck = numberOfRegistered match {
@@ -433,7 +445,9 @@ object Registration extends BasePage {
       case _                =>
         throw new Exception("Selection doesn't exist")
     }
-    click(By.id(s"value_$radioButtonToSelect"))
+    val buttonId            = s"value_$radioButtonToSelect"
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.id(buttonId)))
+    click(By.id(buttonId))
     click(continueButton)
   }
 
