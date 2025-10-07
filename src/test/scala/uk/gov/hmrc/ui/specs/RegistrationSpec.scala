@@ -34,27 +34,27 @@ class RegistrationSpec extends BaseSpec {
 
       And("the intermediary answers all of the vat details questions as a UK Based NETP with VRN")
       registration.answerVatDetailsUkVrn()
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      When("the intermediary selects yes on the have-uk-trading-name page")
-      registration.checkJourneyUrl("have-uk-trading-name")
+      When("the intermediary selects yes on the have-trading-name page")
+      registration.checkJourneyUrl("have-trading-name")
       registration.answerRadioButton("yes")
 
       Then("the intermediary adds the first trading name")
-      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.checkJourneyUrl("trading-name/1")
       registration.enterAnswer("1st trading-name")
 
-      And("the intermediary selects yes on the add-uk-trading-name page")
-      registration.checkJourneyUrl("add-uk-trading-name")
+      And("the intermediary selects yes on the add-trading-name page")
+      registration.checkJourneyUrl("add-trading-name")
       registration.answerRadioButton("yes")
 
       And("the intermediary adds the second trading name")
-      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.checkJourneyUrl("trading-name/2")
       registration.enterAnswer("Another Trading Name!")
 
-      And("the intermediary selects no on the add-uk-trading-name page")
-      registration.checkJourneyUrl("add-uk-trading-name")
+      And("the intermediary selects no on the add-trading-name page")
+      registration.checkJourneyUrl("add-trading-name")
       registration.answerRadioButton("no")
 
       When("the intermediary selects yes on the previous-oss page")
@@ -251,11 +251,11 @@ class RegistrationSpec extends BaseSpec {
 
       And("the intermediary answers all of the vat details questions as a UK Based NETP with VRN")
       registration.answerVatDetailsUkVrn()
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      When("the intermediary selects no on the have-uk-trading-name page")
-      registration.checkJourneyUrl("have-uk-trading-name")
+      When("the intermediary selects no on the have-trading-name page")
+      registration.checkJourneyUrl("have-trading-name")
       registration.answerRadioButton("no")
 
       When("the intermediary selects no on the previous-oss page")

@@ -187,7 +187,7 @@ object Registration extends BasePage {
   }
 
   def completeRegistrationCompulsoryAnswersOnly(): Unit = {
-    checkJourneyUrl("have-uk-trading-name")
+    checkJourneyUrl("have-trading-name")
     answerRadioButton("no")
     checkJourneyUrl("previous-oss")
     answerRadioButton("no")

@@ -34,7 +34,7 @@ class ResendActivationCodeSpec extends BaseSpec {
 
       And("the intermediary answers all of the vat details questions as a UK Based NETP with VRN")
       registration.answerVatDetailsUkVrn()
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
       And("the intermediary completes the rest of the journey")

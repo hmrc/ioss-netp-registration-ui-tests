@@ -34,7 +34,7 @@ class RegistrationFailureSpec extends BaseSpec {
 
       And("the intermediary completes and submits the registration")
       registration.answerVatDetailsRegistrationFailures("666000001")
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
       registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
       registration.setUrlCode()
@@ -63,7 +63,7 @@ class RegistrationFailureSpec extends BaseSpec {
 
       And("the intermediary completes and submits the registration")
       registration.answerVatDetailsRegistrationFailures("666000000")
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
       registration.completeAndSubmitRegistrationCompulsoryAnswersOnly()
       registration.setUrlCode()

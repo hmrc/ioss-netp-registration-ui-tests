@@ -178,7 +178,7 @@ class SaveForLaterSpec extends BaseSpec {
 
       And("the intermediary answers all of the vat details questions as a UK Based NETP with VRN")
       registration.answerVatDetailsUkVrn()
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
 
       When("the intermediary clicks the Save and come back later button")
       registration.saveRegistration()
@@ -190,25 +190,25 @@ class SaveForLaterSpec extends BaseSpec {
       registration.clickLink("continueToYourRegistration")
 
       Then("the intermediary is returned to the last page they saved on")
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
       And(
         "the intermediary can add details to the trading name section, save their progress and return to the correct pages"
       )
-      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.checkJourneyUrl("have-trading-name")
       registration.saveRegistration()
       registration.checkJourneyUrl("progress-saved")
       registration.clickLink("continueToYourRegistration")
-      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.checkJourneyUrl("have-trading-name")
       registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.checkJourneyUrl("trading-name/1")
       registration.enterAnswer("1st trading-name")
-      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.checkJourneyUrl("add-trading-name")
       registration.saveRegistration()
       registration.checkJourneyUrl("progress-saved")
       registration.clickLink("continueToYourRegistration")
-      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.checkJourneyUrl("add-trading-name")
       registration.answerRadioButton("no")
 
       When(

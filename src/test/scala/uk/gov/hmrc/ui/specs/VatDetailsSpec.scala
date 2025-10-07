@@ -46,9 +46,9 @@ class VatDetailsSpec extends BaseSpec {
       registration.enterAnswer("111222333")
 
       Then(
-        "the intermediary selects yes on the confirm-vat-details page"
+        "the intermediary selects yes on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
@@ -95,9 +95,9 @@ class VatDetailsSpec extends BaseSpec {
       registration.enterAddress("1 Street Name", "", "City", "", "")
 
       Then(
-        "the intermediary selects continue on the confirm-vat-details page"
+        "the intermediary selects continue on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
@@ -144,9 +144,9 @@ class VatDetailsSpec extends BaseSpec {
       registration.enterAddress("1 Street Name", "Suburb", "Town", "Region", "AA1 1AA")
 
       Then(
-        "the intermediary selects continue on the confirm-vat-details page"
+        "the intermediary selects continue on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
@@ -191,9 +191,9 @@ class VatDetailsSpec extends BaseSpec {
       registration.enterAddress("1 Street Name", "", "City-Name", "", "12345")
 
       Then(
-        "the intermediary selects continue on the confirm-vat-details page"
+        "the intermediary selects continue on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
@@ -240,9 +240,9 @@ class VatDetailsSpec extends BaseSpec {
       registration.enterAddress("1 Street Name", "Suburb", "City Name", "", "")
 
       Then(
-        "the intermediary selects continue on the confirm-vat-details page"
+        "the intermediary selects continue on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
