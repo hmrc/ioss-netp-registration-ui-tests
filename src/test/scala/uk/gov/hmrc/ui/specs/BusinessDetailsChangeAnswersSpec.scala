@@ -38,9 +38,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       registration.answerVatDetailsUkVrn()
 
       When(
-        "the intermediary selects change for Based in UK on the confirm-vat-details page"
+        "the intermediary selects change for Based in UK on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.selectChangeOrRemoveLink("client-uk-based\\?waypoints\\=check-vat-details")
 
       Then("the intermediary selects no on the client-uk-based page")
@@ -74,7 +74,7 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       When(
         "the intermediary selects change for Country based in on the client-country-based page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.selectChangeOrRemoveLink("client-country-based\\?waypoints\\=check-vat-details")
 
       Then("the intermediary selects Benin on the client-country-based page")
@@ -85,7 +85,7 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       When(
         "the intermediary selects change for UK VAT Number on the client-has-vat-number page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.selectChangeOrRemoveLink("client-has-vat-number\\?waypoints\\=check-vat-details")
 
       And("the intermediary selects no on the client-has-vat-number page")
@@ -116,9 +116,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       registration.enterAddress("1 Street Name", "", "City-Name", "", "12345")
 
       Then(
-        "the intermediary selects continue on the confirm-vat-details page"
+        "the intermediary selects continue on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
@@ -167,7 +167,7 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       When(
         "the intermediary selects change for UK VAT Number on the client-has-vat-number page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.selectChangeOrRemoveLink("client-has-vat-number\\?waypoints\\=check-vat-details")
 
       And("the intermediary selects yes on the client-has-vat-number page")
@@ -196,9 +196,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       registration.enterAddress("1 Street Name", "", "City-Name", "", "12345")
 
       Then(
-        "the intermediary selects continue on the confirm-vat-details page"
+        "the intermediary selects continue on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
@@ -220,9 +220,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       registration.answerVatDetailsNonUk()
 
       When(
-        "the intermediary selects change for Based in UK on the confirm-vat-details page"
+        "the intermediary selects change for Based in UK on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.selectChangeOrRemoveLink("client-uk-based\\?waypoints\\=check-vat-details")
 
       Then("the intermediary selects yes on the client-uk-based page")
@@ -240,9 +240,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       registration.enterAnswer("GB999888777")
 
       When(
-        "the intermediary amends the UK Vat Number they just entered via the confirm-vat-details page"
+        "the intermediary amends the UK Vat Number they just entered via the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.selectChangeOrRemoveLink("client-vat-number\\?waypoints\\=check-vat-details")
 
       And(
@@ -252,9 +252,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       registration.enterAnswer("412589652")
 
       Then(
-        "the intermediary selects yes on the confirm-vat-details page"
+        "the intermediary selects yes on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
@@ -275,9 +275,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       registration.answerVatDetailsNonUk()
 
       When(
-        "the intermediary selects change for Based in UK on the confirm-vat-details page"
+        "the intermediary selects change for Based in UK on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.selectChangeOrRemoveLink("client-uk-based\\?waypoints\\=check-vat-details")
 
       Then("the intermediary selects yes on the client-uk-based page")
@@ -311,9 +311,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       registration.enterAddress("1 Street Name", "", "City", "", "")
 
       When(
-        "the intermediary selects change for Based in UK on the confirm-vat-details page"
+        "the intermediary selects change for Based in UK on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.selectChangeOrRemoveLink("client-address\\?waypoints\\=check-vat-details")
 
       And(
@@ -325,9 +325,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       registration.continue()
 
       Then(
-        "the intermediary selects continue on the confirm-vat-details page"
+        "the intermediary selects continue on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
       And("the intermediary completes the rest of the journey")
@@ -350,9 +350,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       registration.answerVatDetailsNonUk()
 
       When(
-        "the intermediary selects change for Based in UK on the confirm-vat-details page"
+        "the intermediary selects change for Based in UK on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.selectChangeOrRemoveLink("client-uk-based\\?waypoints\\=check-vat-details")
 
       Then("the intermediary selects yes on the client-uk-based page")
@@ -386,9 +386,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       registration.enterAddress("1 Street Name", "Suburb", "Town", "Region", "AA1 1AA")
 
       When(
-        "the intermediary selects change for Client's Business Name on the confirm-vat-details page"
+        "the intermediary selects change for Client's Business Name on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.selectChangeOrRemoveLink("client-business-name\\?waypoints\\=check-vat-details")
 
       Then("the intermediary amends the business name on the client-uk-based page")
@@ -396,9 +396,9 @@ class BusinessDetailsChangeAnswersSpec extends BaseSpec {
       registration.enterAnswer("A new and different business name")
 
       Then(
-        "the intermediary selects continue on the confirm-vat-details page"
+        "the intermediary selects continue on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
       And("the intermediary completes the rest of the journey")

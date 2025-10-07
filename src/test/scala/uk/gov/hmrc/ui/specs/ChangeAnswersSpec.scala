@@ -36,39 +36,39 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.answerVatDetailsUkVrn()
 
       When(
-        "the intermediary selects change for Based in UK on the confirm-vat-details page"
+        "the intermediary selects change for Based in UK on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
       When("the intermediary enters two trading names")
-      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.checkJourneyUrl("have-trading-name")
       registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.checkJourneyUrl("trading-name/1")
       registration.enterAnswer("1")
-      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.checkJourneyUrl("add-trading-name")
       registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.checkJourneyUrl("trading-name/2")
       registration.enterAnswer("2")
 
       Then("the intermediary selects change on the second trading name")
-      registration.checkJourneyUrl("add-uk-trading-name")
-      registration.selectChangeOrRemoveLink("uk-trading-name\\/2\\?waypoints\\=change-add-uk-trading-name")
+      registration.checkJourneyUrl("add-trading-name")
+      registration.selectChangeOrRemoveLink("trading-name\\/2\\?waypoints\\=change-add-trading-name")
 
       And("the intermediary updates the second trading name")
-      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.checkJourneyUrl("trading-name/2")
       registration.enterAnswer("A new 2nd trading name")
 
       Then("the intermediary selects remove on the first trading name")
-      registration.checkJourneyUrl("add-uk-trading-name")
-      registration.selectChangeOrRemoveLink("remove-uk-trading-name\\/1")
+      registration.checkJourneyUrl("add-trading-name")
+      registration.selectChangeOrRemoveLink("remove-trading-name\\/1")
 
-      Then("the intermediary answers yes on the remove-uk-trading-name/1 page")
-      registration.checkJourneyUrl("remove-uk-trading-name/1")
+      Then("the intermediary answers yes on the remove-trading-name/1 page")
+      registration.checkJourneyUrl("remove-trading-name/1")
       registration.answerRadioButton("yes")
 
-      And("the intermediary selects no on the add-uk-trading-name page")
-      registration.checkJourneyUrl("add-uk-trading-name")
+      And("the intermediary selects no on the add-trading-name page")
+      registration.checkJourneyUrl("add-trading-name")
       registration.answerRadioButton("no")
 
       And("the intermediary answers no for the EU registration sections of the registration journey")
@@ -141,13 +141,13 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.answerVatDetailsUkVrn()
 
       When(
-        "the intermediary selects change for Based in UK on the confirm-vat-details page"
+        "the intermediary selects change for Based in UK on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      When("the intermediary selects no on the have-uk-trading-name page")
-      registration.checkJourneyUrl("have-uk-trading-name")
+      When("the intermediary selects no on the have-trading-name page")
+      registration.checkJourneyUrl("have-trading-name")
       registration.answerRadioButton("no")
 
       When("the intermediary selects yes on the previous-oss page")
@@ -278,13 +278,13 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.answerVatDetailsUkVrn()
 
       When(
-        "the intermediary selects change for Based in UK on the confirm-vat-details page"
+        "the intermediary selects change for Based in UK on the confirm-tax-details page"
       )
-      registration.checkJourneyUrl("confirm-vat-details")
+      registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      When("the intermediary selects no on the have-uk-trading-name page")
-      registration.checkJourneyUrl("have-uk-trading-name")
+      When("the intermediary selects no on the have-trading-name page")
+      registration.checkJourneyUrl("have-trading-name")
       registration.answerRadioButton("no")
 
       When("the intermediary selects no on the previous-oss page")
