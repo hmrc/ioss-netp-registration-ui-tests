@@ -57,7 +57,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("business-contact-details")
       registration.fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
 
-      When("the intermediary selects change for Have a different UK trading name on the check-your-answers page")
+      When("the intermediary selects change for Have a different trading name on the check-your-answers page")
       registration.checkJourneyUrl("check-your-answers")
       registration.selectChangeOrRemoveLink("have-trading-name\\?waypoints\\=check-your-answers")
 
