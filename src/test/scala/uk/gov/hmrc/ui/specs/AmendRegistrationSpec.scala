@@ -42,7 +42,7 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.updateField("telephoneNumber", "+441234567890")
       registration.updateField("emailAddress", "amend-test@email.com")
       registration.continue()
-      
+
       And("the intermediary is redirected to the change-your-registration page for the NETP")
       registration.checkJourneyUrl("change-your-registration?iossNumber=IM9001144771")
     }
