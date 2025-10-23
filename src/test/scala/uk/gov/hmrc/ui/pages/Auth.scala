@@ -37,16 +37,18 @@ object Auth extends BasePage {
     get(authUrl)
     fluentWait.until(ExpectedConditions.urlContains(authUrl))
 
-  def loginUsingAuthorityWizard(withIntEnrolment: Boolean, withVatEnrolment: Boolean, vrnType: String): Unit = {
+  def loginUsingAuthorityWizard(withIntEnrolment: Boolean, withVatEnrolment: Boolean, accountType: String): Unit = {
 
     getCurrentUrl should startWith(authUrl)
 
-    if (vrnType == "noVrn") {
+    if (accountType == "noVrn") {
       sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/client-code-start/${getUrlCode()}")
-    } else if (vrnType == "noVrnPending") {
+    } else if (accountType == "noVrnPending") {
       sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/client-code-start/BRJRZF")
-    } else if (vrnType == "multipleSaved" || vrnType == "oneSaved" || vrnType == "noSaved") {
+    } else if (accountType == "multipleSaved" || accountType == "oneSaved" || accountType == "noSaved") {
       sendKeys(By.name("redirectionUrl"), dashboardUrl)
+    } else if (accountType == "amend") {
+      sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144771")
     } else {
       sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl")
     }
@@ -56,11 +58,11 @@ object Auth extends BasePage {
     if (withVatEnrolment) {
       sendKeys(By.id("enrolment[0].name"), "HMRC-MTD-VAT")
       sendKeys(By.id("input-0-0-name"), "VRN")
-      if (vrnType == "notFound") {
+      if (accountType == "notFound") {
         sendKeys(By.id("input-0-0-value"), "900000001")
-      } else if (vrnType == "multipleSaved") {
+      } else if (accountType == "multipleSaved") {
         sendKeys(By.id("input-0-0-value"), "100000111")
-      } else if (vrnType == "oneSaved") {
+      } else if (accountType == "oneSaved") {
         sendKeys(By.id("input-0-0-value"), "100000222")
       } else {
         sendKeys(By.id("input-0-0-value"), "100000001")
@@ -69,11 +71,11 @@ object Auth extends BasePage {
     if (withIntEnrolment) {
       sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
       sendKeys(By.id("input-1-0-name"), "IntNumber")
-      if (vrnType == "pending") {
+      if (accountType == "pending") {
         sendKeys(By.id("input-1-0-value"), "IN9001112223")
-      } else if (vrnType == "multipleSaved") {
+      } else if (accountType == "multipleSaved") {
         sendKeys(By.id("input-1-0-value"), "IN9001114567")
-      } else if (vrnType == "oneSaved") {
+      } else if (accountType == "oneSaved") {
         sendKeys(By.id("input-1-0-value"), "IN9002224567")
       } else {
         sendKeys(By.id("input-1-0-value"), "IN9001234567")
