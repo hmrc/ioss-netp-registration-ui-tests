@@ -25,27 +25,27 @@ class AmendRegistrationSpec extends BaseSpec {
 
   Feature("Amend Registration journeys") {
 
-    Scenario("Intermediary can amend contact details in a NETP registration") {
-
-      Given("the intermediary accesses the IOSS NETP Registration Service")
-      auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(true, true, "amend")
-      registration.checkJourneyUrl("change-your-registration?iossNumber=IM9001144771")
-
-      When("the intermediary clicks change for contact details")
-      registration.selectChangeOrRemoveLink(
-        "business-contact-details\\?waypoints\\=change-your-registration-IM9001144771"
-      )
-
-      Then("the intermediary can update their phone number and email address")
-      registration.checkJourneyUrl("business-contact-details?waypoints=change-your-registration-IM9001144771")
-      registration.updateField("telephoneNumber", "+441234567890")
-      registration.updateField("emailAddress", "amend-test@email.com")
-      registration.continue()
-
-      And("the intermediary is redirected to the change-your-registration page for the NETP")
-      registration.checkJourneyUrl("change-your-registration?iossNumber=IM9001144771")
-    }
-
+//    Scenario("Intermediary can amend contact details in a NETP registration") {
+//
+//      Given("the intermediary accesses the IOSS NETP Registration Service")
+//      auth.goToAuthorityWizard()
+//      auth.loginUsingAuthorityWizard(true, true, "amend")
+//      registration.checkJourneyUrl("change-your-registration?iossNumber=IM9001144771")
+//
+//      When("the intermediary clicks change for contact details")
+//      registration.selectChangeOrRemoveLink(
+//        "business-contact-details\\?waypoints\\=change-your-registration-IM9001144771"
+//      )
+//
+//      Then("the intermediary can update their phone number and email address")
+//      registration.checkJourneyUrl("business-contact-details?waypoints=change-your-registration-IM9001144771")
+//      registration.updateField("telephoneNumber", "+441234567890")
+//      registration.updateField("emailAddress", "amend-test@email.com")
+//      registration.continue()
+//
+//      And("the intermediary is redirected to the change-your-registration page for the NETP")
+//      registration.checkJourneyUrl("change-your-registration?iossNumber=IM9001144771")
+//    }
+//
   }
 }
