@@ -62,29 +62,29 @@ class AmendRegistrationSpec extends BaseSpec {
       amendRegistration.checkRegistrationDetails("ukBasedNino")
     }
 
-//    Scenario("Intermediary can view a NETP registration for a Non-UK based client with UK VRN") {
-//
-//      Given("the intermediary views the NETP registration")
-//      auth.goToAuthorityWizard()
-//      auth.loginUsingAuthorityWizard(true, true, "nonUkBasedUkVrn")
-//      registration.checkJourneyUrl("change-your-registration")
-//
-//      Then("the correct Registration details are displayed for a Non-UK based client with a UK VRN")
-//      amendRegistration.checkIossNumber("IM9001144775")
-//      amendRegistration.checkRegistrationDetails("nonUkBasedUkVrn")
-//    }
-//
-//    Scenario("Intermediary can view a NETP registration for a Non-UK based client with FTR") {
-//
-//      Given("the intermediary views the NETP registration")
-//      auth.goToAuthorityWizard()
-//      auth.loginUsingAuthorityWizard(true, true, "nonUkBasedFtr")
-//      registration.checkJourneyUrl("change-your-registration")
-//
-//      Then("the correct Registration details are displayed for a Non-UK based client with an FTR")
-//      amendRegistration.checkIossNumber("IM9001144777")
-//      amendRegistration.checkRegistrationDetails("nonUkBasedFtr")
-//    }
+    Scenario("Intermediary can view a NETP registration for a Non-UK based client with UK VRN") {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "nonUkBasedUkVrn")
+      registration.checkJourneyUrl("change-your-registration")
+
+      Then("the correct Registration details are displayed for a Non-UK based client with a UK VRN")
+      amendRegistration.checkIossNumber("IM9001144775")
+      amendRegistration.checkRegistrationDetails("nonUkBasedUkVrn")
+    }
+
+    Scenario("Intermediary can view a NETP registration for a Non-UK based client with FTR") {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "nonUkBasedFtr")
+      registration.checkJourneyUrl("change-your-registration")
+
+      Then("the correct Registration details are displayed for a Non-UK based client with an FTR")
+      amendRegistration.checkIossNumber("IM9001144777")
+      amendRegistration.checkRegistrationDetails("nonUkBasedFtr")
+    }
 
 //    Scenario("Intermediary can amend contact details in a NETP registration") {
 //
