@@ -329,14 +329,14 @@ class ChangeAnswersSpec extends BaseSpec {
         "the intermediary selects change for Greece on the add-tax-details page"
       )
       registration.checkJourneyUrl("add-tax-details")
-      registration.selectChangeOrRemoveLink("check-tax-details\\/1\\?waypoints\\=change-add-tax-details")
+      registration.selectChangeOrRemoveLink("check-tax-details\\/1")
 
       And(
         "the intermediary selects change for Country on the check-tax-details page"
       )
-      registration.checkJourneyUrl("check-tax-details/1?waypoints=change-add-tax-details")
+      registration.checkJourneyUrl("check-tax-details/1")
       registration.selectChangeOrRemoveLink(
-        "vat-registered-eu-country\\/1\\?waypoints\\=check-tax-details-1\\%2Cchange-add-tax-details"
+        "vat-registered-eu-country\\/1\\?waypoints\\=check-tax-details-1"
       )
 
       And(
@@ -400,16 +400,16 @@ class ChangeAnswersSpec extends BaseSpec {
 
       When("the intermediary selects change on Finland")
       registration.checkJourneyUrl("add-tax-details")
-      registration.selectChangeOrRemoveLink("check-tax-details\\/2\\?waypoints\\=change-add-tax-details")
+      registration.selectChangeOrRemoveLink("check-tax-details\\/2")
 
       When("the intermediary selects change on Tax registration type")
-      registration.checkJourneyUrl("check-tax-details/2?waypoints=change-add-tax-details")
+      registration.checkJourneyUrl("check-tax-details/2")
       registration.selectChangeOrRemoveLink(
-        "registration-tax-type\\/2\\?waypoints\\=check-tax-details-2\\%2Cchange-add-tax-details"
+        "registration-tax-type\\/2\\?waypoints\\=check-tax-details-2"
       )
 
       And("the intermediary changes the registration type to VAT number on the registration-tax-type page")
-      registration.checkJourneyUrl("registration-tax-type/2?waypoints=check-tax-details-2%2Cchange-add-tax-details")
+      registration.checkJourneyUrl("registration-tax-type/2?waypoints=check-tax-details-2")
       registration.answerRegistrationType("VAT number")
 
       And("the intermediary enters the VAT number on the eu-vat-number page")

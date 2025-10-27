@@ -90,11 +90,11 @@ class AmendRegistrationSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(true, true, "ukBasedUkVrn")
+      auth.loginUsingAuthorityWizard(true, true, "amend")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144771")
 
-      When("the intermediary clicks change for fixed establishments")
+      When("the intermediary clicks change for contact details")
       registration.selectChangeOrRemoveLink(
         "business-contact-details\\?waypoints\\=change-your-registration"
       )
