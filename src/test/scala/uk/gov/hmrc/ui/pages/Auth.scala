@@ -41,46 +41,56 @@ object Auth extends BasePage {
 
     getCurrentUrl should startWith(authUrl)
 
-    if (accountType == "noVrn") {
-      sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/client-code-start/${getUrlCode()}")
-    } else if (accountType == "noVrnPending") {
-      sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/client-code-start/BRJRZF")
-    } else if (accountType == "multipleSaved" || accountType == "oneSaved" || accountType == "noSaved") {
-      sendKeys(By.name("redirectionUrl"), dashboardUrl)
-    } else if (accountType == "amend") {
-      sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144771")
-    } else {
-      sendKeys(By.name("redirectionUrl"), s"$registrationUrl$journeyUrl")
+    val redirectUrl = accountType match {
+      case "noVrn"                                  =>
+        s"$registrationUrl$journeyUrl/client-code-start/${getUrlCode()}"
+      case "noVrnPending"                           =>
+        s"$registrationUrl$journeyUrl/client-code-start/BRJRZF"
+      case "multipleSaved" | "oneSaved" | "noSaved" =>
+        dashboardUrl
+      case "amend" | "ukBasedUkVrn"                 =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144771"
+      case "ukBasedUtr"                             =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144773"
+      case "ukBasedNino"                            =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144778"
+      case "nonUkBasedUkVrn"                        =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144775"
+      case "nonUkBasedFtr"                          =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144777"
+      case _                                        =>
+        s"$registrationUrl$journeyUrl"
     }
+
+    sendKeys(By.name("redirectionUrl"), redirectUrl)
 
     selectByValue(By.id("affinityGroupSelect"), "Organisation")
 
     if (withVatEnrolment) {
       sendKeys(By.id("enrolment[0].name"), "HMRC-MTD-VAT")
       sendKeys(By.id("input-0-0-name"), "VRN")
-      if (accountType == "notFound") {
-        sendKeys(By.id("input-0-0-value"), "900000001")
-      } else if (accountType == "multipleSaved") {
-        sendKeys(By.id("input-0-0-value"), "100000111")
-      } else if (accountType == "oneSaved") {
-        sendKeys(By.id("input-0-0-value"), "100000222")
-      } else {
-        sendKeys(By.id("input-0-0-value"), "100000001")
+
+      val vrn = accountType match {
+        case "notFound"      => "900000001"
+        case "multipleSaved" => "100000111"
+        case "oneSaved"      => "100000222"
+        case _               => "100000001"
       }
+      sendKeys(By.id("input-0-0-value"), vrn)
     }
+
     if (withIntEnrolment) {
       sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
       sendKeys(By.id("input-1-0-name"), "IntNumber")
-      if (accountType == "pending") {
-        sendKeys(By.id("input-1-0-value"), "IN9001112223")
-      } else if (accountType == "multipleSaved") {
-        sendKeys(By.id("input-1-0-value"), "IN9001114567")
-      } else if (accountType == "oneSaved") {
-        sendKeys(By.id("input-1-0-value"), "IN9002224567")
-      } else {
-        sendKeys(By.id("input-1-0-value"), "IN9001234567")
+      val iossNumber = accountType match {
+        case "pending"       => "IN9001112223"
+        case "multipleSaved" => "IN9001114567"
+        case "oneSaved"      => "IN9002224567"
+        case _               => "IN9001234567"
       }
+      sendKeys(By.id("input-1-0-value"), iossNumber)
     }
+
     click(By.cssSelector("Input[value='Submit']"))
   }
 

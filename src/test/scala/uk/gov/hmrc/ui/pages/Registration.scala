@@ -392,16 +392,16 @@ object Registration extends BasePage {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
 
     if (numberOfRegistered == "five") {
-      Assert.assertTrue(htmlBody.contains("Company Name (VAT reference: 112233445)"))
+      Assert.assertTrue(htmlBody.contains("First Company (VAT reference: 112233445)"))
       Assert.assertTrue(htmlBody.contains("NINO client (National Insurance Number: AA121212A)"))
       Assert.assertTrue(htmlBody.contains("UTR trading (tax reference: 1122331122333)"))
-      Assert.assertTrue(htmlBody.contains("Company Name (VAT reference: 544332211)"))
+      Assert.assertTrue(htmlBody.contains("First Company (VAT reference: 544332211)"))
       Assert.assertTrue(htmlBody.contains("FTR trading (tax reference: 123MCDONALD456)"))
     } else if (numberOfRegistered == "four") {
-      Assert.assertTrue(htmlBody.contains("Company Name (VAT reference: 112233445)"))
+      Assert.assertTrue(htmlBody.contains("First Company (VAT reference: 112233445)"))
       Assert.assertTrue(htmlBody.contains("NINO client (National Insurance Number: AA121212A)"))
       Assert.assertFalse(htmlBody.contains("UTR trading (tax reference: 1122331122333)"))
-      Assert.assertTrue(htmlBody.contains("Company Name (VAT reference: 544332211)"))
+      Assert.assertTrue(htmlBody.contains("First Company (VAT reference: 544332211)"))
       Assert.assertTrue(htmlBody.contains("FTR trading (tax reference: 123MCDONALD456)"))
     }
   }
@@ -414,7 +414,7 @@ object Registration extends BasePage {
       case "oneSaved"                =>
         "Do you want to continue the registration for One saved registration trader (tax reference: AT123123123)"
       case "oneOfFive"               =>
-        "Do you want to continue the registration for Company Name (VAT reference: 112233445)"
+        "Do you want to continue the registration for First Company (VAT reference: 112233445)"
       case "threeOfFive"             =>
         "Do you want to continue the registration for UTR trading (tax reference: 1122331122333)"
       case "fiveOfFive"              =>

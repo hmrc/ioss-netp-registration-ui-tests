@@ -16,36 +16,97 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.{Auth, Registration}
+import uk.gov.hmrc.ui.pages.{AmendRegistration, Auth, Registration}
 
 class AmendRegistrationSpec extends BaseSpec {
 
-  lazy val registration = Registration
-  lazy val auth         = Auth
+  lazy val registration      = Registration
+  lazy val auth              = Auth
+  lazy val amendRegistration = AmendRegistration
 
   Feature("Amend Registration journeys") {
 
-//    Scenario("Intermediary can amend contact details in a NETP registration") {
-//
-//      Given("the intermediary accesses the IOSS NETP Registration Service")
-//      auth.goToAuthorityWizard()
-//      auth.loginUsingAuthorityWizard(true, true, "amend")
-//      registration.checkJourneyUrl("change-your-registration?iossNumber=IM9001144771")
-//
-//      When("the intermediary clicks change for contact details")
-//      registration.selectChangeOrRemoveLink(
-//        "business-contact-details\\?waypoints\\=change-your-registration-IM9001144771"
-//      )
-//
-//      Then("the intermediary can update their phone number and email address")
-//      registration.checkJourneyUrl("business-contact-details?waypoints=change-your-registration-IM9001144771")
-//      registration.updateField("telephoneNumber", "+441234567890")
-//      registration.updateField("emailAddress", "amend-test@email.com")
-//      registration.continue()
-//
-//      And("the intermediary is redirected to the change-your-registration page for the NETP")
-//      registration.checkJourneyUrl("change-your-registration?iossNumber=IM9001144771")
-//    }
-//
+    Scenario("Intermediary can view a NETP registration for a UK based client with UK VRN") {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "ukBasedUkVrn")
+      registration.checkJourneyUrl("change-your-registration")
+
+      Then("the correct Registration details are displayed for a UK based client with a UK VRN")
+      amendRegistration.checkIossNumber("IM9001144771")
+      amendRegistration.checkRegistrationDetails("ukBasedUkVrn")
+    }
+
+    Scenario("Intermediary can view a NETP registration for a UK based client with UTR") {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "ukBasedUtr")
+      registration.checkJourneyUrl("change-your-registration")
+
+      Then("the correct Registration details are displayed for a UK based client with a UTR")
+      amendRegistration.checkIossNumber("IM9001144773")
+      amendRegistration.checkRegistrationDetails("ukBasedUtr")
+    }
+
+    Scenario("Intermediary can view a NETP registration for a UK based client with NINO") {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "ukBasedNino")
+      registration.checkJourneyUrl("change-your-registration")
+
+      Then("the correct Registration details are displayed for a UK based client with a NINO")
+      amendRegistration.checkIossNumber("IM9001144778")
+      amendRegistration.checkRegistrationDetails("ukBasedNino")
+    }
+
+    Scenario("Intermediary can view a NETP registration for a Non-UK based client with UK VRN") {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "nonUkBasedUkVrn")
+      registration.checkJourneyUrl("change-your-registration")
+
+      Then("the correct Registration details are displayed for a Non-UK based client with a UK VRN")
+      amendRegistration.checkIossNumber("IM9001144775")
+      amendRegistration.checkRegistrationDetails("nonUkBasedUkVrn")
+    }
+
+    Scenario("Intermediary can view a NETP registration for a Non-UK based client with FTR") {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "nonUkBasedFtr")
+      registration.checkJourneyUrl("change-your-registration")
+
+      Then("the correct Registration details are displayed for a Non-UK based client with an FTR")
+      amendRegistration.checkIossNumber("IM9001144777")
+      amendRegistration.checkRegistrationDetails("nonUkBasedFtr")
+    }
+
+    Scenario("Intermediary can amend contact details in a NETP registration") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "amend")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144771")
+
+      When("the intermediary clicks change for contact details")
+      registration.selectChangeOrRemoveLink(
+        "business-contact-details\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can update their phone number and email address")
+      registration.checkJourneyUrl("business-contact-details?waypoints=change-your-registration")
+      registration.updateField("telephoneNumber", "+441234567890")
+      registration.updateField("emailAddress", "amend-test@email.com")
+      registration.continue()
+
+      And("the intermediary is redirected to the change-your-registration page for the NETP")
+      registration.checkJourneyUrl("change-your-registration")
+    }
   }
 }
