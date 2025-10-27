@@ -126,32 +126,33 @@ class AmendRegistrationSpec extends BaseSpec {
       Then("the intermediary can amend an existing fixed establishment")
       registration.checkJourneyUrl("add-tax-details?waypoints=change-your-registration")
       registration.selectChangeOrRemoveLink(
-        "check-tax-details\\/1\\?waypoints\\=change-add-tax-details\\%2Cchange-your-registration"
+        "check-tax-details\\/1\\?waypoints\\=change-your-registration"
       )
-      registration.checkJourneyUrl("check-tax-details/1?waypoints=change-add-tax-details%2Cchange-your-registration")
+      registration.checkJourneyUrl("check-tax-details/1?waypoints=change-your-registration")
       registration.selectChangeOrRemoveLink(
-        "registration-tax-type\\/1\\?waypoints\\=check-tax-details-1\\%2Cchange-add-tax-details\\%2Cchange-your-registration"
+        "registration-tax-type\\/1\\?waypoints\\=check-tax-details-1\\%2Cchange-your-registration"
       )
       registration.checkJourneyUrl(
-        "registration-tax-type/1?waypoints=check-tax-details-1%2Cchange-add-tax-details%2Cchange-your-registration"
+        "registration-tax-type/1?waypoints=check-tax-details-1%2Cchange-your-registration"
       )
       registration.answerRegistrationType("Tax ID number")
       registration.checkJourneyUrl(
-        "eu-tax-identification-number/1?waypoints=check-tax-details-1%2Cchange-add-tax-details%2Cchange-your-registration-"
+        "eu-tax-identification-number/1?waypoints=check-tax-details-1%2Cchange-your-registration"
       )
       registration.enterAnswer("NEW123")
+      registration.checkJourneyUrl("check-tax-details/1?waypoints=change-your-registration")
       registration.continue()
 
       Then("the intermediary can remove an existing fixed establishment")
       registration.checkJourneyUrl("add-tax-details?waypoints=change-your-registration")
       registration.selectChangeOrRemoveLink(
-        "remove-tax-details\\/2\\?waypoints\\=change-your-registration\\%2Cchange-add-tax-details\\%2Cchange-your-registration"
+        "remove-tax-details\\/2\\?waypoints\\=change-your-registration"
       )
       registration.checkJourneyUrl(
-        "remove-tax-details/2?waypoints=%2Cchange-add-tax-details%2Cchange-your-registration"
+        "remove-tax-details/2?waypoints=change-your-registration"
       )
       registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("add-tax-details?waypoints=%2Cchange-add-tax-details%2Cchange-your-registration")
+      registration.checkJourneyUrl("add-tax-details?waypoints=change-your-registration")
       registration.answerRadioButton("no")
 
       And("the intermediary is on the change-your-registration page")
