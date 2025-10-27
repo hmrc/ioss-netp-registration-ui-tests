@@ -58,6 +58,8 @@ object Auth extends BasePage {
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144775"
       case "nonUkBasedFtr"                          =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144777"
+      case "minimalAmend"                           =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144881"
       case _                                        =>
         s"$registrationUrl$journeyUrl"
     }
@@ -86,6 +88,7 @@ object Auth extends BasePage {
         case "pending"       => "IN9001112223"
         case "multipleSaved" => "IN9001114567"
         case "oneSaved"      => "IN9002224567"
+        case "minimalAmend"  => "IN9008888887"
         case _               => "IN9001234567"
       }
       sendKeys(By.id("input-1-0-value"), iossNumber)

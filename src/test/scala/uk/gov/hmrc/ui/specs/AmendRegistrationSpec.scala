@@ -90,11 +90,11 @@ class AmendRegistrationSpec extends BaseSpec {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(true, true, "amend")
+      auth.loginUsingAuthorityWizard(true, true, "ukBasedUkVrn")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144771")
 
-      When("the intermediary clicks change for contact details")
+      When("the intermediary clicks change for fixed establishments")
       registration.selectChangeOrRemoveLink(
         "business-contact-details\\?waypoints\\=change-your-registration"
       )
@@ -105,8 +105,160 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.updateField("emailAddress", "amend-test@email.com")
       registration.continue()
 
-      And("the intermediary is redirected to the change-your-registration page for the NETP")
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144771")
+    }
+
+    Scenario("Intermediary can amend and remove fixed establishments in a NETP registration") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "amend")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144771")
+
+      When("the intermediary clicks change for Countries established in")
+      registration.selectChangeOrRemoveLink(
+        "add-tax-details\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can amend an existing fixed establishment")
+      registration.checkJourneyUrl("add-tax-details?waypoints=change-your-registration")
+      registration.selectChangeOrRemoveLink(
+        "check-tax-details\\/1\\?waypoints\\=change-add-tax-details\\%2Cchange-your-registration"
+      )
+      registration.checkJourneyUrl("check-tax-details/1?waypoints=change-add-tax-details%2Cchange-your-registration")
+      registration.selectChangeOrRemoveLink(
+        "registration-tax-type\\/1\\?waypoints\\=check-tax-details-1\\%2Cchange-add-tax-details\\%2Cchange-your-registration"
+      )
+      registration.checkJourneyUrl(
+        "registration-tax-type/1?waypoints=check-tax-details-1%2Cchange-add-tax-details%2Cchange-your-registration"
+      )
+      registration.answerRegistrationType("Tax ID number")
+      registration.checkJourneyUrl(
+        "eu-tax-identification-number/1?waypoints=check-tax-details-1%2Cchange-add-tax-details%2Cchange-your-registration-"
+      )
+      registration.enterAnswer("NEW123")
+      registration.continue()
+
+      Then("the intermediary can remove an existing fixed establishment")
+      registration.checkJourneyUrl("add-tax-details?waypoints=change-your-registration")
+      registration.selectChangeOrRemoveLink(
+        "remove-tax-details\\/2\\?waypoints\\=change-your-registration\\%2Cchange-add-tax-details\\%2Cchange-your-registration"
+      )
+      registration.checkJourneyUrl(
+        "remove-tax-details/2?waypoints=%2Cchange-add-tax-details%2Cchange-your-registration"
+      )
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("add-tax-details?waypoints=%2Cchange-add-tax-details%2Cchange-your-registration")
+      registration.answerRadioButton("no")
+
+      And("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144771")
+    }
+
+    Scenario("Intermediary can remove all fixed establishments in a NETP registration - yes to no") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "ukBasedUkVrn")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144771")
+
+      When("the intermediary clicks change for Fixed establishments in other countries")
+      registration.selectChangeOrRemoveLink(
+        "eu-fixed-establishment\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary answers no on the eu-fixed-establishment page")
+      registration.checkJourneyUrl("eu-fixed-establishment?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
+
+      And("the intermediary answers yes on the remove-all-tax-details page")
+      registration.checkJourneyUrl("remove-all-tax-details?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+
+      And("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144771")
+    }
+
+    Scenario("Intermediary can add fixed establishments in a NETP registration - no to yes") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "minimalAmend")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144881")
+
+      When("the intermediary clicks change for Fixed establishments in other countries")
+      registration.selectChangeOrRemoveLink(
+        "eu-fixed-establishment\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary answers yes on the eu-fixed-establishment page")
+      registration.checkJourneyUrl("eu-fixed-establishment?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+
+      And(
+        "the intermediary selects which country their fixed establishment is in on the vat-registered-eu-country page"
+      )
+      registration.checkJourneyUrl("vat-registered-eu-country/1?waypoints=change-your-registration")
+      registration.selectCountry("Sweden")
+
+      And("the intermediary enters the fixed establishment details on the trading-name-business-address page")
+      registration.checkJourneyUrl("trading-name-business-address/1?waypoints=change-your-registration")
+      registration.enterFETradingName("Swedish Company")
+      registration.enterAddress("123 Street Name", "", "Town", "", "SE123456")
+
+      And("the intermediary selects the VAT Number registration type on the registration-tax-type page")
+      registration.checkJourneyUrl("registration-tax-type/1?waypoints=change-your-registration")
+      registration.answerRegistrationType("VAT number")
+
+      And("the intermediary enters the VAT number on the eu-vat-number page")
+      registration.checkJourneyUrl("eu-vat-number/1?waypoints=change-your-registration")
+      registration.enterAnswer("SE012345678987")
+
+      And("the intermediary continues through the check-tax-details page")
+      registration.checkJourneyUrl("check-tax-details/1?waypoints=change-your-registration")
+      registration.continue()
+
+      Then("the intermediary selects yes on the add-tax-details page")
+      registration.checkJourneyUrl("add-tax-details?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+
+      And(
+        "the intermediary selects which country their fixed establishment is in on the vat-registered-eu-country page"
+      )
+      registration.checkJourneyUrl("vat-registered-eu-country/2?waypoints=change-your-registration")
+      registration.selectCountry("Romania")
+
+      And("the intermediary enters the fixed establishment details on the trading-name-business-address page")
+      registration.checkJourneyUrl("trading-name-business-address/2?waypoints=change-your-registration")
+      registration.enterFETradingName("Romanian Company")
+      registration.enterAddress("1 Road Name", "Suburb", "City", "Region-Name", "")
+
+      And("the intermediary selects the Tax ID number registration type on the registration-tax-type page")
+      registration.checkJourneyUrl("registration-tax-type/2?waypoints=change-your-registration")
+      registration.answerRegistrationType("Tax ID number")
+
+      And("the intermediary enters the Tax ID number on the eu-tax-identification-number page")
+      registration.checkJourneyUrl("eu-tax-identification-number/2?waypoints=change-your-registration")
+      registration.enterAnswer("R1 665544")
+
+      And("the intermediary continues through the check-tax-details page")
+      registration.checkJourneyUrl("check-tax-details/2?waypoints=change-your-registration")
+      registration.continue()
+
+      Then("the intermediary selects no on the add-tax-details page")
+      registration.checkJourneyUrl("add-tax-details?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
+
+      And("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144881")
     }
   }
 }
