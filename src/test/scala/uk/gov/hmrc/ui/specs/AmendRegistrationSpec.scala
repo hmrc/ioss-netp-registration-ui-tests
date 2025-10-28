@@ -261,5 +261,41 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144881")
     }
+
+    Scenario("Intermediary can amend existing website details in a NETP registration") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "minimalAmend")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144881")
+
+      When("the intermediary clicks change for Trading websites")
+      registration.selectChangeOrRemoveLink(
+        "add-website-address\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can update their second website")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.selectChangeOrRemoveLink(
+        "website-address\\/2\\?waypoints\\=change-add-website-address\\%2Cchange-your-registration"
+      )
+      registration.checkJourneyUrl("website-address/2?waypoints=change-add-website-address%2Cchange-your-registration")
+      registration.enterAnswer("https://updatedwebsite.co")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+
+      And("the intermediary can remove their first website")
+      registration.selectChangeOrRemoveLink(
+        "remove-website-address\\/1\\?waypoints\\=change-your-registration"
+      )
+      registration.checkJourneyUrl("remove-website-address/1?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
+
+      And("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144881")
+    }
   }
 }
