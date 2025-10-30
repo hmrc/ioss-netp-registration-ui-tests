@@ -70,10 +70,7 @@ object AmendRegistration extends BasePage {
               "your Clients trading name\n" +
 //          Hidden change text end
               "Has Unique Taxpayer Reference (UTR) number No\n" +
-              "National Insurance number (NINO) 1234567890 Change\n" +
-//          Hidden change text start
-              "National Insurance number (NINO)\n" +
-//          Hidden change text end
+              "National Insurance number (NINO) AA112211A\n" +
               "Principal place of business address Other Address Line 1\n" +
               "Other Address Line 2\n" +
               "Other Town or City\n" +
@@ -92,13 +89,13 @@ object AmendRegistration extends BasePage {
 //          Hidden change text start
               "Country based in\n" +
 //          Hidden change text end
-              "Trading name Fifth Client Change\n" +
+              "Trading name in Spain Fifth Client Change\n" +
 //          Hidden change text start
               "your Clients trading name\n" +
 //          Hidden change text end
-              "Principal place of business address 1 The Street\n" +
-              "Some Town\n" +
-              "AA11 1AA"
+              "Principal place of business address 123 Street Name\n" +
+              "Barcelona\n" +
+              "ES123456 Change"
           )
         )
       case "nonUkBasedFtr"   =>
@@ -106,23 +103,23 @@ object AmendRegistration extends BasePage {
           body.contains(
             "Based in UK No\n" +
               "Has UK VAT registration number No\n" +
-              "Country based in Spain Change\n" +
+              "Country based in France Change\n" +
 //          Hidden change text start
               "Country based in\n" +
 //          Hidden change text end
-              "National tax number 100000001 Change\n" +
+              "National tax number FR112233 Change\n" +
 //          Hidden change text start
               "your client's tax reference number\n" +
 //          Hidden change text end
-              "Trading name in Spain Seventh Client Change\n" +
+              "Trading name in France Seventh Client Change\n" +
 //          Hidden change text start
               "your Clients trading name\n" +
 //          Hidden change text end
-              "Principal place of business address Other Address Line 1\n" +
-              "Other Address Line 2\n" +
-              "Other Town or City\n" +
-              "Other Region or State\n" +
-              "NE11HM"
+              "Principal place of business address 100 Road Name\n" +
+              "Suburb\n" +
+              "Paris\n" +
+              "Region\n" +
+              "10050 Change"
           )
         )
       case _                 => throw new Exception("This client type does not exist")
