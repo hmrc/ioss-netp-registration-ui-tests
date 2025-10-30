@@ -26,7 +26,9 @@ class AmendRegistrationSpec extends BaseSpec {
 
   Feature("Amend Registration journeys") {
 
-    Scenario("Intermediary can view a NETP registration for a UK based client with UK VRN") {
+    Scenario(
+      "Intermediary can view a NETP registration for a UK based client with UK VRN and cannot amend registration details section"
+    ) {
 
       Given("the intermediary views the NETP registration")
       auth.goToAuthorityWizard()
@@ -38,7 +40,9 @@ class AmendRegistrationSpec extends BaseSpec {
       amendRegistration.checkRegistrationDetails("ukBasedUkVrn")
     }
 
-    Scenario("Intermediary can view a NETP registration for a UK based client with UTR") {
+    Scenario(
+      "Intermediary can view a NETP registration for a UK based client with UTR and can amend registration details section"
+    ) {
 
       Given("the intermediary views the NETP registration")
       auth.goToAuthorityWizard()
@@ -48,9 +52,39 @@ class AmendRegistrationSpec extends BaseSpec {
       Then("the correct Registration details are displayed for a UK based client with a UTR")
       amendRegistration.checkIossNumber("IM9001144773")
       amendRegistration.checkRegistrationDetails("ukBasedUtr")
+
+      When("the intermediary clicks change for Trading name")
+      registration.selectChangeOrRemoveLink(
+        "client-business-name\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can amend their client's business name")
+      registration.checkJourneyUrl("client-business-name?waypoints=change-your-registration")
+      registration.enterAnswer("Updated 3rd client name")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144773")
+
+      When("the intermediary clicks change for Principal place of business address")
+      registration.selectChangeOrRemoveLink(
+        "client-address\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can amend their client's business address")
+      registration.checkJourneyUrl("client-address?waypoints=change-your-registration")
+      registration.updateField("line1", "1 New Address Line")
+      registration.updateField("townOrCity", "New Town-Name")
+      registration.updateField("postCode", "")
+      registration.continue()
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144773")
+
+      Then("the correct Registration details following the amendment")
+      amendRegistration.checkRegistrationDetails("ukBasedUtrAmended")
     }
 
-    Scenario("Intermediary can view a NETP registration for a UK based client with NINO") {
+    Scenario(
+      "Intermediary can view a NETP registration for a UK based client with NINO and can amend registration details section"
+    ) {
 
       Given("the intermediary views the NETP registration")
       auth.goToAuthorityWizard()
@@ -60,9 +94,33 @@ class AmendRegistrationSpec extends BaseSpec {
       Then("the correct Registration details are displayed for a UK based client with a NINO")
       amendRegistration.checkIossNumber("IM9001144778")
       amendRegistration.checkRegistrationDetails("ukBasedNino")
+
+      When("the intermediary clicks change for Trading name")
+      registration.selectChangeOrRemoveLink(
+        "client-business-name\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can amend their client's business name")
+      registration.checkJourneyUrl("client-business-name?waypoints=change-your-registration")
+      registration.enterAnswer("Updated 8th client name")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144778")
+
+      Then("the intermediary can amend their client's business address")
+      registration.checkJourneyUrl("client-address?waypoints=change-your-registration")
+      registration.updateField("line2", "New Suburb")
+      registration.updateField("stateOrRegion", "")
+      registration.continue()
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144778")
+
+      Then("the correct Registration details following the amendment")
+      amendRegistration.checkRegistrationDetails("ukBasedNinoAmended")
     }
 
-    Scenario("Intermediary can view a NETP registration for a Non-UK based client with UK VRN") {
+    Scenario(
+      "Intermediary can view a NETP registration for a Non-UK based client with UK VRN and can amend registration details section"
+    ) {
 
       Given("the intermediary views the NETP registration")
       auth.goToAuthorityWizard()
@@ -72,9 +130,45 @@ class AmendRegistrationSpec extends BaseSpec {
       Then("the correct Registration details are displayed for a Non-UK based client with a UK VRN")
       amendRegistration.checkIossNumber("IM9001144775")
       amendRegistration.checkRegistrationDetails("nonUkBasedUkVrn")
+
+      When("the intermediary clicks change for Country based in")
+      registration.selectChangeOrRemoveLink(
+        "client-country-based\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary amends the country the client is based in")
+      registration.checkJourneyUrl("client-country-based?waypoints=change-your-registration")
+      registration.selectCountry("Christmas Island")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144775")
+
+      When("the intermediary clicks change for Trading name")
+      registration.selectChangeOrRemoveLink(
+        "client-business-name\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can amend their client's business name")
+      registration.checkJourneyUrl("client-business-name?waypoints=change-your-registration")
+      registration.enterAnswer("New 5th client name")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144775")
+
+      Then("the intermediary can amend their client's business address")
+      registration.checkJourneyUrl("client-address?waypoints=change-your-registration")
+      registration.updateField("line2", "New Suburb")
+      registration.updateField("stateOrRegion", "State")
+      registration.updateField("postCode", "")
+      registration.continue()
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144775")
+
+      Then("the correct Registration details following the amendment")
+      amendRegistration.checkRegistrationDetails("nonUkBasedUkVrnAmended")
     }
 
-    Scenario("Intermediary can view a NETP registration for a Non-UK based client with FTR") {
+    Scenario(
+      "Intermediary can view a NETP registration for a Non-UK based client with FTR and can amend registration details section"
+    ) {
 
       Given("the intermediary views the NETP registration")
       auth.goToAuthorityWizard()
@@ -84,6 +178,50 @@ class AmendRegistrationSpec extends BaseSpec {
       Then("the correct Registration details are displayed for a Non-UK based client with an FTR")
       amendRegistration.checkIossNumber("IM9001144777")
       amendRegistration.checkRegistrationDetails("nonUkBasedFtr")
+
+      When("the intermediary clicks change for Country based in")
+      registration.selectChangeOrRemoveLink(
+        "client-country-based\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary amends the country the client is based in")
+      registration.checkJourneyUrl("client-country-based?waypoints=change-your-registration")
+      registration.selectCountry("Canada")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144777")
+
+      When("the intermediary clicks change for Trading name")
+      registration.selectChangeOrRemoveLink(
+        "client-business-name\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can amend their client's business name")
+      registration.checkJourneyUrl("client-business-name?waypoints=change-your-registration")
+      registration.enterAnswer("New 5th client name")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144777")
+
+      When("the intermediary clicks change for National tax number")
+      registration.selectChangeOrRemoveLink(
+        "client-tax-reference\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can amend their client's national tax number")
+      registration.checkJourneyUrl("client-tax-reference?waypoints=change-your-registration")
+      registration.enterAnswer("CA112233")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144777")
+
+      Then("the intermediary can amend their client's business address")
+      registration.checkJourneyUrl("client-address?waypoints=change-your-registration")
+      registration.updateField("line1", "200 Street Name")
+      registration.updateField("postCode", "")
+      registration.continue()
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144777")
+
+      Then("the correct Registration details following the amendment")
+      amendRegistration.checkRegistrationDetails("nonUkBasedFtrAmended")
     }
 
     Scenario("Intermediary can amend contact details in a NETP registration") {
