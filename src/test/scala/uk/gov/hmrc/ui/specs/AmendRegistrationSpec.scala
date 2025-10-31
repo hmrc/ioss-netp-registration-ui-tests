@@ -110,7 +110,7 @@ class AmendRegistrationSpec extends BaseSpec {
       amendRegistration.checkIossNumber("IM9001144771")
     }
 
-    Scenario("Intermediary can amend and remove fixed establishments in a NETP registration") {
+    Scenario("Intermediary can amend and remove existing data in a NETP registration") {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
@@ -118,7 +118,32 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144771")
 
+      When("the intermediary clicks change for Other trading names")
+      registration.selectChangeOrRemoveLink(
+        "add-trading-name\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can amend the second trading name")
+      registration.checkJourneyUrl("add-trading-name?waypoints=change-your-registration")
+      registration.selectChangeOrRemoveLink(
+        "trading-name\\/2\\?waypoints\\=change-add-trading-name\\%2Cchange-your-registration"
+      )
+      registration.checkJourneyUrl("trading-name/2?waypoints=change-add-trading-name%2Cchange-your-registration")
+      registration.enterAnswer("new trading name")
+      registration.checkJourneyUrl("add-trading-name?waypoints=change-your-registration")
+
+      And("the intermediary can remove the first trading name")
+      registration.selectChangeOrRemoveLink(
+        "remove-trading-name\\/1\\?waypoints\\=change-your-registration"
+      )
+      registration.checkJourneyUrl("remove-trading-name/1?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("add-trading-name?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
+
       When("the intermediary clicks change for Countries established in")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144771")
       registration.selectChangeOrRemoveLink(
         "add-tax-details\\?waypoints\\=change-your-registration"
       )
@@ -160,7 +185,7 @@ class AmendRegistrationSpec extends BaseSpec {
       amendRegistration.checkIossNumber("IM9001144771")
     }
 
-    Scenario("Intermediary can remove all fixed establishments in a NETP registration - yes to no") {
+    Scenario("Intermediary can remove all trading names and fixed establishments in a NETP registration - yes to no") {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
@@ -168,7 +193,22 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144771")
 
+      When("the intermediary clicks change for Have a different trading name")
+      registration.selectChangeOrRemoveLink(
+        "have-trading-name\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary answers no on the have-trading-name page")
+      registration.checkJourneyUrl("have-trading-name?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
+
+      And("the intermediary answers yes on the remove-all-trading-names page")
+      registration.checkJourneyUrl("remove-all-trading-names?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+
       When("the intermediary clicks change for Fixed establishments in other countries")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144771")
       registration.selectChangeOrRemoveLink(
         "eu-fixed-establishment\\?waypoints\\=change-your-registration"
       )
@@ -186,7 +226,7 @@ class AmendRegistrationSpec extends BaseSpec {
       amendRegistration.checkIossNumber("IM9001144771")
     }
 
-    Scenario("Intermediary can add fixed establishments in a NETP registration - no to yes") {
+    Scenario("Intermediary can add fresh data to a NETP registration - no to yes") {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
@@ -194,7 +234,25 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144881")
 
+      When("the intermediary clicks change for Have a different trading name")
+      registration.selectChangeOrRemoveLink(
+        "have-trading-name\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary adds two trading names")
+      registration.checkJourneyUrl("have-trading-name?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("trading-name/1?waypoints=add-trading-name%2Cchange-your-registration")
+      registration.enterAnswer("amend trading name 1")
+      registration.checkJourneyUrl("add-trading-name?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.enterAnswer("amend trading name 2")
+      registration.checkJourneyUrl("add-trading-name?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
+
       When("the intermediary clicks change for Fixed establishments in other countries")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144881")
       registration.selectChangeOrRemoveLink(
         "eu-fixed-establishment\\?waypoints\\=change-your-registration"
       )
