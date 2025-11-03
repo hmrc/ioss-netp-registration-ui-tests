@@ -27,7 +27,6 @@ object AmendRegistration extends BasePage {
 
     clientType match {
 
-      // Note current change links added to checks but need adjusting accordingly in VEI-450/VEI-579
       case "ukBasedUkVrn"           =>
         Assert.assertTrue(
           body.contains(
@@ -130,6 +129,7 @@ object AmendRegistration extends BasePage {
               "your Clients trading name\n" +
 //          Hidden change text end
               "Principal place of business address 123 Street Name\n" +
+              "Suburb\n" +
               "Barcelona\n" +
               "ES123456 Change"
           )
@@ -192,7 +192,7 @@ object AmendRegistration extends BasePage {
               //          Hidden change text start
               "your client's tax reference number\n" +
               //          Hidden change text end
-              "Trading name in Canada Seventh Client Change\n" +
+              "Trading name in Canada New 7th client name Change\n" +
               //          Hidden change text start
               "your Clients trading name\n" +
               //          Hidden change text end

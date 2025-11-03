@@ -106,6 +106,11 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144778")
 
+      When("the intermediary clicks change for Principal place of business address")
+      registration.selectChangeOrRemoveLink(
+        "client-address\\?waypoints\\=change-your-registration"
+      )
+
       Then("the intermediary can amend their client's business address")
       registration.checkJourneyUrl("client-address?waypoints=change-your-registration")
       registration.updateField("line2", "New Suburb")
@@ -138,6 +143,7 @@ class AmendRegistrationSpec extends BaseSpec {
 
       Then("the intermediary amends the country the client is based in")
       registration.checkJourneyUrl("client-country-based?waypoints=change-your-registration")
+      registration.clearCountry()
       registration.selectCountry("Christmas Island")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144775")
@@ -152,6 +158,11 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.enterAnswer("New 5th client name")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144775")
+
+      When("the intermediary clicks change for Principal place of business address")
+      registration.selectChangeOrRemoveLink(
+        "client-address\\?waypoints\\=change-your-registration"
+      )
 
       Then("the intermediary can amend their client's business address")
       registration.checkJourneyUrl("client-address?waypoints=change-your-registration")
@@ -186,6 +197,7 @@ class AmendRegistrationSpec extends BaseSpec {
 
       Then("the intermediary amends the country the client is based in")
       registration.checkJourneyUrl("client-country-based?waypoints=change-your-registration")
+      registration.clearCountry()
       registration.selectCountry("Canada")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144777")
@@ -197,7 +209,7 @@ class AmendRegistrationSpec extends BaseSpec {
 
       Then("the intermediary can amend their client's business name")
       registration.checkJourneyUrl("client-business-name?waypoints=change-your-registration")
-      registration.enterAnswer("New 5th client name")
+      registration.enterAnswer("New 7th client name")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144777")
 
@@ -211,6 +223,11 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.enterAnswer("CA112233")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144777")
+
+      When("the intermediary clicks change for Principal place of business address")
+      registration.selectChangeOrRemoveLink(
+        "client-address\\?waypoints\\=change-your-registration"
+      )
 
       Then("the intermediary can amend their client's business address")
       registration.checkJourneyUrl("client-address?waypoints=change-your-registration")
