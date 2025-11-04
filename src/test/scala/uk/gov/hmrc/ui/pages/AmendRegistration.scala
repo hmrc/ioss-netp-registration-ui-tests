@@ -211,4 +211,50 @@ object AmendRegistration extends BasePage {
     val body = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(body.contains(s"IOSS number: $iossNumber"))
   }
+
+  def checkPreviousRegistrationLinks(version: String): Unit = {
+    val body = Driver.instance.findElement(By.tagName("body")).getText
+
+    version match {
+      case "preAmendCYA"      =>
+        Assert.assertTrue(
+          body.contains(
+            "Other One Stop Shop registrations Yes\n" +
+              "Countries registered in Germany Add"
+          )
+        )
+      case "preAmendPSO"      =>
+        Assert.assertTrue(
+          body.contains(
+            "Germany \n" +
+              "Change"
+          )
+        )
+      case "preAmendNoRemove" =>
+        Assert.assertFalse(body.contains("Remove"))
+      case "twoRemoveLinks"   =>
+        Assert.assertTrue(
+          body.contains(
+            "One Stop Shop Union\n" +
+              "Registration number DE12345678\n" +
+              "Import One Stop Shop\n" +
+              "Remove\n" +
+              "Registration number IM2767777777\n" +
+              "One Stop Shop non-Union\n" +
+              "Remove\n" +
+              "Registration number EU123456789"
+          )
+        )
+      case "onlyRemoveFrance" =>
+        Assert.assertTrue(
+          body.contains(
+            "Germany  \n" +
+              "Change\n" +
+              "France \n" +
+              "Change Remove"
+          )
+        )
+      case _                  => throw new Exception("No version to check")
+    }
+  }
 }
