@@ -41,7 +41,9 @@ class AmendCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("eu-fixed-establishment?waypoints=change-your-registration")
       registration.answerRadioButton("yes")
 
-      Then("the intermediary can add tax details by EU Vat Number for one EU country that is already active in another member state")
+      Then(
+        "the intermediary can add tax details by EU Vat Number for one EU country that is already active in another member state"
+      )
       registration.checkJourneyUrl("vat-registered-eu-country/1?waypoints=change-your-registration")
       registration.selectCountry("Malta")
       registration.checkJourneyUrl("trading-name-business-address/1?waypoints=change-your-registration")
@@ -54,7 +56,9 @@ class AmendCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("check-tax-details/1?waypoints=change-your-registration")
       registration.continue()
 
-      And("the intermediary can add tax details by EU Tax ID for another EU country that is already active in another member state")
+      And(
+        "the intermediary can add tax details by EU Tax ID for another EU country that is already active in another member state"
+      )
       registration.checkJourneyUrl("add-tax-details?waypoints=change-your-registration")
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("vat-registered-eu-country/2?waypoints=change-your-registration")
@@ -91,7 +95,9 @@ class AmendCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("eu-fixed-establishment?waypoints=change-your-registration")
       registration.answerRadioButton("yes")
 
-      Then("the intermediary can add tax details for one EU country by EU Vat Number that is quarantined in another member state")
+      Then(
+        "the intermediary can add tax details for one EU country by EU Vat Number that is quarantined in another member state"
+      )
       registration.checkJourneyUrl("vat-registered-eu-country/1?waypoints=change-your-registration")
       registration.selectCountry("Malta")
       registration.checkJourneyUrl("trading-name-business-address/1?waypoints=change-your-registration")
@@ -104,7 +110,9 @@ class AmendCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("check-tax-details/1?waypoints=change-your-registration")
       registration.continue()
 
-      And("the intermediary can add tax details for another EU country by EU Tax ID that is quarantined in another member state")
+      And(
+        "the intermediary can add tax details for another EU country by EU Tax ID that is quarantined in another member state"
+      )
       registration.checkJourneyUrl("add-tax-details?waypoints=change-your-registration")
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("vat-registered-eu-country/2?waypoints=change-your-registration")
