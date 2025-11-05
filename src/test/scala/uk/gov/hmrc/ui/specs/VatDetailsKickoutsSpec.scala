@@ -118,6 +118,7 @@ class VatDetailsKickoutsSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard(true, true, "notFound")
 
       Then("the intermediary is shown the sorry there is a problem page")
+      registration.checkRegistrationUrl()
       registration.checkProblemPage()
     }
 
