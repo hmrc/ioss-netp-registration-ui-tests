@@ -133,5 +133,57 @@ class AmendCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144881")
     }
+
+    Scenario(
+      "Intermediary can amend an FTR to one that matches already registered scheme in amend registration journey"
+    ) {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "nonUkBasedFtr")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144777")
+
+      When("the intermediary clicks change for National tax number")
+      registration.selectChangeOrRemoveLink(
+        "client-tax-reference\\?waypoints\\=change-your-registration"
+      )
+
+      Then(
+        "the intermediary can amend their client's national tax number to one that is already registered in another EU country"
+      )
+      registration.checkJourneyUrl("client-tax-reference?waypoints=change-your-registration")
+      registration.enterAnswer("AB1122331")
+
+      And("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144777")
+    }
+
+    Scenario(
+      "Intermediary can amend an FTR to one that matches a quarantined scheme in amend registration journey"
+    ) {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "nonUkBasedFtr")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144777")
+
+      When("the intermediary clicks change for National tax number")
+      registration.selectChangeOrRemoveLink(
+        "client-tax-reference\\?waypoints\\=change-your-registration"
+      )
+
+      Then(
+        "the intermediary can amend their client's national tax number to one that is quarantined in another EU country"
+      )
+      registration.checkJourneyUrl("client-tax-reference?waypoints=change-your-registration")
+      registration.enterAnswer("AB1122332")
+
+      And("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144777")
+    }
   }
 }
