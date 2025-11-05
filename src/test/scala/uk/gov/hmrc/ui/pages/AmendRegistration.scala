@@ -226,7 +226,7 @@ object AmendRegistration extends BasePage {
       case "preAmendPSO"      =>
         Assert.assertTrue(
           body.contains(
-            "Germany \n" +
+            "Germany\n" +
               "Change"
           )
         )
@@ -239,19 +239,35 @@ object AmendRegistration extends BasePage {
               "Registration number DE12345678\n" +
               "Import One Stop Shop\n" +
               "Remove\n" +
+//              Remove hidden text start
+              "Germany (Import One Stop Shop)\n" +
+//              Remove hidden text finish
               "Registration number IM2767777777\n" +
               "One Stop Shop non-Union\n" +
               "Remove\n" +
+//              Remove hidden text start
+              "Germany (One Stop Shop non-Union)\n" +
+//              Remove hidden text finish
               "Registration number EU123456789"
           )
         )
       case "onlyRemoveFrance" =>
         Assert.assertTrue(
           body.contains(
-            "Germany  \n" +
+            "Germany\n" +
               "Change\n" +
-              "France \n" +
-              "Change Remove"
+//              Change hidden text start
+              "if you have registered in Germany\n" +
+//              Change hidden text end
+              "France\n" +
+              "Change\n" +
+//              Change hidden text start
+              "if you have registered in France\n" +
+//              Change hidden text end
+              "Remove\n" +
+//              Remove hidden text start
+              "registration details in France"
+              //            Remove hidden text end
           )
         )
       case _                  => throw new Exception("No version to check")

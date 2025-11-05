@@ -401,6 +401,7 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.enterAnswer("amend trading name 1")
       registration.checkJourneyUrl("add-trading-name?waypoints=change-your-registration")
       registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("trading-name/2?waypoints=add-trading-name%2Cchange-your-registration")
       registration.enterAnswer("amend trading name 2")
       registration.checkJourneyUrl("add-trading-name?waypoints=change-your-registration")
       registration.answerRadioButton("no")
@@ -445,15 +446,21 @@ class AmendRegistrationSpec extends BaseSpec {
       And("the intermediary adds a previous non-union oss registration for Bulgaria")
       registration.checkJourneyUrl("previous-schemes-overview?waypoints=change-your-registration")
       registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("previous-country/2?waypoints=change-your-registration")
+      registration.checkJourneyUrl(
+        "previous-country/2?waypoints=change-previous-schemes-overview%2Cchange-your-registration"
+      )
       registration.selectCountry("Bulgaria")
-      registration.checkJourneyUrl("previous-scheme/2/1?waypoints=previous-scheme-answers-2%2Cchange-your-registration")
+      registration.checkJourneyUrl(
+        "previous-scheme/2/1?waypoints=previous-scheme-answers-2%2Cchange-previous-schemes-overview%2Cchange-your-registration"
+      )
       registration.answerSchemeType("OSS")
       registration.checkJourneyUrl(
-        "previous-oss-scheme-number/2/1?waypoints=previous-scheme-answers-2%2Cchange-your-registration"
+        "previous-oss-scheme-number/2/1?waypoints=previous-scheme-answers-2%2Cchange-previous-schemes-overview%2Cchange-your-registration"
       )
       registration.enterAnswer("EU123456789")
-      registration.checkJourneyUrl("previous-scheme-answers/2?waypoints=change-your-registration")
+      registration.checkJourneyUrl(
+        "previous-scheme-answers/2?waypoints=change-previous-schemes-overview%2Cchange-your-registration"
+      )
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("previous-schemes-overview?waypoints=change-your-registration")
       registration.answerRadioButton("no")
@@ -577,6 +584,7 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.goToPage("remove-all-previous-registrations?waypoints=change-your-registration")
 
       Then("the intermediary is shown the Sorry, there is a problem with the service page")
+      registration.checkJourneyUrl("remove-all-previous-registrations?waypoints=change-your-registration")
       registration.checkProblemPage()
     }
 
@@ -606,7 +614,7 @@ class AmendRegistrationSpec extends BaseSpec {
 
       And("the intermediary selects Change for Germany")
       registration.selectChangeOrRemoveLink(
-        "previous-scheme-answers/1?waypoints=change-previous-schemes-overview%2Cchange-your-registration"
+        "previous-scheme-answers\\/1\\?waypoints\\=change-previous-schemes-overview\\%2Cchange-your-registration"
       )
 
       And("the intermediary cannot remove their existing One Stop Shop Union registration")
@@ -666,21 +674,25 @@ class AmendRegistrationSpec extends BaseSpec {
 
       When("the intermediary adds a previous registration for France")
       registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("previous-country/2?waypoints=change-your-registration")
+      registration.checkJourneyUrl(
+        "previous-country/2?waypoints=change-previous-schemes-overview%2Cchange-your-registration"
+      )
       registration.selectCountry("France")
       registration.checkJourneyUrl(
-        "previous-scheme/2/1?waypoints=previous-scheme-answers-2%2Cchange-your-registration"
+        "previous-scheme/2/1?waypoints=previous-scheme-answers-2%2Cchange-previous-schemes-overview%2Cchange-your-registration"
       )
       registration.answerSchemeType("IOSS")
       registration.checkJourneyUrl(
-        "previous-scheme-intermediary/2/1?waypoints=previous-scheme-answers-2%2Cchange-your-registration"
+        "previous-scheme-intermediary/2/1?waypoints=previous-scheme-answers-2%2Cchange-previous-schemes-overview%2Cchange-your-registration"
       )
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl(
-        "previous-ioss-number/2/1?waypoints=previous-scheme-answers-2%2Cchange-your-registration"
+        "previous-ioss-number/2/1?waypoints=previous-scheme-answers-2%2Cchange-previous-schemes-overview%2Cchange-your-registration"
       )
       registration.enterAnswer("IM2507777777")
-      registration.checkJourneyUrl("previous-scheme-answers/2?waypoints=change-your-registration")
+      registration.checkJourneyUrl(
+        "previous-scheme-answers/2?waypoints=change-previous-schemes-overview%2Cchange-your-registration"
+      )
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("previous-schemes-overview?waypoints=change-your-registration")
 
