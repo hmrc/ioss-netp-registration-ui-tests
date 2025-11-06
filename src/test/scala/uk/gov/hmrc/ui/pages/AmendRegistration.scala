@@ -211,4 +211,66 @@ object AmendRegistration extends BasePage {
     val body = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(body.contains(s"IOSS number: $iossNumber"))
   }
+
+  def checkPreviousRegistrationLinks(version: String): Unit = {
+    val body = Driver.instance.findElement(By.tagName("body")).getText
+
+    version match {
+      case "preAmendCYA"      =>
+        Assert.assertTrue(
+          body.contains(
+            "Other One Stop Shop registrations Yes\n" +
+              "Countries registered in Germany Add"
+          )
+        )
+      case "preAmendPSO"      =>
+        Assert.assertTrue(
+          body.contains(
+            "Germany\n" +
+              "Change"
+          )
+        )
+      case "preAmendNoRemove" =>
+        Assert.assertFalse(body.contains("Remove"))
+      case "twoRemoveLinks"   =>
+        Assert.assertTrue(
+          body.contains(
+            "One Stop Shop Union\n" +
+              "Registration number DE12345678\n" +
+              "Import One Stop Shop\n" +
+              "Remove\n" +
+//              Remove hidden text start
+              "Germany (Import One Stop Shop)\n" +
+//              Remove hidden text finish
+              "Registration number IM2767777777\n" +
+              "One Stop Shop non-Union\n" +
+              "Remove\n" +
+//              Remove hidden text start
+              "Germany (One Stop Shop non-Union)\n" +
+//              Remove hidden text finish
+              "Registration number EU123456789"
+          )
+        )
+      case "onlyRemoveFrance" =>
+        Assert.assertTrue(
+          body.contains(
+            "Germany\n" +
+              "Change\n" +
+//              Change hidden text start
+              "if you have registered in Germany\n" +
+//              Change hidden text end
+              "France\n" +
+              "Change\n" +
+//              Change hidden text start
+              "if you have registered in France\n" +
+//              Change hidden text end
+              "Remove\n" +
+//              Remove hidden text start
+              "registration details in France"
+              //            Remove hidden text end
+          )
+        )
+      case _                  => throw new Exception("No version to check")
+    }
+  }
 }
