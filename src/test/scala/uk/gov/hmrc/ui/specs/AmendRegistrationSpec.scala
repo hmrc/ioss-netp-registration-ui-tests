@@ -38,6 +38,13 @@ class AmendRegistrationSpec extends BaseSpec {
       Then("the correct Registration details are displayed for a UK based client with a UK VRN")
       amendRegistration.checkIossNumber("IM9001144771")
       amendRegistration.checkRegistrationDetails("ukBasedUkVrn")
+
+      When("the intermediary submits the registration without amending any details")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows that no information in the registration has been amended")
+      registration.checkJourneyUrl("successful-amend")
+      amendRegistration.checkAmendedAnswers("noAmendedAnswers")
     }
 
     Scenario(
@@ -78,8 +85,15 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144773")
 
-      Then("the correct Registration details following the amendment")
+      Then("the Registration details are correct following the amendment")
       amendRegistration.checkRegistrationDetails("ukBasedUtrAmended")
+
+      When("the intermediary submits the registration")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct amendments to the registration")
+      registration.checkJourneyUrl("successful-amend")
+      // checks to be added in VEI-625/VEI-629
     }
 
     Scenario(
@@ -119,8 +133,15 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144778")
 
-      Then("the correct Registration details following the amendment")
+      Then("the Registration details are correct following the amendment")
       amendRegistration.checkRegistrationDetails("ukBasedNinoAmended")
+
+      When("the intermediary submits the registration")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct amendments to the registration")
+      registration.checkJourneyUrl("successful-amend")
+      // checks to be added in VEI-625/VEI-629
     }
 
     Scenario(
@@ -173,8 +194,15 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144775")
 
-      Then("the correct Registration details following the amendment")
+      Then("the Registration details are correct following the amendment")
       amendRegistration.checkRegistrationDetails("nonUkBasedUkVrnAmended")
+
+      When("the intermediary submits the registration")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct amendments to the registration")
+      registration.checkJourneyUrl("successful-amend")
+      // checks to be added in VEI-625/VEI-629
     }
 
     Scenario(
@@ -237,8 +265,15 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144777")
 
-      Then("the correct Registration details following the amendment")
+      Then("the Registration details are correct following the amendment")
       amendRegistration.checkRegistrationDetails("nonUkBasedFtrAmended")
+
+      When("the intermediary submits the registration")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct amendments to the registration")
+      registration.checkJourneyUrl("successful-amend")
+      // checks to be added in VEI-625/VEI-629
     }
 
     Scenario("Intermediary can amend contact details in a NETP registration") {
@@ -263,6 +298,13 @@ class AmendRegistrationSpec extends BaseSpec {
       And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144771")
+
+      When("the intermediary submits the registration without amending any details")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct amendments to the registration")
+      registration.checkJourneyUrl("successful-amend")
+      amendRegistration.checkAmendedAnswers("contactDetails")
     }
 
     Scenario("Intermediary can amend and remove existing data in a NETP registration") {
@@ -338,6 +380,13 @@ class AmendRegistrationSpec extends BaseSpec {
       And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144771")
+
+      When("the intermediary submits the registration without amending any details")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct amendments to the registration")
+      registration.checkJourneyUrl("successful-amend")
+      amendRegistration.checkAmendedAnswers("editExisting")
     }
 
     Scenario("Intermediary can remove all trading names and fixed establishments in a NETP registration - yes to no") {
@@ -379,6 +428,13 @@ class AmendRegistrationSpec extends BaseSpec {
       And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144771")
+
+      When("the intermediary submits the registration without amending any details")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct amendments to the registration")
+      registration.checkJourneyUrl("successful-amend")
+      amendRegistration.checkAmendedAnswers("yesToNo")
     }
 
     Scenario("Intermediary can add fresh data to a NETP registration - no to yes") {
@@ -533,6 +589,13 @@ class AmendRegistrationSpec extends BaseSpec {
       And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144881")
+
+      When("the intermediary submits the registration without amending any details")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct amendments to the registration")
+      registration.checkJourneyUrl("successful-amend")
+      amendRegistration.checkAmendedAnswers("noToYes")
     }
 
     Scenario("Intermediary can amend existing website details in a NETP registration") {
@@ -569,6 +632,13 @@ class AmendRegistrationSpec extends BaseSpec {
       And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144881")
+
+      When("the intermediary submits the registration without amending any details")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct amendments to the registration")
+      registration.checkJourneyUrl("successful-amend")
+      amendRegistration.checkAmendedAnswers("websites")
     }
 
     Scenario(
@@ -705,6 +775,74 @@ class AmendRegistrationSpec extends BaseSpec {
       And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144771")
+
+      When("the intermediary submits the registration without amending any details")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct amendments to the registration")
+      registration.checkJourneyUrl("successful-amend")
+      amendRegistration.checkAmendedAnswers("previousRegistrations")
+    }
+
+    Scenario("Intermediary can amend details in their registration then cancel the amendments without submitting") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "minimalAmend")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144881")
+
+      When("the intermediary clicks change for Trading websites")
+      registration.selectChangeOrRemoveLink(
+        "add-website-address\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can update their second website")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.selectChangeOrRemoveLink(
+        "website-address\\/2\\?waypoints\\=change-add-website-address\\%2Cchange-your-registration"
+      )
+      registration.checkJourneyUrl("website-address/2?waypoints=change-add-website-address%2Cchange-your-registration")
+      registration.enterAnswer("https://updatedwebsite.co")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+
+      And("the intermediary can remove their first website")
+      registration.selectChangeOrRemoveLink(
+        "remove-website-address\\/1\\?waypoints\\=change-your-registration"
+      )
+      registration.checkJourneyUrl("remove-website-address/1?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
+
+      And("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144881")
+
+      When("the intermediary clicks cancel")
+      registration.clickCancel()
+
+      And("the intermediary selects yes on the cancel-amend-registration page")
+      registration.checkJourneyUrl("cancel-amend-registration")
+      registration.answerRadioButton("yes")
+
+      Then("the intermediary is redirected to the Intermediary dashboard service")
+      registration.checkDashboardJourneyUrl("your-account")
+    }
+
+    Scenario("Failure from ETMP when Intermediary submits amended registration for NETP") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "failureAmend")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9002222222")
+
+      When("the intermediary submits the registration without amending any details")
+      registration.clickSubmit()
+
+      Then("the submission failure page is displayed")
+      registration.checkJourneyUrl("error-submitting-amend")
     }
   }
 }

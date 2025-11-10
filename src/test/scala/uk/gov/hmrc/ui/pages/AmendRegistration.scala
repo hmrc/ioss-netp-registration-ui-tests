@@ -273,4 +273,97 @@ object AmendRegistration extends BasePage {
       case _                  => throw new Exception("No version to check")
     }
   }
+
+  def checkAmendedAnswers(amendJourney: String): Unit = {
+    val body = Driver.instance.findElement(By.tagName("body")).getText
+
+    amendJourney match {
+      case "noAmendedAnswers"                    =>
+        Assert.assertTrue(body.contains("You have not changed any of your client's registration details."))
+      case "contactDetails"                      =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Telephone number +441234567890\n" +
+              "Email address amend-test@email.com"
+          )
+        )
+      case "editExisting"                        =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Trading names added new trading name\n" +
+              "Trading names removed tradingName1\n" +
+              "tradingName2\n" +
+              "EU tax details removed France\n" +
+              "EU tax details changed Germany"
+          )
+        )
+      case "yesToNo"                             =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Have a different trading name No\n" +
+              "Trading names removed tradingName1\n" +
+              "tradingName2\n" +
+              "Fixed establishments in other countries No\n" +
+              "EU tax details removed Germany\n" +
+              "France"
+          )
+        )
+      case "noToYes"                             =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Have a different trading name Yes\n" +
+              "Trading names added amend trading name 1\n" +
+              "amend trading name 2\n" +
+              "Other One Stop Shop registrations Yes\n" +
+              "Countries registered in added Luxembourg\n" +
+              "Bulgaria\n" +
+              "Fixed establishments in other countries Yes\n" +
+              "EU tax details added Sweden\n" +
+              "Romania"
+          )
+        )
+      case "websites"                            =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Trading websites added https://updatedwebsite.co\n" +
+              "Trading websites removed www.test.com\n" +
+              "http://anothertest.co"
+          )
+        )
+      case "previousRegistrations"               =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Countries registered in added France\n" +
+              "Countries registered in changed Germany"
+          )
+        )
+      case "coreValidationFixedEstablishments"   =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Fixed establishments in other countries Yes\n" +
+              "EU tax details added Malta\n" +
+              "Portugal"
+          )
+        )
+      case "coreValidationPreviousRegistrations" =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Other One Stop Shop registrations Yes\n" +
+              "Countries registered in added Northern Ireland\n" +
+              "Lithuania\n" +
+              "Sweden"
+          )
+        )
+      case _                                     =>
+        throw new Exception("This amend variation does not exist")
+    }
+  }
 }
