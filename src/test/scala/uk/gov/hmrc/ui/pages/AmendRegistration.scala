@@ -278,9 +278,9 @@ object AmendRegistration extends BasePage {
     val body = Driver.instance.findElement(By.tagName("body")).getText
 
     amendJourney match {
-      case "noAmendedAnswers"                  =>
+      case "noAmendedAnswers"                    =>
         Assert.assertTrue(body.contains("You have not changed any of your client's registration details."))
-      case "contactDetails"                    =>
+      case "contactDetails"                      =>
         Assert.assertTrue(
           body.contains(
             "You changed the following details:\n" +
@@ -288,30 +288,30 @@ object AmendRegistration extends BasePage {
               "Email address amend-test@email.com"
           )
         )
-      case "editExisting"                      =>
+      case "editExisting"                        =>
         Assert.assertTrue(
           body.contains(
             "You changed the following details:\n" +
               "Trading names added new trading name\n" +
               "Trading names removed tradingName1\n" +
               "tradingName2\n" +
-              "EU tax details removed France"
-              // missing changed country - bug
+              "EU tax details removed France\n" +
+              "EU tax details changed Germany"
           )
         )
-      case "yesToNo"                           =>
+      case "yesToNo"                             =>
         Assert.assertTrue(
           body.contains(
             "You changed the following details:\n" +
               "Have a different trading name No\n" +
               "Trading names removed tradingName1\n" +
               "tradingName2\n" +
+              "Fixed establishments in other countries No\n" +
               "EU tax details removed Germany\n" +
               "France"
-              // missing Fixed establishments in other countries No - bug
           )
         )
-      case "noToYes"                           =>
+      case "noToYes"                             =>
         Assert.assertTrue(
           body.contains(
             "You changed the following details:\n" +
@@ -319,18 +319,14 @@ object AmendRegistration extends BasePage {
               "Trading names added amend trading name 1\n" +
               "amend trading name 2\n" +
               "Other One Stop Shop registrations Yes\n" +
-              "Countries registered in Luxembourg\n" +
+              "Countries registered in added Luxembourg\n" +
               "Bulgaria\n" +
-              "Eu tax details added Sweden\n" +
-              "Romania\n" +
-              "Eu tax details added Sweden\n" +
+              "Fixed establishments in other countries Yes\n" +
+              "EU tax details added Sweden\n" +
               "Romania"
-              // missing Fixed establishments in other countries Yes - bug
-              // requires EU instead of Eu for added - bug
-              // added line duplicated in error - bug
           )
         )
-      case "websites"                          =>
+      case "websites"                            =>
         Assert.assertTrue(
           body.contains(
             "You changed the following details:\n" +
@@ -339,29 +335,34 @@ object AmendRegistration extends BasePage {
               "http://anothertest.co"
           )
         )
-      case "previousRegistrations"             =>
+      case "previousRegistrations"               =>
         Assert.assertTrue(
           body.contains(
             "You changed the following details:\n" +
-              "Countries registered in France\n" +
-              "previousRegistrations.checkYourAnswersLabel.changed Germany"
-              // France should say added - bug
-              // missing label in messages file - bug
+              "Countries registered in added France\n" +
+              "Countries registered in changed Germany"
           )
         )
-      case "coreValidationFixedEstablishments" =>
+      case "coreValidationFixedEstablishments"   =>
         Assert.assertTrue(
           body.contains(
             "You changed the following details:\n" +
-              "Eu tax details added Malta\n" +
-              "Portugal\n" +
-              "Eu tax details added Malta\n" +
+              "Fixed establishments in other countries Yes\n" +
+              "EU tax details added Malta\n" +
               "Portugal"
-              // Missing Fixed establishments in other countries no to yes - bug
-              // duplicated added countries section - bug
           )
         )
-      case _                                   =>
+      case "coreValidationPreviousRegistrations" =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Other One Stop Shop registrations Yes\n" +
+              "Countries registered in added Northern Ireland\n" +
+              "Lithuania\n" +
+              "Sweden"
+          )
+        )
+      case _                                     =>
         throw new Exception("This amend variation does not exist")
     }
   }

@@ -310,6 +310,13 @@ class AmendCoreValidationSpec extends BaseSpec {
       Then("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144881")
+
+      When("the intermediary submits the registration")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct information in the registration has been amended")
+      registration.checkJourneyUrl("successful-amend")
+      amendRegistration.checkAmendedAnswers("coreValidationPreviousRegistrations")
     }
 
     Scenario("Intermediary can add quarantined previous registrations when amending their registration") {
@@ -408,6 +415,13 @@ class AmendCoreValidationSpec extends BaseSpec {
       Then("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144881")
+
+      When("the intermediary submits the registration")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct information in the registration has been amended")
+      registration.checkJourneyUrl("successful-amend")
+      amendRegistration.checkAmendedAnswers("coreValidationPreviousRegistrations")
     }
   }
 }
