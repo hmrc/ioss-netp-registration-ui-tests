@@ -185,5 +185,201 @@ class AmendCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144777")
     }
+
+    Scenario("Intermediary can add already active previous registrations when amending their registration") {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "minimalAmend")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144881")
+
+      When("the intermediary clicks change for Other One Stop Shop registrations")
+      registration.selectChangeOrRemoveLink(
+        "previous-oss\\?waypoints\\=change-your-registration"
+      )
+
+      Then(
+        "the intermediary adds an OSS scheme for NI with a VAT Number that is already active in another member state"
+      )
+      registration.checkJourneyUrl("previous-oss?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-country/1?waypoints=change-your-registration")
+      registration.selectCountry("Northern Ireland")
+      registration.checkJourneyUrl("previous-scheme/1/1?waypoints=previous-scheme-answers-1%2Cchange-your-registration")
+      registration.answerSchemeType("OSS")
+      registration.checkJourneyUrl(
+        "previous-oss-scheme-number/1/1?waypoints=previous-scheme-answers-1%2Cchange-your-registration"
+      )
+      registration.enterAnswer("XI100000003")
+      registration.checkJourneyUrl("previous-scheme-answers/1?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+
+      Then(
+        "the intermediary adds an IOSS scheme for NI with a VAT Number that is already active in another member state"
+      )
+      registration.checkJourneyUrl("previous-scheme/1/2?waypoints=previous-scheme-answers-1%2Cchange-your-registration")
+      registration.answerSchemeType("IOSS")
+      registration.checkJourneyUrl(
+        "previous-scheme-intermediary/1/2?waypoints=previous-scheme-answers-1%2Cchange-your-registration"
+      )
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl(
+        "previous-ioss-number/1/2?waypoints=previous-scheme-answers-1%2Cchange-your-registration"
+      )
+      registration.enterAnswer("IM9009999998")
+      registration.checkJourneyUrl("previous-scheme-answers/1?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
+
+      Then(
+        "the intermediary adds an OSS scheme for a non-NI country with a VAT Number that is already active in another member state"
+      )
+      registration.checkJourneyUrl("previous-schemes-overview?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl(
+        "previous-country/2?waypoints=change-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.selectCountry("Lithuania")
+      registration.checkJourneyUrl(
+        "previous-scheme/2/1?waypoints=previous-scheme-answers-2%2Cchange-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.answerSchemeType("OSS")
+      registration.checkJourneyUrl(
+        "previous-oss-scheme-number/2/1?waypoints=previous-scheme-answers-2%2Cchange-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.enterAnswer("LT333344445")
+      registration.checkJourneyUrl(
+        "previous-scheme-answers/2?waypoints=change-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.answerRadioButton("no")
+
+      Then("the intermediary an IOSS scheme for a non-NI country that is already active in another member state")
+      registration.checkJourneyUrl("previous-schemes-overview?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl(
+        "previous-country/3?waypoints=change-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.selectCountry("Sweden")
+      registration.checkJourneyUrl(
+        "previous-scheme/3/1?waypoints=previous-scheme-answers-3%2Cchange-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.answerSchemeType("IOSS")
+      registration.checkJourneyUrl(
+        "previous-scheme-intermediary/3/1?waypoints=previous-scheme-answers-3%2Cchange-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl(
+        "previous-ioss-number/3/1?waypoints=previous-scheme-answers-3%2Cchange-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.enterAnswer("IM7521122331")
+      registration.checkJourneyUrl(
+        "previous-scheme-answers/3?waypoints=change-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-schemes-overview?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
+
+      Then("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144881")
+    }
+
+    Scenario("Intermediary can add quarantined previous registrations when amending their registration") {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "minimalAmend")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144881")
+
+      When("the intermediary clicks change for Other One Stop Shop registrations")
+      registration.selectChangeOrRemoveLink(
+        "previous-oss\\?waypoints\\=change-your-registration"
+      )
+
+      Then(
+        "the intermediary adds an OSS scheme for NI with a VAT Number that is quarantined in another member state"
+      )
+      registration.checkJourneyUrl("previous-oss?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-country/1?waypoints=change-your-registration")
+      registration.selectCountry("Northern Ireland")
+      registration.checkJourneyUrl("previous-scheme/1/1?waypoints=previous-scheme-answers-1%2Cchange-your-registration")
+      registration.answerSchemeType("OSS")
+      registration.checkJourneyUrl(
+        "previous-oss-scheme-number/1/1?waypoints=previous-scheme-answers-1%2Cchange-your-registration"
+      )
+      registration.enterAnswer("XI600000014")
+      registration.checkJourneyUrl("previous-scheme-answers/1?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+
+      Then(
+        "the intermediary an IOSS scheme for NI that is quarantined in another member state"
+      )
+      registration.checkJourneyUrl("previous-scheme/1/2?waypoints=previous-scheme-answers-1%2Cchange-your-registration")
+      registration.answerSchemeType("IOSS")
+      registration.checkJourneyUrl(
+        "previous-scheme-intermediary/1/2?waypoints=previous-scheme-answers-1%2Cchange-your-registration"
+      )
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl(
+        "previous-ioss-number/1/2?waypoints=previous-scheme-answers-1%2Cchange-your-registration"
+      )
+      registration.enterAnswer("IM9003999993")
+      registration.checkJourneyUrl("previous-scheme-answers/1?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
+
+      Then(
+        "the intermediary adds an an OSS scheme for a non-NI country with a VAT Number that is quarantined in another member state"
+      )
+      registration.checkJourneyUrl("previous-schemes-overview?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl(
+        "previous-country/2?waypoints=change-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.selectCountry("Lithuania")
+      registration.checkJourneyUrl(
+        "previous-scheme/2/1?waypoints=previous-scheme-answers-2%2Cchange-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.answerSchemeType("OSS")
+      registration.checkJourneyUrl(
+        "previous-oss-scheme-number/2/1?waypoints=previous-scheme-answers-2%2Cchange-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.enterAnswer("LT333344446")
+      registration.checkJourneyUrl(
+        "previous-scheme-answers/2?waypoints=change-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.answerRadioButton("no")
+
+      Then("the intermediary an IOSS scheme for a non-NI country that is quarantined in another member state")
+      registration.checkJourneyUrl("previous-schemes-overview?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl(
+        "previous-country/3?waypoints=change-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.selectCountry("Sweden")
+      registration.checkJourneyUrl(
+        "previous-scheme/3/1?waypoints=previous-scheme-answers-3%2Cchange-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.answerSchemeType("IOSS")
+      registration.checkJourneyUrl(
+        "previous-scheme-intermediary/3/1?waypoints=previous-scheme-answers-3%2Cchange-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl(
+        "previous-ioss-number/3/1?waypoints=previous-scheme-answers-3%2Cchange-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.enterAnswer("IM7521122332")
+      registration.checkJourneyUrl(
+        "previous-scheme-answers/3?waypoints=change-previous-schemes-overview%2Cchange-your-registration"
+      )
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-schemes-overview?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
+
+      Then("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144881")
+    }
   }
 }
