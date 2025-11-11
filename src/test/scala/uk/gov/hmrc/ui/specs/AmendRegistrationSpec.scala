@@ -299,7 +299,7 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144771")
 
-      When("the intermediary submits the registration without amending any details")
+      When("the intermediary submits the amended registration")
       registration.clickSubmit()
 
       Then("the successful-amend page shows the correct amendments to the registration")
@@ -381,7 +381,7 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144771")
 
-      When("the intermediary submits the registration without amending any details")
+      When("the intermediary submits the amended registration")
       registration.clickSubmit()
 
       Then("the successful-amend page shows the correct amendments to the registration")
@@ -429,7 +429,7 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144771")
 
-      When("the intermediary submits the registration without amending any details")
+      When("the intermediary submits the amended registration")
       registration.clickSubmit()
 
       Then("the successful-amend page shows the correct amendments to the registration")
@@ -590,7 +590,7 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144881")
 
-      When("the intermediary submits the registration without amending any details")
+      When("the intermediary submits the amended registration")
       registration.clickSubmit()
 
       Then("the successful-amend page shows the correct amendments to the registration")
@@ -633,7 +633,7 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144881")
 
-      When("the intermediary submits the registration without amending any details")
+      When("the intermediary submits the amended registration")
       registration.clickSubmit()
 
       Then("the successful-amend page shows the correct amendments to the registration")
@@ -776,7 +776,7 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9001144771")
 
-      When("the intermediary submits the registration without amending any details")
+      When("the intermediary submits the amended registration")
       registration.clickSubmit()
 
       Then("the successful-amend page shows the correct amendments to the registration")
