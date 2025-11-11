@@ -371,6 +371,67 @@ object AmendRegistration extends BasePage {
               "Email address amend-test@email.com"
           )
         )
+      case "ukBasedUtrAmended"                   =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Primary trading name Updated 3rd client name\n" +
+              "Principal place of business address 1 New Address Line\n" +
+              "Other Address Line 2\n" +
+              "New Town-Name\n" +
+              "Other Region or State"
+          )
+        )
+      case "ukBasedNinoAmended"                  =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Primary trading name Updated 8th client name\n" +
+              "Principal place of business address Other Address Line 1\n" +
+              "New Suburb\n" +
+              "Other Town or City\n" +
+              "NE11HM"
+          )
+        )
+      case "nonUkBasedUkVrnAmended"              =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Country they are based in Christmas Island\n" +
+              "Primary trading name New 5th client name\n" +
+              "Principal place of business address 123 Street Name\n" +
+              "New Suburb\n" +
+              "Barcelona\n" +
+              "State"
+          )
+        )
+      case "nonUkBasedFtrAmended"                =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Country they are based in Canada\n" +
+              "Tax reference CA112233\n" +
+              "Primary trading name New 7th client name\n" +
+              "Principal place of business address 200 Street Name\n" +
+              "Suburb\n" +
+              "Paris\n" +
+              "Region"
+          )
+        )
+      case "ftrAlreadyActive"                    =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Tax reference AB1122331"
+          )
+        )
+      case "ftrQuarantined"                      =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Tax reference AB1122332"
+          )
+        )
       case _                                     =>
         throw new Exception("This amend variation does not exist")
     }

@@ -178,7 +178,7 @@ class AmendCoreValidationSpec extends BaseSpec {
 
       Then("the successful-amend page shows the correct information in the registration has been amended")
       registration.checkJourneyUrl("successful-amend")
-      // checks to be added in VEI-625/VEI-629
+      amendRegistration.checkAmendedAnswers("ftrAlreadyActive")
     }
 
     Scenario(
@@ -211,7 +211,7 @@ class AmendCoreValidationSpec extends BaseSpec {
 
       Then("the successful-amend page shows the correct information in the registration has been amended")
       registration.checkJourneyUrl("successful-amend")
-      // checks to be added in VEI-625/VEI-629
+      amendRegistration.checkAmendedAnswers("ftrQuarantined")
     }
 
     Scenario("Intermediary can add already active previous registrations when amending their registration") {

@@ -93,7 +93,7 @@ class AmendRegistrationSpec extends BaseSpec {
 
       Then("the successful-amend page shows the correct amendments to the registration")
       registration.checkJourneyUrl("successful-amend")
-      // checks to be added in VEI-625/VEI-629
+      amendRegistration.checkAmendedAnswers("ukBasedUtrAmended")
     }
 
     Scenario(
@@ -141,7 +141,7 @@ class AmendRegistrationSpec extends BaseSpec {
 
       Then("the successful-amend page shows the correct amendments to the registration")
       registration.checkJourneyUrl("successful-amend")
-      // checks to be added in VEI-625/VEI-629
+      amendRegistration.checkAmendedAnswers("ukBasedNinoAmended")
     }
 
     Scenario(
@@ -202,7 +202,7 @@ class AmendRegistrationSpec extends BaseSpec {
 
       Then("the successful-amend page shows the correct amendments to the registration")
       registration.checkJourneyUrl("successful-amend")
-      // checks to be added in VEI-625/VEI-629
+      amendRegistration.checkAmendedAnswers("nonUkBasedUkVrnAmended")
     }
 
     Scenario(
@@ -273,7 +273,7 @@ class AmendRegistrationSpec extends BaseSpec {
 
       Then("the successful-amend page shows the correct amendments to the registration")
       registration.checkJourneyUrl("successful-amend")
-      // checks to be added in VEI-625/VEI-629
+      amendRegistration.checkAmendedAnswers("nonUkBasedFtrAmended")
     }
 
     Scenario("Intermediary can amend contact details in a NETP registration") {
