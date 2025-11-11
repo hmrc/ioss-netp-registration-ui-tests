@@ -46,9 +46,9 @@ object AmendRegistration extends BasePage {
               "Based in UK Yes\n" +
               "Has UK VAT registration number No\n" +
               "Trading name Third Client Change\n" +
-//          Hidden change text start
+              //          Hidden change text start
               "your Clients trading name\n" +
-//          Hidden change text end
+              //          Hidden change text end
               "Has Unique Taxpayer Reference (UTR) number Yes\n" +
               "UTR number 1234567890\n" +
               "Principal place of business address Other Address Line 1\n" +
@@ -83,9 +83,9 @@ object AmendRegistration extends BasePage {
               "Based in UK Yes\n" +
               "Has UK VAT registration number No" +
               "\nTrading name Eighth Client Change\n" +
-//          Hidden change text start
+              //          Hidden change text start
               "your Clients trading name\n" +
-//          Hidden change text end
+              //          Hidden change text end
               "Has Unique Taxpayer Reference (UTR) number No\n" +
               "National Insurance number (NINO) AA112211A\n" +
               "Principal place of business address Other Address Line 1\n" +
@@ -121,13 +121,13 @@ object AmendRegistration extends BasePage {
               "Has UK VAT registration number Yes\n" +
               "UK VAT registration number 100000002\n" +
               "Country based in Spain Change\n" +
-//          Hidden change text start
+              //          Hidden change text start
               "Country based in\n" +
-//          Hidden change text end
+              //          Hidden change text end
               "Trading name in Spain Fifth Client Change\n" +
-//          Hidden change text start
+              //          Hidden change text start
               "your Clients trading name\n" +
-//          Hidden change text end
+              //          Hidden change text end
               "Principal place of business address 123 Street Name\n" +
               "Suburb\n" +
               "Barcelona\n" +
@@ -161,17 +161,17 @@ object AmendRegistration extends BasePage {
             "Based in UK No\n" +
               "Has UK VAT registration number No\n" +
               "Country based in France Change\n" +
-//          Hidden change text start
+              //          Hidden change text start
               "Country based in\n" +
-//          Hidden change text end
+              //          Hidden change text end
               "National tax number FR112233 Change\n" +
-//          Hidden change text start
+              //          Hidden change text start
               "your client's tax reference number\n" +
-//          Hidden change text end
+              //          Hidden change text end
               "Trading name in France Seventh Client Change\n" +
-//          Hidden change text start
+              //          Hidden change text start
               "your Clients trading name\n" +
-//          Hidden change text end
+              //          Hidden change text end
               "Principal place of business address 100 Road Name\n" +
               "Suburb\n" +
               "Paris\n" +
@@ -239,15 +239,15 @@ object AmendRegistration extends BasePage {
               "Registration number DE12345678\n" +
               "Import One Stop Shop\n" +
               "Remove\n" +
-//              Remove hidden text start
+              //              Remove hidden text start
               "Germany (Import One Stop Shop)\n" +
-//              Remove hidden text finish
+              //              Remove hidden text finish
               "Registration number IM2767777777\n" +
               "One Stop Shop non-Union\n" +
               "Remove\n" +
-//              Remove hidden text start
+              //              Remove hidden text start
               "Germany (One Stop Shop non-Union)\n" +
-//              Remove hidden text finish
+              //              Remove hidden text finish
               "Registration number EU123456789"
           )
         )
@@ -256,16 +256,16 @@ object AmendRegistration extends BasePage {
           body.contains(
             "Germany\n" +
               "Change\n" +
-//              Change hidden text start
+              //              Change hidden text start
               "if you have registered in Germany\n" +
-//              Change hidden text end
+              //              Change hidden text end
               "France\n" +
               "Change\n" +
-//              Change hidden text start
+              //              Change hidden text start
               "if you have registered in France\n" +
-//              Change hidden text end
+              //              Change hidden text end
               "Remove\n" +
-//              Remove hidden text start
+              //              Remove hidden text start
               "registration details in France"
               //            Remove hidden text end
           )
@@ -362,8 +362,88 @@ object AmendRegistration extends BasePage {
               "Sweden"
           )
         )
+      case "ftrExcluded"                         =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Contact name New Name\n" +
+              "Telephone number +441234567890\n" +
+              "Email address amend-test@email.com"
+          )
+        )
       case _                                     =>
         throw new Exception("This amend variation does not exist")
+    }
+  }
+
+  def checkChangeLinksExcluded(excludedJourney: String): Unit = {
+    val body = Driver.instance.findElement(By.tagName("body")).getText
+
+    excludedJourney match {
+      case "ukExcluded"  =>
+        Assert.assertTrue(
+          body.contains(
+            "You removed First Company from your account on 1 March 2025.\n" +
+              "Registration details\n" +
+              "Based in UK Yes\n" +
+              "Has UK VAT registration number Yes\n" +
+              "UK VAT registration number 100000001\n" +
+              "Principal place of business address 1 The Street\n" +
+              "Some Town\n" +
+              "AA11 1AA\n" +
+              "Import One Stop Shop details\n" +
+              "Have a different trading name No\n" +
+              "Other One Stop Shop registrations No\n" +
+              "Fixed establishments in other countries No\n" +
+              "Trading websites www.test.com\n" +
+              "http://anothertest.co\n" +
+              "Contact name Rocky Balboa Change\n" +
+              //              Change hidden text start
+              "their contact name\n" +
+              //              Change hidden text end
+              "Telephone number 028 123 4567 Change\n" +
+              //              Change hidden text start
+              "their telephone number\n" +
+              //              Change hidden text end
+              "Email address rocky.balboa@chartoffwinkler.co.uk Change"
+          )
+        )
+      case "ftrExcluded" =>
+        Assert.assertTrue(
+          body.contains(
+            "You removed Seventh Client from your account on 1 March 2025.\n" +
+              "Registration details\n" +
+              "Based in UK No\n" +
+              "Has UK VAT registration number No\n" +
+              "Country based in France\n" +
+              "National tax number FR112233\n" +
+              "Trading name Seventh Client\n" +
+              "Principal place of business address 100 Road Name\n" +
+              "Suburb\n" +
+              "Paris\n" +
+              "Region\n" +
+              "10050\n" +
+              "Import One Stop Shop details\n" +
+              "Have a different trading name Yes\n" +
+              "Other trading names tradingName1\n" +
+              "tradingName2\n" +
+              "Other One Stop Shop registrations Yes\n" +
+              "Countries registered in Germany\n" +
+              "Fixed establishments in other countries Yes\n" +
+              "Countries established in Germany\n" +
+              "Trading websites www.test.com\n" +
+              "Contact name Test name Change\n" +
+              //              Change hidden text start
+              "their contact name\n" +
+              //              Change hidden text end
+              "Telephone number 1234567890 Change\n" +
+              //              Change hidden text start
+              "their telephone number\n" +
+              //              Change hidden text end
+              "Email address email@test.com Change"
+          )
+        )
+      case _             => throw new Exception("This excluded amend variation does not exist")
     }
   }
 }
