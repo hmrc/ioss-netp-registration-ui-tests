@@ -66,6 +66,9 @@ object Auth extends BasePage {
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144881"
       case "failureAmend"                           =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002222222"
+      case "secureMessagesUkBasedUkVrn" | "secureMessagesUkBasedUtr" | "secureMessagesUkBasedNino" |
+          "secureMessagesNonUkBasedUkVrn" | "secureMessagesNonUkBasedFtr" | "secureMessagesNone" =>
+        s"$registrationUrl$journeyUrl/secure-messages"
       case _                                        =>
         s"$registrationUrl$journeyUrl"
     }
@@ -90,7 +93,7 @@ object Auth extends BasePage {
     if (withIntEnrolment) {
       sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
       sendKeys(By.id("input-1-0-name"), "IntNumber")
-      val iossNumber = accountType match {
+      val intermediaryNumber = accountType match {
         case "pending"       => "IN9001112223"
         case "multipleSaved" => "IN9001114567"
         case "oneSaved"      => "IN9002224567"
@@ -98,6 +101,22 @@ object Auth extends BasePage {
         case "failureAmend"  => "IN900666001"
         case _               => "IN9001234567"
       }
+      sendKeys(By.id("input-1-0-value"), intermediaryNumber)
+    }
+
+    if (accountType startsWith "secureMessages") {
+      sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-NETP")
+      sendKeys(By.id("input-1-0-name"), "IOSSNumber")
+
+      val iossNumber = accountType match {
+        case "secureMessagesUkBasedUkVrn"    => "IM9001144771"
+        case "secureMessagesUkBasedUtr"      => "IM9001144773"
+        case "secureMessagesUkBasedNino"     => "IM9001144778"
+        case "secureMessagesNonUkBasedFtr"   => "IM9001144777"
+        case "secureMessagesNonUkBasedUkVrn" => "IM9001144775"
+        case _                               => "IM9001144881"
+      }
+
       sendKeys(By.id("input-1-0-value"), iossNumber)
     }
 

@@ -61,9 +61,26 @@ object MongoConnection {
       case e: Exception => println("Error: " + e)
     }
 
+  def dropSecureMessageRecords(db: String, collection: String): Unit =
+    try
+      Await.result(
+        mongoClient
+          .getDatabase(db)
+          .getCollection(collection)
+          .drop()
+          .head(),
+        timeout
+      )
+    catch {
+      case e: Exception => println("Error: " + e)
+    }
+
   def dropPendingRegistrations(): Unit =
     dropRecords("ioss-netp-registration", "pending-registration")
 
   def dropSavedRegistrations(): Unit =
     dropRecords("ioss-netp-registration", "save-for-later-user-answers")
+
+  def dropSecureMessages(): Unit =
+    dropSecureMessageRecords("message", "secure-message")
 }
