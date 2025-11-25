@@ -16,13 +16,13 @@
 
 package uk.gov.hmrc.ui.specs.MainTests
 
-import uk.gov.hmrc.ui.pages.{SecureMessage, Auth, Registration}
+import uk.gov.hmrc.ui.pages.{Auth, Registration, SecureMessage}
 import uk.gov.hmrc.ui.specs.BaseSpec
 
 class SecureMessagesSpec extends BaseSpec {
 
-  lazy val registration      = Registration
-  lazy val auth              = Auth
+  lazy val registration  = Registration
+  lazy val auth          = Auth
   lazy val secureMessage = SecureMessage
 
   Feature("Secure Message journeys") {
@@ -35,9 +35,9 @@ class SecureMessagesSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(false, true, "secureMessagesUkBasedUkVrn")
 
-      When ("the NETP accesses their secure message inbox")
+      When("the NETP accesses their secure message inbox")
       registration.checkJourneyUrl("secure-messages")
-      
+
       Then("their secure messages are displayed")
       secureMessage.checkClientName("secureMessagesUkBasedUkVrn")
     }
@@ -115,6 +115,34 @@ class SecureMessagesSpec extends BaseSpec {
 
       Then("there are no secure messages to display")
       secureMessage.checkClientName("secureMessagesNone")
+    }
+
+    Scenario(
+      "Cannot view NETP secure messages inbox if not registered as a NETP"
+    ) {
+
+      Given("the NETP logs into their Government Gateway account to access the secure messages inbox")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(false, false, "noNetpEnrolment")
+
+      Then("the NETP is on the cannot-use-not-an-netp page")
+      registration.checkJourneyUrl("cannot-use-not-an-netp")
+    }
+
+    Scenario(
+      "Intermediary cannot view NETP secure messages inbox"
+    ) {
+
+      Given("the intermediary logs into their Government Gateway account")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary manually accesses the NETP secure message inbox")
+      registration.goToPage("secure-messages")
+
+      Then("the intermediary is on the cannot-use-not-an-netp page")
+      registration.checkJourneyUrl("cannot-use-not-an-netp")
     }
   }
 }

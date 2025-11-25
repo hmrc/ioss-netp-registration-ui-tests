@@ -67,7 +67,7 @@ object Auth extends BasePage {
       case "failureAmend"                           =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002222222"
       case "secureMessagesUkBasedUkVrn" | "secureMessagesUkBasedUtr" | "secureMessagesUkBasedNino" |
-          "secureMessagesNonUkBasedUkVrn" | "secureMessagesNonUkBasedFtr" | "secureMessagesNone" =>
+          "secureMessagesNonUkBasedUkVrn" | "secureMessagesNonUkBasedFtr" | "secureMessagesNone" | "noNetpEnrolment" =>
         s"$registrationUrl$journeyUrl/secure-messages"
       case _                                        =>
         s"$registrationUrl$journeyUrl"

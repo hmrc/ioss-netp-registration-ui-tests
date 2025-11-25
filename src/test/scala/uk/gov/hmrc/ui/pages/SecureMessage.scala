@@ -27,44 +27,44 @@ object SecureMessage extends BasePage {
 
     clientType match {
 
-      case "secureMessagesUkBasedUkVrn"           =>
+      case "secureMessagesUkBasedUkVrn"    =>
         Assert.assertTrue(
           body.contains(
             "First Company\nIOSS number: IM9001144771"
           )
         )
-      case "secureMessagesUkBasedUtr"           =>
+      case "secureMessagesUkBasedUtr"      =>
         Assert.assertTrue(
           body.contains(
             "Third Client\nIOSS number: IM9001144773"
           )
         )
-      case "secureMessagesNonUkBasedUkVrn"           =>
+      case "secureMessagesNonUkBasedUkVrn" =>
         Assert.assertTrue(
           body.contains(
             "Fifth Client\nIOSS number: IM9001144775"
           )
         )
-      case "secureMessagesNonUkBasedFtr"           =>
+      case "secureMessagesNonUkBasedFtr"   =>
         Assert.assertTrue(
           body.contains(
             "Seventh Client\nIOSS number: IM9001144777"
           )
-        )      
-      case "secureMessagesUkBasedUkNino"           =>
+        )
+      case "secureMessagesUkBasedNino"     =>
         Assert.assertTrue(
           body.contains(
             "Eighth Client\nIOSS number: IM9001144778"
           )
         )
-      case "secureMessagesNone"           =>
+      case "secureMessagesNone"            =>
         Assert.assertTrue(
           body.contains(
-            "First Company\nIOSS number: IM9001144771"
+            "First Company\nIOSS number: IM9001144881"
           )
         )
-        
-      case _                        => throw new Exception("This client type does not exist")
+
+      case _ => throw new Exception("This client type does not exist")
 
     }
   }
