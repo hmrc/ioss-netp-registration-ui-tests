@@ -35,5 +35,19 @@ class KickoutsSpec extends BaseSpec {
       Then("the intermediary is on the cannot-use-this-service page")
       registration.checkJourneyUrl("cannot-use-this-service")
     }
+
+    Scenario("NETP cannot access amend registration journey") {
+
+      Given("a NETP logs into their secure messages inbox")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(false, false, "secureMessagesUkBasedUkVrn")
+      registration.checkJourneyUrl("secure-messages")
+
+      When("the NETP manually navigates to the amend registration url")
+      registration.goToPage("start-amend-journey/IM9001144771")
+
+      Then("the NETP is on the cannot-use-this-service page")
+      registration.checkJourneyUrl("cannot-use-this-service")
+    }
   }
 }
