@@ -63,9 +63,15 @@ object SecureMessage extends BasePage {
             "First Company\nIOSS number: IM9001144881"
           )
         )
-
-      case _ => throw new Exception("This client type does not exist")
-
+      case _                               => throw new Exception("This client type does not exist")
     }
+  }
+
+  def selectSecureMessage(link: String): Unit =
+    click(By.cssSelector(s"a[href*=$link]"))
+
+  def checkSecureMessagesHeading(heading: String): Unit = {
+    val heading = Driver.instance.findElement(By.tagName("h2")).getText
+    Assert.assertTrue(heading.equals(heading))
   }
 }
