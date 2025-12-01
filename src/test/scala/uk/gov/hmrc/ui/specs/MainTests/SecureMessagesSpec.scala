@@ -40,6 +40,13 @@ class SecureMessagesSpec extends BaseSpec {
 
       Then("their secure messages are displayed")
       secureMessage.checkClientName("secureMessagesUkBasedUkVrn")
+
+      And("the NETP clicks on their unread message")
+      secureMessage.selectSecureMessage("individual-secure-message\\/692d754281096a36213f1576")
+
+      And("the NETP is viewing their message")
+      registration.checkJourneyUrl("individual-secure-message/692d754281096a36213f1576")
+      secureMessage.checkSecureMessagesHeading("Your intermediary has removed you from the VAT IOSS scheme")
     }
 
     Scenario(
@@ -55,6 +62,13 @@ class SecureMessagesSpec extends BaseSpec {
 
       Then("their secure messages are displayed")
       secureMessage.checkClientName("secureMessagesUkBasedUtr")
+
+      And("the NETP clicks on their unread message")
+      secureMessage.selectSecureMessage("individual-secure-message\\/692d7a4a81096a36213f1577")
+
+      And("the NETP is viewing their message")
+      registration.checkJourneyUrl("individual-secure-message/692d7a4a81096a36213f1577")
+      secureMessage.checkSecureMessagesHeading("We have excluded you from the VAT IOSS scheme")
     }
 
     Scenario(
@@ -70,6 +84,13 @@ class SecureMessagesSpec extends BaseSpec {
 
       Then("their secure messages are displayed")
       secureMessage.checkClientName("secureMessagesUkBasedNino")
+
+      And("the NETP clicks on their unread message")
+      secureMessage.selectSecureMessage("individual-secure-message\\/692d7ace81096a36213f1578")
+
+      And("the NETP is viewing their message")
+      registration.checkJourneyUrl("individual-secure-message/692d7ace81096a36213f1578")
+      secureMessage.checkSecureMessagesHeading("We have excluded you from the VAT IOSS scheme")
     }
 
     Scenario(
@@ -85,6 +106,13 @@ class SecureMessagesSpec extends BaseSpec {
 
       Then("their secure messages are displayed")
       secureMessage.checkClientName("secureMessagesNonUkBasedUkVrn")
+
+      And("the NETP clicks on their unread message")
+      secureMessage.selectSecureMessage("individual-secure-message\\/692d7aef81096a36213f157b")
+
+      And("the NETP is viewing their message")
+      registration.checkJourneyUrl("individual-secure-message/692d7aef81096a36213f157b")
+      secureMessage.checkSecureMessagesHeading("We have excluded you from the VAT IOSS scheme")
     }
 
     Scenario(
@@ -100,6 +128,13 @@ class SecureMessagesSpec extends BaseSpec {
 
       Then("their secure messages are displayed")
       secureMessage.checkClientName("secureMessagesNonUkBasedFtr")
+
+      And("the NETP clicks on their unread message")
+      secureMessage.selectSecureMessage("individual-secure-message\\/692d7ad981096a36213f1579")
+
+      And("the NETP is viewing their message")
+      registration.checkJourneyUrl("individual-secure-message/692d7ad981096a36213f1579")
+      secureMessage.checkSecureMessagesHeading("We have excluded you from the VAT IOSS scheme")
     }
 
     Scenario(

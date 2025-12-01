@@ -25,12 +25,12 @@ object SecureMessages {
   val data: List[String] =
     List(
       """
-        |{
+       {
         |  "_id": {
-        |    "$oid": "69246e3fcebde6006211a37d"
+        |    "$oid": "692d754281096a36213f1576"
         |  },
         |  "externalRef": {
-        |    "id": "AJD181061218716662285",
+        |    "id": "AJD532671479477964534",
         |    "source": "gmc"
         |  },
         |  "recipient": {
@@ -39,30 +39,30 @@ object SecureMessages {
         |      "name": "HMRC-IOSS-NETP",
         |      "value": "IM9001144771"
         |    },
-        |    "email": "test@mail.com"
+        |    "email": "test@test.com"
         |  },
         |  "messageType": "mailout-batch",
         |  "validFrom": {
-        |    "$date": "2025-11-24T00:00:00.000Z"
+        |    "$date": "2025-12-01T00:00:00.000Z"
         |  },
         |  "content": [
         |    {
         |      "lang": "en",
-        |      "subject": "Import One Stop Shop (IOSS)",
-        |      "body": "test email - unique ID 888157739986447684"
+        |      "subject": "Your intermediary has removed you from the VAT IOSS scheme",
+        |      "body": "PHAgY2xhc3M9ImdvdnVrLWJvZHkiPllvdXIgaW50ZXJtZWRpYXJ5IGFza2VkIHVzIHRvIHJlbW92ZSB5b3VyIGJ1c2luZXNzIGZyb20gdGhlIFZBVCBJbXBvcnQgT25lIFN0b3AgU2hvcCAoSU9TUykgc2NoZW1lLjwvcD4NCjxwIGNsYXNzPSJnb3Z1ay1ib2R5Ij5UaGlzIG1lYW5zIHRoZXkgd2lsbCBubyBsb25nZXIgbWFuYWdlIHlvdXIgSU9TUyBWQVQgUmV0dXJucyBvciBwYXltZW50cy48L3A+DQo8cCBjbGFzcz0iZ292dWstYm9keSI+WW91ciBpbnRlcm1lZGlhcnkgbXVzdCBjb21wbGV0ZSBhbnkgb3V0c3RhbmRpbmcgSU9TUyBWQVQgUmV0dXJucyBmb3IgeW91IGFuZCBhIGZpbmFsIHJldHVybiBmb3IgSmFudWFyeSAyMDI0LjwvcD4NCjxwIGNsYXNzPSJnb3Z1ay1ib2R5Ij5Zb3VyIElPU1MgbnVtYmVyIGlzOiBJTTkwMDExNDQ3NzE8L3A+"
         |    }
         |  ],
         |  "alertDetails": {
         |    "templateId": "new_message_alert_ioss_netp",
         |    "recipientName": {
-        |      "line1": "Bob",
-        |      "line2": "Jones"
+        |      "line1": "Test",
+        |      "line2": "Test"
         |    },
         |    "data": {
-        |      "email": "test@mail.com",
-        |      "issueDate": "2025-11-24",
+        |      "email": "test@test.com",
+        |      "issueDate": "2025-12-01",
         |      "language": "en",
-        |      "subject": "Import One Stop Shop (IOSS)"
+        |      "subject": "Your intermediary has removed you from the VAT IOSS scheme"
         |    }
         |  },
         |  "details": {
@@ -70,8 +70,8 @@ object SecureMessages {
         |    "sourceData": "test-source-data",
         |    "batchId": "IOSSMessage"
         |  },
-        |  "emailAddress": "test@mail.com",
-        |  "hash": "eOrAhGTaOcGXAWzQADrSC9HGf5akewkIhHuO7fHmG/o=",
+        |  "emailAddress": "test@test.com",
+        |  "hash": "ZL4eQV5PaPvU/FW9mZVqa8hGNXZRJnaldu04nhBMZ2U=",
         |  "status": "deferred",
         |  "verificationBrake": false
         |}
@@ -79,65 +79,10 @@ object SecureMessages {
       """
         |{
         |  "_id": {
-        |    "$oid": "69246e3fcebde6006211a37e"
+        |    "$oid": "692d7a4a81096a36213f1577"
         |  },
         |  "externalRef": {
-        |    "id": "AJD780534887615573644",
-        |    "source": "gmc"
-        |  },
-        |  "recipient": {
-        |    "regime": "ioss",
-        |    "identifier": {
-        |      "name": "HMRC-IOSS-NETP",
-        |      "value": "IM9001144771"
-        |    },
-        |    "email": "test@mail.com"
-        |  },
-        |  "messageType": "mailout-batch",
-        |  "validFrom": {
-        |    "$date": "2025-11-24T00:00:00.000Z"
-        |  },
-        |  "content": [
-        |    {
-        |      "lang": "en",
-        |      "subject": "Import One Stop Shop (IOSS)",
-        |      "body": "test email - unique ID 256419182537714058"
-        |    }
-        |  ],
-        |  "alertDetails": {
-        |    "templateId": "new_message_alert_ioss_netp",
-        |    "recipientName": {
-        |      "line1": "Bob",
-        |      "line2": "Jones"
-        |    },
-        |    "data": {
-        |      "email": "test@mail.com",
-        |      "issueDate": "2025-11-24",
-        |      "language": "en",
-        |      "subject": "Import One Stop Shop (IOSS)"
-        |    }
-        |  },
-        |  "details": {
-        |    "formId": "M08aGIOSS",
-        |    "sourceData": "test-source-data",
-        |    "batchId": "IOSSMessage"
-        |  },
-        |  "emailAddress": "test@mail.com",
-        |  "hash": "A9RRV8/ekp7oNVxs+00IWfSv21Qr2cL6GKyshhjad+o=",
-        |  "status": "deferred",
-        |  "verificationBrake": false,
-        |  "readTime": {
-        |    "$date": "2025-11-24T17:17:45.618Z"
-        |  }
-        |}
-        |""".stripMargin,
-      """
-        |{
-        |  "_id": {
-        |    "$oid": "692484b1cebde6006211a37f"
-        |  },
-        |  "externalRef": {
-        |    "id": "AJD145909658771934790",
+        |    "id": "AJD111907242490479434",
         |    "source": "gmc"
         |  },
         |  "recipient": {
@@ -146,30 +91,30 @@ object SecureMessages {
         |      "name": "HMRC-IOSS-NETP",
         |      "value": "IM9001144773"
         |    },
-        |    "email": "test@mail.com"
+        |    "email": "test@test.com"
         |  },
         |  "messageType": "mailout-batch",
         |  "validFrom": {
-        |    "$date": "2025-11-24T00:00:00.000Z"
+        |    "$date": "2025-12-01T00:00:00.000Z"
         |  },
         |  "content": [
         |    {
         |      "lang": "en",
-        |      "subject": "Import One Stop Shop (IOSS)",
-        |      "body": "test email - unique ID 191561492504837935"
+        |      "subject": "We have excluded you from the VAT IOSS scheme",
+        |      "body": "PHAgY2xhc3M9ImdvdnVrLWJvZHkiPldlIGhhdmUgZXhjbHVkZWQgeW91ciBidXNpbmVzcyBmcm9tIHRoZSBWQVQgSW1wb3J0IE9uZSBTdG9wIFNob3AgKElPU1MpIHNjaGVtZSwgYmVjYXVzZSB5b3UgaGF2ZSBub3QgY29tcGxpZWQgd2l0aCB0aGUgcnVsZXMuPC9wPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHktbCI+WW91ciBidXNpbmVzcyB3aWxsIG5vdCBiZSBhYmxlIHRvIHVzZSBvciBqb2luIGFueSBPbmUgU3RvcCBTaG9wIHNjaGVtZXMgaW4gdGhlIFVLIG9yIHRoZSBFVSB1bnRpbCAyOSBKYW51YXJ5IDIwMjQuIDwvcD4NCjxwIGNsYXNzPSJnb3Z1ay1ib2R5Ij5Zb3VyIGludGVybWVkaWFyeSBtdXN0IGNvbXBsZXRlIGFueSBvdXRzdGFuZGluZyBJT1NTIFZBVCBSZXR1cm5zIGZvciB5b3UgYW5kIGEgZmluYWwgcmV0dXJuIGZvciBKYW51YXJ5IDIwMjQuIDwvcD4NCjxoMiBjbGFzcz0iZ292dWstaGVhZGluZy1sIj5XaGF0IHRvIGRvIGlmIHlvdSBkaXNhZ3JlZSA8L2gyPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHkiPllvdSBjYW4gZWl0aGVyOiA8L3A+DQo8dWwgY2xhc3M9Imxpc3QgbGlzdC1idWxsZXQgZ292dWstbGlzdCBnb3Z1ay1saXN0LS1idWxsZXQiPg0KPGxpPmFzayBmb3IgYSByZXZpZXcgb3IgPC9saT4NCjxsaT5hcHBlYWwgdG8gYW4gaW5kZXBlbmRlbnQgdHJpYnVuYWwgPC9saT4NCjwvdWw+DQo8cCBjbGFzcz0iZ292dWstYm9keSI+WW91IG11c3QgZG8gdGhpcyBieSAyOSBKYW51YXJ5IDIwMjQuIDwvcD4NCjxwIGNsYXNzPSJnb3Z1ay1ib2R5Ij5JZiB5b3UgYXBwZWFsIHRvIGEgdHJpYnVuYWwsIHlvdSBjYW5ub3QgYXNrIGZvciBhIHJldmlldy4gPC9wPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHkiPllvdSBtYXkgYmUgYWJsZSB0byByZXNvbHZlIG1vc3QgZGlzcHV0ZXMgYnkgYSByZXZpZXcsIHdpdGhvdXQgdGhlIG5lZWQgZm9yIGEgdHJpYnVuYWwuIEl0IG1heSBhbHNvIGJlIHF1aWNrZXIgYW5kIGxlc3MgZXhwZW5zaXZlLjwvcD4NCjxwIGNsYXNzPSJnb3Z1ay1ib2R5Ij48YSBocmVmPSJodHRwczovL3d3dy5nb3YudWsvdGF4LWFwcGVhbHMiIGNsYXNzPSJnb3Z1ay1saW5rIiB0YXJnZXQ9IlxfYmxhbmsiPk1vcmUgaW5mb3JtYXRpb24gYWJvdXQgeW91ciBhcHBlYWwgYW5kIHJldmlldyByaWdodHMgKG9wZW5zIGluIGEgbmV3IHRhYik8L2E+PC9wPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHkiPllvdSBjYW4gYXNrIGZvciBhIGNvcHkgYnkgY2FsbGluZyAwMzAwIDIwMCAzNjEwLiA8L3A+DQo8cCBjbGFzcz0iZ292dWstYm9keSI+SWYgeW91IGJlbGlldmUgdGhpcyBpcyBhbiBlcnJvciwgY29udGFjdCB5b3VyIGludGVybWVkaWFyeS4gWW91ciBJT1NTIG51bWJlciBpczogSU05MDAxMTQ0NzczPC9wPg=="
         |    }
         |  ],
         |  "alertDetails": {
         |    "templateId": "new_message_alert_ioss_netp",
         |    "recipientName": {
-        |      "line1": "Bob",
-        |      "line2": "Jones"
+        |      "line1": "Test",
+        |      "line2": "Test"
         |    },
         |    "data": {
-        |      "email": "test@mail.com",
-        |      "issueDate": "2025-11-24",
+        |      "email": "test@test.com",
+        |      "issueDate": "2025-12-01",
         |      "language": "en",
-        |      "subject": "Import One Stop Shop (IOSS)"
+        |      "subject": "We have excluded you from the VAT IOSS scheme"
         |    }
         |  },
         |  "details": {
@@ -177,8 +122,8 @@ object SecureMessages {
         |    "sourceData": "test-source-data",
         |    "batchId": "IOSSMessage"
         |  },
-        |  "emailAddress": "test@mail.com",
-        |  "hash": "MGFyW5hLbJjH3Vg/3+iVgfgyf3S6a18Sz4aL7uq3q9E=",
+        |  "emailAddress": "test@test.com",
+        |  "hash": "rxZlHehk9iXEIrUGuAWK45M8Flqc7HSe9FSLYLl6fQ4=",
         |  "status": "deferred",
         |  "verificationBrake": false
         |}
@@ -186,10 +131,10 @@ object SecureMessages {
       """
         |{
         |  "_id": {
-        |    "$oid": "692484b6cebde6006211a380"
+        |    "$oid": "692d7ace81096a36213f1578"
         |  },
         |  "externalRef": {
-        |    "id": "AJD552635945595982579",
+        |    "id": "AJD679251823031855574",
         |    "source": "gmc"
         |  },
         |  "recipient": {
@@ -198,30 +143,30 @@ object SecureMessages {
         |      "name": "HMRC-IOSS-NETP",
         |      "value": "IM9001144778"
         |    },
-        |    "email": "test@mail.com"
+        |    "email": "test@test.com"
         |  },
         |  "messageType": "mailout-batch",
         |  "validFrom": {
-        |    "$date": "2025-11-24T00:00:00.000Z"
+        |    "$date": "2025-12-01T00:00:00.000Z"
         |  },
         |  "content": [
         |    {
         |      "lang": "en",
-        |      "subject": "Import One Stop Shop (IOSS)",
-        |      "body": "test email - unique ID 260084776616468190"
+        |      "subject": "We have excluded you from the VAT IOSS scheme",
+        |      "body": "PHAgY2xhc3M9ImdvdnVrLWJvZHkiPldlIGhhdmUgZXhjbHVkZWQgeW91ciBidXNpbmVzcyBmcm9tIHRoZSBWQVQgSW1wb3J0IE9uZSBTdG9wIFNob3AgKElPU1MpIHNjaGVtZSwgYmVjYXVzZSB5b3UgaGF2ZSBub3QgY29tcGxpZWQgd2l0aCB0aGUgcnVsZXMuPC9wPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHktbCI+WW91ciBidXNpbmVzcyB3aWxsIG5vdCBiZSBhYmxlIHRvIHVzZSBvciBqb2luIGFueSBPbmUgU3RvcCBTaG9wIHNjaGVtZXMgaW4gdGhlIFVLIG9yIHRoZSBFVSB1bnRpbCAyOSBKYW51YXJ5IDIwMjQuIDwvcD4NCjxwIGNsYXNzPSJnb3Z1ay1ib2R5Ij5Zb3VyIGludGVybWVkaWFyeSBtdXN0IGNvbXBsZXRlIGFueSBvdXRzdGFuZGluZyBJT1NTIFZBVCBSZXR1cm5zIGZvciB5b3UgYW5kIGEgZmluYWwgcmV0dXJuIGZvciBKYW51YXJ5IDIwMjQuIDwvcD4NCjxoMiBjbGFzcz0iZ292dWstaGVhZGluZy1sIj5XaGF0IHRvIGRvIGlmIHlvdSBkaXNhZ3JlZSA8L2gyPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHkiPllvdSBjYW4gZWl0aGVyOiA8L3A+DQo8dWwgY2xhc3M9Imxpc3QgbGlzdC1idWxsZXQgZ292dWstbGlzdCBnb3Z1ay1saXN0LS1idWxsZXQiPg0KPGxpPmFzayBmb3IgYSByZXZpZXcgb3IgPC9saT4NCjxsaT5hcHBlYWwgdG8gYW4gaW5kZXBlbmRlbnQgdHJpYnVuYWwgPC9saT4NCjwvdWw+DQo8cCBjbGFzcz0iZ292dWstYm9keSI+WW91IG11c3QgZG8gdGhpcyBieSAyOSBKYW51YXJ5IDIwMjQuIDwvcD4NCjxwIGNsYXNzPSJnb3Z1ay1ib2R5Ij5JZiB5b3UgYXBwZWFsIHRvIGEgdHJpYnVuYWwsIHlvdSBjYW5ub3QgYXNrIGZvciBhIHJldmlldy4gPC9wPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHkiPllvdSBtYXkgYmUgYWJsZSB0byByZXNvbHZlIG1vc3QgZGlzcHV0ZXMgYnkgYSByZXZpZXcsIHdpdGhvdXQgdGhlIG5lZWQgZm9yIGEgdHJpYnVuYWwuIEl0IG1heSBhbHNvIGJlIHF1aWNrZXIgYW5kIGxlc3MgZXhwZW5zaXZlLjwvcD4NCjxwIGNsYXNzPSJnb3Z1ay1ib2R5Ij48YSBocmVmPSJodHRwczovL3d3dy5nb3YudWsvdGF4LWFwcGVhbHMiIGNsYXNzPSJnb3Z1ay1saW5rIiB0YXJnZXQ9IlxfYmxhbmsiPk1vcmUgaW5mb3JtYXRpb24gYWJvdXQgeW91ciBhcHBlYWwgYW5kIHJldmlldyByaWdodHMgKG9wZW5zIGluIGEgbmV3IHRhYik8L2E+PC9wPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHkiPllvdSBjYW4gYXNrIGZvciBhIGNvcHkgYnkgY2FsbGluZyAwMzAwIDIwMCAzNjEwLiA8L3A+DQo8cCBjbGFzcz0iZ292dWstYm9keSI+SWYgeW91IGJlbGlldmUgdGhpcyBpcyBhbiBlcnJvciwgY29udGFjdCB5b3VyIGludGVybWVkaWFyeS4gWW91ciBJT1NTIG51bWJlciBpczogSU05MDAxMTQ0Nzc4PC9wPg=="
         |    }
         |  ],
         |  "alertDetails": {
         |    "templateId": "new_message_alert_ioss_netp",
         |    "recipientName": {
-        |      "line1": "Bob",
-        |      "line2": "Jones"
+        |      "line1": "Test",
+        |      "line2": "Test"
         |    },
         |    "data": {
-        |      "email": "test@mail.com",
-        |      "issueDate": "2025-11-24",
+        |      "email": "test@test.com",
+        |      "issueDate": "2025-12-01",
         |      "language": "en",
-        |      "subject": "Import One Stop Shop (IOSS)"
+        |      "subject": "We have excluded you from the VAT IOSS scheme"
         |    }
         |  },
         |  "details": {
@@ -229,8 +174,8 @@ object SecureMessages {
         |    "sourceData": "test-source-data",
         |    "batchId": "IOSSMessage"
         |  },
-        |  "emailAddress": "test@mail.com",
-        |  "hash": "ahiGMku9oIUWuYv+3PstIdMa6hGVImsg9tmmbsepjGg=",
+        |  "emailAddress": "test@test.com",
+        |  "hash": "OOHig0jL0ZOsfwmt1do3cuPZX1RRWRTjlqvOUhYibEw=",
         |  "status": "deferred",
         |  "verificationBrake": false
         |}
@@ -238,10 +183,10 @@ object SecureMessages {
       """
         |{
         |  "_id": {
-        |    "$oid": "692484bacebde6006211a381"
+        |    "$oid": "692d7ad981096a36213f1579"
         |  },
         |  "externalRef": {
-        |    "id": "AJD365401524631857065",
+        |    "id": "AJD748918736735882122",
         |    "source": "gmc"
         |  },
         |  "recipient": {
@@ -250,30 +195,30 @@ object SecureMessages {
         |      "name": "HMRC-IOSS-NETP",
         |      "value": "IM9001144777"
         |    },
-        |    "email": "test@mail.com"
+        |    "email": "test@test.com"
         |  },
         |  "messageType": "mailout-batch",
         |  "validFrom": {
-        |    "$date": "2025-11-24T00:00:00.000Z"
+        |    "$date": "2025-12-01T00:00:00.000Z"
         |  },
         |  "content": [
         |    {
         |      "lang": "en",
-        |      "subject": "Import One Stop Shop (IOSS)",
-        |      "body": "test email - unique ID 646454626047628365"
+        |      "subject": "We have excluded you from the VAT IOSS scheme",
+        |      "body": "PHAgY2xhc3M9ImdvdnVrLWJvZHkiPldlIGhhdmUgZXhjbHVkZWQgeW91ciBidXNpbmVzcyBmcm9tIHRoZSBWQVQgSW1wb3J0IE9uZSBTdG9wIFNob3AgKElPU1MpIHNjaGVtZSwgYmVjYXVzZSB5b3UgaGF2ZSBub3QgY29tcGxpZWQgd2l0aCB0aGUgcnVsZXMuPC9wPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHktbCI+WW91ciBidXNpbmVzcyB3aWxsIG5vdCBiZSBhYmxlIHRvIHVzZSBvciBqb2luIGFueSBPbmUgU3RvcCBTaG9wIHNjaGVtZXMgaW4gdGhlIFVLIG9yIHRoZSBFVSB1bnRpbCAyOSBKYW51YXJ5IDIwMjQuIDwvcD4NCjxwIGNsYXNzPSJnb3Z1ay1ib2R5Ij5Zb3VyIGludGVybWVkaWFyeSBtdXN0IGNvbXBsZXRlIGFueSBvdXRzdGFuZGluZyBJT1NTIFZBVCBSZXR1cm5zIGZvciB5b3UgYW5kIGEgZmluYWwgcmV0dXJuIGZvciBKYW51YXJ5IDIwMjQuIDwvcD4NCjxoMiBjbGFzcz0iZ292dWstaGVhZGluZy1sIj5XaGF0IHRvIGRvIGlmIHlvdSBkaXNhZ3JlZSA8L2gyPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHkiPllvdSBjYW4gZWl0aGVyOiA8L3A+DQo8dWwgY2xhc3M9Imxpc3QgbGlzdC1idWxsZXQgZ292dWstbGlzdCBnb3Z1ay1saXN0LS1idWxsZXQiPg0KPGxpPmFzayBmb3IgYSByZXZpZXcgb3IgPC9saT4NCjxsaT5hcHBlYWwgdG8gYW4gaW5kZXBlbmRlbnQgdHJpYnVuYWwgPC9saT4NCjwvdWw+DQo8cCBjbGFzcz0iZ292dWstYm9keSI+WW91IG11c3QgZG8gdGhpcyBieSAyOSBKYW51YXJ5IDIwMjQuIDwvcD4NCjxwIGNsYXNzPSJnb3Z1ay1ib2R5Ij5JZiB5b3UgYXBwZWFsIHRvIGEgdHJpYnVuYWwsIHlvdSBjYW5ub3QgYXNrIGZvciBhIHJldmlldy4gPC9wPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHkiPllvdSBtYXkgYmUgYWJsZSB0byByZXNvbHZlIG1vc3QgZGlzcHV0ZXMgYnkgYSByZXZpZXcsIHdpdGhvdXQgdGhlIG5lZWQgZm9yIGEgdHJpYnVuYWwuIEl0IG1heSBhbHNvIGJlIHF1aWNrZXIgYW5kIGxlc3MgZXhwZW5zaXZlLjwvcD4NCjxwIGNsYXNzPSJnb3Z1ay1ib2R5Ij48YSBocmVmPSJodHRwczovL3d3dy5nb3YudWsvdGF4LWFwcGVhbHMiIGNsYXNzPSJnb3Z1ay1saW5rIiB0YXJnZXQ9IlxfYmxhbmsiPk1vcmUgaW5mb3JtYXRpb24gYWJvdXQgeW91ciBhcHBlYWwgYW5kIHJldmlldyByaWdodHMgKG9wZW5zIGluIGEgbmV3IHRhYik8L2E+PC9wPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHkiPllvdSBjYW4gYXNrIGZvciBhIGNvcHkgYnkgY2FsbGluZyAwMzAwIDIwMCAzNjEwLiA8L3A+DQo8cCBjbGFzcz0iZ292dWstYm9keSI+SWYgeW91IGJlbGlldmUgdGhpcyBpcyBhbiBlcnJvciwgY29udGFjdCB5b3VyIGludGVybWVkaWFyeS4gWW91ciBJT1NTIG51bWJlciBpczogSU05MDAxMTQ0Nzc3PC9wPg=="
         |    }
         |  ],
         |  "alertDetails": {
         |    "templateId": "new_message_alert_ioss_netp",
         |    "recipientName": {
-        |      "line1": "Bob",
-        |      "line2": "Jones"
+        |      "line1": "Test",
+        |      "line2": "Test"
         |    },
         |    "data": {
-        |      "email": "test@mail.com",
-        |      "issueDate": "2025-11-24",
+        |      "email": "test@test.com",
+        |      "issueDate": "2025-12-01",
         |      "language": "en",
-        |      "subject": "Import One Stop Shop (IOSS)"
+        |      "subject": "We have excluded you from the VAT IOSS scheme"
         |    }
         |  },
         |  "details": {
@@ -281,8 +226,8 @@ object SecureMessages {
         |    "sourceData": "test-source-data",
         |    "batchId": "IOSSMessage"
         |  },
-        |  "emailAddress": "test@mail.com",
-        |  "hash": "bjSUBOgwWw1eEgnhoPKViRzAvPRVY4NS3/kg7IUBRbY=",
+        |  "emailAddress": "test@test.com",
+        |  "hash": "JR5rz2JEiLxCMJ6u4G2EruQXu6U3Ng2y+2uWr6j6lkw=",
         |  "status": "deferred",
         |  "verificationBrake": false
         |}
@@ -290,10 +235,10 @@ object SecureMessages {
       """
         |{
         |  "_id": {
-        |    "$oid": "692484bdcebde6006211a382"
+        |    "$oid": "692d7aef81096a36213f157b"
         |  },
         |  "externalRef": {
-        |    "id": "AJD188578214805874919",
+        |    "id": "AJD408742363344484010",
         |    "source": "gmc"
         |  },
         |  "recipient": {
@@ -302,30 +247,30 @@ object SecureMessages {
         |      "name": "HMRC-IOSS-NETP",
         |      "value": "IM9001144775"
         |    },
-        |    "email": "test@mail.com"
+        |    "email": "test@test.com"
         |  },
         |  "messageType": "mailout-batch",
         |  "validFrom": {
-        |    "$date": "2025-11-24T00:00:00.000Z"
+        |    "$date": "2025-12-01T00:00:00.000Z"
         |  },
         |  "content": [
         |    {
         |      "lang": "en",
-        |      "subject": "Import One Stop Shop (IOSS)",
-        |      "body": "test email - unique ID 668183357912841584"
+        |      "subject": "We have excluded you from the VAT IOSS scheme",
+        |      "body": "PHAgY2xhc3M9ImdvdnVrLWJvZHkiPldlIGhhdmUgZXhjbHVkZWQgeW91ciBidXNpbmVzcyBmcm9tIHRoZSBWQVQgSW1wb3J0IE9uZSBTdG9wIFNob3AgKElPU1MpIHNjaGVtZSwgYmVjYXVzZSB5b3UgaGF2ZSBub3QgY29tcGxpZWQgd2l0aCB0aGUgcnVsZXMuPC9wPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHktbCI+WW91ciBidXNpbmVzcyB3aWxsIG5vdCBiZSBhYmxlIHRvIHVzZSBvciBqb2luIGFueSBPbmUgU3RvcCBTaG9wIHNjaGVtZXMgaW4gdGhlIFVLIG9yIHRoZSBFVSB1bnRpbCAyOSBKYW51YXJ5IDIwMjQuIDwvcD4NCjxwIGNsYXNzPSJnb3Z1ay1ib2R5Ij5Zb3VyIGludGVybWVkaWFyeSBtdXN0IGNvbXBsZXRlIGFueSBvdXRzdGFuZGluZyBJT1NTIFZBVCBSZXR1cm5zIGZvciB5b3UgYW5kIGEgZmluYWwgcmV0dXJuIGZvciBKYW51YXJ5IDIwMjQuIDwvcD4NCjxoMiBjbGFzcz0iZ292dWstaGVhZGluZy1sIj5XaGF0IHRvIGRvIGlmIHlvdSBkaXNhZ3JlZSA8L2gyPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHkiPllvdSBjYW4gZWl0aGVyOiA8L3A+DQo8dWwgY2xhc3M9Imxpc3QgbGlzdC1idWxsZXQgZ292dWstbGlzdCBnb3Z1ay1saXN0LS1idWxsZXQiPg0KPGxpPmFzayBmb3IgYSByZXZpZXcgb3IgPC9saT4NCjxsaT5hcHBlYWwgdG8gYW4gaW5kZXBlbmRlbnQgdHJpYnVuYWwgPC9saT4NCjwvdWw+DQo8cCBjbGFzcz0iZ292dWstYm9keSI+WW91IG11c3QgZG8gdGhpcyBieSAyOSBKYW51YXJ5IDIwMjQuIDwvcD4NCjxwIGNsYXNzPSJnb3Z1ay1ib2R5Ij5JZiB5b3UgYXBwZWFsIHRvIGEgdHJpYnVuYWwsIHlvdSBjYW5ub3QgYXNrIGZvciBhIHJldmlldy4gPC9wPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHkiPllvdSBtYXkgYmUgYWJsZSB0byByZXNvbHZlIG1vc3QgZGlzcHV0ZXMgYnkgYSByZXZpZXcsIHdpdGhvdXQgdGhlIG5lZWQgZm9yIGEgdHJpYnVuYWwuIEl0IG1heSBhbHNvIGJlIHF1aWNrZXIgYW5kIGxlc3MgZXhwZW5zaXZlLjwvcD4NCjxwIGNsYXNzPSJnb3Z1ay1ib2R5Ij48YSBocmVmPSJodHRwczovL3d3dy5nb3YudWsvdGF4LWFwcGVhbHMiIGNsYXNzPSJnb3Z1ay1saW5rIiB0YXJnZXQ9IlxfYmxhbmsiPk1vcmUgaW5mb3JtYXRpb24gYWJvdXQgeW91ciBhcHBlYWwgYW5kIHJldmlldyByaWdodHMgKG9wZW5zIGluIGEgbmV3IHRhYik8L2E+PC9wPg0KPHAgY2xhc3M9ImdvdnVrLWJvZHkiPllvdSBjYW4gYXNrIGZvciBhIGNvcHkgYnkgY2FsbGluZyAwMzAwIDIwMCAzNjEwLiA8L3A+DQo8cCBjbGFzcz0iZ292dWstYm9keSI+SWYgeW91IGJlbGlldmUgdGhpcyBpcyBhbiBlcnJvciwgY29udGFjdCB5b3VyIGludGVybWVkaWFyeS4gWW91ciBJT1NTIG51bWJlciBpczogSU05MDAxMTQ0Nzc1PC9wPg=="
         |    }
         |  ],
         |  "alertDetails": {
         |    "templateId": "new_message_alert_ioss_netp",
         |    "recipientName": {
-        |      "line1": "Bob",
-        |      "line2": "Jones"
+        |      "line1": "Test",
+        |      "line2": "Test"
         |    },
         |    "data": {
-        |      "email": "test@mail.com",
-        |      "issueDate": "2025-11-24",
+        |      "email": "test@test.com",
+        |      "issueDate": "2025-12-01",
         |      "language": "en",
-        |      "subject": "Import One Stop Shop (IOSS)"
+        |      "subject": "We have excluded you from the VAT IOSS scheme"
         |    }
         |  },
         |  "details": {
@@ -333,60 +278,8 @@ object SecureMessages {
         |    "sourceData": "test-source-data",
         |    "batchId": "IOSSMessage"
         |  },
-        |  "emailAddress": "test@mail.com",
-        |  "hash": "SIHzVo5/Ug0Hv4liLvTZH7lfWvF7KiTbtkWp6umVGxI=",
-        |  "status": "deferred",
-        |  "verificationBrake": false
-        |}
-        |""".stripMargin,
-      """
-        |{
-        |  "_id": {
-        |    "$oid": "692484c4cebde6006211a383"
-        |  },
-        |  "externalRef": {
-        |    "id": "AJD193870787310220192",
-        |    "source": "gmc"
-        |  },
-        |  "recipient": {
-        |    "regime": "ioss",
-        |    "identifier": {
-        |      "name": "HMRC-IOSS-NETP",
-        |      "value": "IM9001144881"
-        |    },
-        |    "email": "test@mail.com"
-        |  },
-        |  "messageType": "mailout-batch",
-        |  "validFrom": {
-        |    "$date": "2025-11-24T00:00:00.000Z"
-        |  },
-        |  "content": [
-        |    {
-        |      "lang": "en",
-        |      "subject": "Import One Stop Shop (IOSS)",
-        |      "body": "test email - unique ID 720751826372567126"
-        |    }
-        |  ],
-        |  "alertDetails": {
-        |    "templateId": "new_message_alert_ioss_netp",
-        |    "recipientName": {
-        |      "line1": "Bob",
-        |      "line2": "Jones"
-        |    },
-        |    "data": {
-        |      "email": "test@mail.com",
-        |      "issueDate": "2025-11-24",
-        |      "language": "en",
-        |      "subject": "Import One Stop Shop (IOSS)"
-        |    }
-        |  },
-        |  "details": {
-        |    "formId": "M08aGIOSS",
-        |    "sourceData": "test-source-data",
-        |    "batchId": "IOSSMessage"
-        |  },
-        |  "emailAddress": "test@mail.com",
-        |  "hash": "jblmljhKR9wznR6ozUk/1256WVc2ooHqK4v1gw1dAM0=",
+        |  "emailAddress": "test@test.com",
+        |  "hash": "XBOLjsV2c/RL1PvpX4M+dSL/UWqH+WCoCEEtMTIPVcA=",
         |  "status": "deferred",
         |  "verificationBrake": false
         |}
