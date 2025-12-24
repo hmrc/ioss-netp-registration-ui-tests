@@ -60,6 +60,8 @@ object Auth extends BasePage {
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144777"
       case "ukExcluded"                             =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144772"
+      case "hmrcExcluded"                           =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144774"
       case "ftrExcluded"                            =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144776"
       case "minimalAmend"                           =>

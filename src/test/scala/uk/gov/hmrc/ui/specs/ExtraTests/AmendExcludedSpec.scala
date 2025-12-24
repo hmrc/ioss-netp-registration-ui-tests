@@ -82,5 +82,19 @@ class AmendExcludedSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-amend")
       amendRegistration.checkAmendedAnswers("ftrExcluded")
     }
+
+    Scenario(
+      "Correct exclusion messages displayed for an HMRC excluded NETP"
+    ) {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "hmrcExcluded")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144774")
+
+      Then("the correct exclusion messages are displayed on the change-your-registration page")
+      amendRegistration.checkChangeLinksExcluded("hmrcExcluded")
+    }
   }
 }

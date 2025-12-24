@@ -441,17 +441,19 @@ object AmendRegistration extends BasePage {
     val body = Driver.instance.findElement(By.tagName("body")).getText
 
     excludedJourney match {
-      case "ukExcluded"  =>
+      case "ukExcluded"   =>
         Assert.assertTrue(
           body.contains(
-            "You removed First Company from your account on 1 March 2025.\n" +
+            "You removed NETP Exclusion NINO from your account on 1 March 2025.\n" +
+              "If you wish to undo this removal, you must contact vatoss.contact@hmrc.gov.uk by 15 April 2025.\n" +
               "Registration details\n" +
               "Based in UK Yes\n" +
-              "Has UK VAT registration number Yes\n" +
-              "UK VAT registration number 100000001\n" +
-              "Principal place of business address 1 The Street\n" +
-              "Some Town\n" +
-              "AA11 1AA\n" +
+              "Has UK VAT registration number No\n" +
+              "Trading name NETP Exclusion NINO\n" +
+              "Has Unique Taxpayer Reference (UTR) number No\n" +
+              "National Insurance number (NINO) AA112233D\n" +
+              "Principal place of business address 1 Street Name\n" +
+              "Town\n" +
               "Import One Stop Shop details\n" +
               "Have a different trading name No\n" +
               "Other One Stop Shop registrations No\n" +
@@ -469,10 +471,11 @@ object AmendRegistration extends BasePage {
               "Email address rocky.balboa@chartoffwinkler.co.uk Change"
           )
         )
-      case "ftrExcluded" =>
+      case "ftrExcluded"  =>
         Assert.assertTrue(
           body.contains(
             "You removed Seventh Client from your account on 1 March 2025.\n" +
+              "If you wish to undo this removal, you must contact vatoss.contact@hmrc.gov.uk by 15 April 2025.\n" +
               "Registration details\n" +
               "Based in UK No\n" +
               "Has UK VAT registration number No\n" +
@@ -504,7 +507,18 @@ object AmendRegistration extends BasePage {
               "Email address email@test.com Change"
           )
         )
-      case _             => throw new Exception("This excluded amend variation does not exist")
+      case "hmrcExcluded" =>
+        Assert.assertTrue(
+          body.contains(
+            "We removed NETP Exclusion UTR from your account on 1 March 2025."
+          )
+        )
+        Assert.assertFalse(
+          body.contains(
+            "If you wish to undo this removal, you must contact"
+          )
+        )
+      case _              => throw new Exception("This excluded amend variation does not exist")
     }
   }
 }
