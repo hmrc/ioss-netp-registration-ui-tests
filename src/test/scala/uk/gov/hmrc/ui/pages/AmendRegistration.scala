@@ -20,6 +20,9 @@ import org.junit.Assert
 import org.openqa.selenium.By
 import uk.gov.hmrc.selenium.webdriver.Driver
 
+import java.time.format.DateTimeFormatter
+import java.time.{LocalDate, format}
+
 object AmendRegistration extends BasePage {
 
   def checkRegistrationDetails(clientType: String): Unit = {
@@ -440,12 +443,16 @@ object AmendRegistration extends BasePage {
   def checkChangeLinksExcluded(excludedJourney: String): Unit = {
     val body = Driver.instance.findElement(By.tagName("body")).getText
 
+    val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
+    val nextMonth                        = LocalDate.now().plusMonths(1).withDayOfMonth(1)
+    val dateNextMonth                    = nextMonth.format(dateFormatter)
+    val oneDayBefore                     = nextMonth.minusDays(1).format(dateFormatter)
+
     excludedJourney match {
-      case "ukExcluded"   =>
+      case "ukExcluded"         =>
         Assert.assertTrue(
           body.contains(
             "You removed NETP Exclusion NINO from your account on 1 March 2025.\n" +
-              "If you wish to undo this removal, you must contact vatoss.contact@hmrc.gov.uk by 15 April 2025.\n" +
               "Registration details\n" +
               "Based in UK Yes\n" +
               "Has UK VAT registration number No\n" +
@@ -471,11 +478,15 @@ object AmendRegistration extends BasePage {
               "Email address rocky.balboa@chartoffwinkler.co.uk Change"
           )
         )
-      case "ftrExcluded"  =>
+        Assert.assertFalse(
+          body.contains(
+            "If you wish to undo this removal, you must contact"
+          )
+        )
+      case "ftrExcluded"        =>
         Assert.assertTrue(
           body.contains(
             "You removed Seventh Client from your account on 1 March 2025.\n" +
-              "If you wish to undo this removal, you must contact vatoss.contact@hmrc.gov.uk by 15 April 2025.\n" +
               "Registration details\n" +
               "Based in UK No\n" +
               "Has UK VAT registration number No\n" +
@@ -507,7 +518,12 @@ object AmendRegistration extends BasePage {
               "Email address email@test.com Change"
           )
         )
-      case "hmrcExcluded" =>
+        Assert.assertFalse(
+          body.contains(
+            "If you wish to undo this removal, you must contact"
+          )
+        )
+      case "hmrcExcluded"       =>
         Assert.assertTrue(
           body.contains(
             "We removed NETP Exclusion UTR from your account on 1 March 2025."
@@ -518,7 +534,85 @@ object AmendRegistration extends BasePage {
             "If you wish to undo this removal, you must contact"
           )
         )
-      case _              => throw new Exception("This excluded amend variation does not exist")
+      case "selfExcludedFuture" =>
+        Assert.assertTrue(
+          body.contains(
+            s"You removed First Company from your account on $dateNextMonth.\n" +
+              s"If you wish to undo this removal, you must contact vatoss.contact@hmrc.gov.uk by $oneDayBefore.\n" +
+              "Registration details\n" +
+              "Based in UK Yes\n" +
+              "Has UK VAT registration number Yes\n" +
+              "UK VAT registration number 100000001\n" +
+              "Principal place of business address 1 The Street\n" +
+              "Some Town\n" +
+              "AA11 1AA\n" +
+              "Import One Stop Shop details\n" +
+              "Have a different trading name No\n" +
+              "Other One Stop Shop registrations No\n" +
+              "Fixed establishments in other countries No\n" +
+              "Trading websites www.test.com\n" +
+              "http://anothertest.co\n" +
+              "Contact name Rocky Balboa Change\n" +
+              //              Change hidden text start
+              "their contact name\n" +
+              //              Change hidden text end
+              "Telephone number 028 123 4567 Change\n" +
+              //              Change hidden text start
+              "their telephone number\n" +
+              //              Change hidden text end
+              "Email address rocky.balboa@chartoffwinkler.co.uk Change"
+          )
+        )
+      case "hmrcExcludedFuture" =>
+        Assert.assertTrue(
+          body.contains(
+            s"We removed First Company from your account on $dateNextMonth.\n" +
+              "Registration details\n" +
+              "Based in UK Yes\n" +
+              "Has UK VAT registration number Yes\n" +
+              "UK VAT registration number 100000001\n" +
+              "Principal place of business address 1 The Street\n" +
+              "Some Town\n" +
+              "AA11 1AA\n" +
+              "Import One Stop Shop details\n" +
+              "Have a different trading name No\n" +
+              "Other One Stop Shop registrations No\n" +
+              "Fixed establishments in other countries No\n" +
+              "Trading websites www.test.com\n" +
+              "http://anothertest.co\n" +
+              "Contact name Rocky Balboa Change\n" +
+              //              Change hidden text start
+              "their contact name\n" +
+              //              Change hidden text end
+              "Telephone number 028 123 4567 Change\n" +
+              //              Change hidden text start
+              "their telephone number\n" +
+              //              Change hidden text end
+              "Email address rocky.balboa@chartoffwinkler.co.uk Change"
+          )
+        )
+        Assert.assertFalse(
+          body.contains(
+            "If you wish to undo this removal, you must contact"
+          )
+        )
+      case "reversal"           =>
+        Assert.assertFalse(
+          body.contains(
+            "You removed Client Ltd from your account on"
+          )
+        )
+        Assert.assertFalse(
+          body.contains(
+            "We removed Client Ltd from your account on"
+          )
+        )
+        Assert.assertFalse(
+          body.contains(
+            "If you wish to undo this removal, you must contact"
+          )
+        )
+      case _                    => throw new Exception("This excluded amend variation does not exist")
     }
   }
 }
