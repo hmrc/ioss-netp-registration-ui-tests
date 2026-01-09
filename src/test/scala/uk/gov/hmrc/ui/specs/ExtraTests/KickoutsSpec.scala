@@ -49,5 +49,15 @@ class KickoutsSpec extends BaseSpec {
       Then("the NETP is on the cannot-use-this-service page")
       registration.checkJourneyUrl("cannot-use-this-service")
     }
+
+    Scenario("Excluded Intermediary cannot access the NETP Registration journey") {
+
+      Given("an excluded Intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "excludedIntermediary")
+
+      Then("the intermediary is on the cannot-use-this-service page")
+      registration.checkJourneyUrl("cannot-use-this-service")
+    }
   }
 }
