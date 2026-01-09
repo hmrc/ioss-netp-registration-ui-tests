@@ -82,5 +82,61 @@ class AmendExcludedSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-amend")
       amendRegistration.checkAmendedAnswers("ftrExcluded")
     }
+
+    Scenario(
+      "Correct exclusion messages displayed for an HMRC excluded NETP"
+    ) {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "hmrcExcluded")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144774")
+
+      Then("the correct exclusion messages are displayed on the change-your-registration page")
+      amendRegistration.checkChangeLinksExcluded("hmrcExcluded")
+    }
+
+    Scenario(
+      "Correct exclusion messages and change links displayed for self excluded NETP with a future effective date"
+    ) {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "selfExcludedFuture")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9002223331")
+
+      Then("the correct exclusion messages and change links are displayed on the change-your-registration page")
+      amendRegistration.checkChangeLinksExcluded("selfExcludedFuture")
+    }
+
+    Scenario(
+      "Correct exclusion messages and change links displayed for HMRC excluded NETP with a future effective date"
+    ) {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "hmrcExcludedFuture")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9002223332")
+
+      Then("the correct exclusion messages and change links are displayed on the change-your-registration page")
+      amendRegistration.checkChangeLinksExcluded("hmrcExcludedFuture")
+    }
+
+    Scenario(
+      "Exclusions messages not displayed for a NETP with a reversed exclusion"
+    ) {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "reversal")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9002223333")
+
+      Then("there are no exclusions messages displayed on the change-your-registration page")
+      amendRegistration.checkChangeLinksExcluded("reversal")
+    }
   }
 }
