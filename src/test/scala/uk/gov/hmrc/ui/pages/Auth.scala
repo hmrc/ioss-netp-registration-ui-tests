@@ -60,10 +60,18 @@ object Auth extends BasePage {
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144777"
       case "ukExcluded"                             =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144772"
+      case "hmrcExcluded"                           =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144774"
       case "ftrExcluded"                            =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144776"
       case "minimalAmend"                           =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144881"
+      case "selfExcludedFuture"                     =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9002223331"
+      case "hmrcExcludedFuture"                     =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9002223332"
+      case "reversal"                               =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9002223333"
       case "failureAmend"                           =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002222222"
       case "secureMessagesUkBasedUkVrn" | "secureMessagesUkBasedUtr" | "secureMessagesUkBasedNino" |
