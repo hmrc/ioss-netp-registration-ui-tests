@@ -62,6 +62,111 @@ class EuTaxDetailsCoreValidationSpec extends BaseSpec {
     }
 
     Scenario(
+      "NETP EU VAT Number matches already active scheme - with exclusion that has reached effective date - can register"
+    ) {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary enters an EU VAT Number that is already active in another member state")
+      registration.answerVatDetailsUkVrn()
+      registration.checkJourneyUrl("confirm-tax-details")
+      registration.continue()
+      registration.checkJourneyUrl("have-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("eu-fixed-establishment")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("vat-registered-eu-country/1")
+      registration.selectCountry("Malta")
+      registration.checkJourneyUrl("trading-name-business-address/1")
+      registration.enterFETradingName("Malta Trading Name")
+      registration.enterAddress("123 Street Name", "", "Town", "", "MT12345")
+      registration.checkJourneyUrl("registration-tax-type/1")
+      registration.answerRegistrationType("VAT number")
+      registration.checkJourneyUrl("eu-vat-number/1")
+      registration.enterAnswer("MT11122215")
+
+      Then(
+        "the intermediary is on the check-tax-details/1 page"
+      )
+      registration.checkJourneyUrl("check-tax-details/1")
+    }
+
+    Scenario(
+      "NETP EU VAT Number matches already active scheme - with exclusion that has not yet reached effective date - can not register"
+    ) {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary enters an EU VAT Number that is already active in another member state")
+      registration.answerVatDetailsUkVrn()
+      registration.checkJourneyUrl("confirm-tax-details")
+      registration.continue()
+      registration.checkJourneyUrl("have-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("eu-fixed-establishment")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("vat-registered-eu-country/1")
+      registration.selectCountry("Malta")
+      registration.checkJourneyUrl("trading-name-business-address/1")
+      registration.enterFETradingName("Malta Trading Name")
+      registration.enterAddress("123 Street Name", "", "Town", "", "MT12345")
+      registration.checkJourneyUrl("registration-tax-type/1")
+      registration.answerRegistrationType("VAT number")
+      registration.checkJourneyUrl("eu-vat-number/1")
+      registration.enterAnswer("MT11122216")
+
+      Then(
+        "the intermediary is on the client-already-registered page"
+      )
+      registration.checkJourneyUrl("client-already-registered")
+    }
+
+    Scenario(
+      "NETP EU VAT Number matches already active scheme - that contain a reversal therefore are still registered - can not register"
+    ) {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary enters an EU VAT Number that is already active in another member state")
+      registration.answerVatDetailsUkVrn()
+      registration.checkJourneyUrl("confirm-tax-details")
+      registration.continue()
+      registration.checkJourneyUrl("have-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("eu-fixed-establishment")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("vat-registered-eu-country/1")
+      registration.selectCountry("Malta")
+      registration.checkJourneyUrl("trading-name-business-address/1")
+      registration.enterFETradingName("Malta Trading Name")
+      registration.enterAddress("123 Street Name", "", "Town", "", "MT12345")
+      registration.checkJourneyUrl("registration-tax-type/1")
+      registration.answerRegistrationType("VAT number")
+      registration.checkJourneyUrl("eu-vat-number/1")
+      registration.enterAnswer("MT11122217")
+
+      Then(
+        "the intermediary is on the client-already-registered page"
+      )
+      registration.checkJourneyUrl("client-already-registered")
+    }
+
+    Scenario(
       "NETP EU VAT Number matches quarantined scheme"
     ) {
 
@@ -129,6 +234,41 @@ class EuTaxDetailsCoreValidationSpec extends BaseSpec {
         "the intermediary is on the client-already-registered page"
       )
       registration.checkJourneyUrl("client-already-registered")
+    }
+
+    Scenario(
+      "NETP EU Tax ID matches already active scheme - with exclusion that has reached effective date - can register"
+    ) {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary enters an EU Tax ID that is already active in another member state")
+      registration.answerVatDetailsUkVrn()
+      registration.checkJourneyUrl("confirm-tax-details")
+      registration.continue()
+      registration.checkJourneyUrl("have-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("eu-fixed-establishment")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("vat-registered-eu-country/1")
+      registration.selectCountry("Portugal")
+      registration.checkJourneyUrl("trading-name-business-address/1")
+      registration.enterFETradingName("Portugal Trading Name")
+      registration.enterAddress("123 Street Name", "", "Town", "", "PT12345")
+      registration.checkJourneyUrl("registration-tax-type/1")
+      registration.answerRegistrationType("Tax ID number")
+      registration.checkJourneyUrl("eu-tax-identification-number/1")
+      registration.enterAnswer("AD1112233")
+
+      Then(
+        "the intermediary is on the check-tax-details/1 page"
+      )
+      registration.checkJourneyUrl("check-tax-details/1")
     }
 
     Scenario(
