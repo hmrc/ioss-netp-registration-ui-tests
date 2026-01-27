@@ -74,6 +74,12 @@ object Auth extends BasePage {
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002223333"
       case "failureAmend"                           =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002222222"
+      case "multiplePreviousRegistrationsCurrent"   =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144672"
+      case "multiplePreviousRegistrationsMiddle"    =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144670"
+      case "multiplePreviousRegistrationsOldest"    =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144668"
       case "secureMessagesUkBasedUkVrn" | "secureMessagesUkBasedUtr" | "secureMessagesUkBasedNino" |
           "secureMessagesNonUkBasedUkVrn" | "secureMessagesNonUkBasedFtr" | "secureMessagesNone" | "noNetpEnrolment" =>
         s"$registrationUrl$journeyUrl/secure-messages"
@@ -102,13 +108,14 @@ object Auth extends BasePage {
       sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
       sendKeys(By.id("input-1-0-name"), "IntNumber")
       val intermediaryNumber = accountType match {
-        case "pending"              => "IN9001112223"
-        case "multipleSaved"        => "IN9001114567"
-        case "oneSaved"             => "IN9002224567"
-        case "minimalAmend"         => "IN9008888887"
-        case "failureAmend"         => "IN900666001"
-        case "excludedIntermediary" => "IN9000306831"
-        case _                      => "IN9001234567"
+        case "pending"                       => "IN9001112223"
+        case "multipleSaved"                 => "IN9001114567"
+        case "oneSaved"                      => "IN9002224567"
+        case "minimalAmend"                  => "IN9008888887"
+        case "failureAmend"                  => "IN900666001"
+        case "excludedIntermediary"          => "IN9000306831"
+        case "multiplePreviousRegistrations" => "IN9002230002"
+        case _                               => "IN9001234567"
       }
       sendKeys(By.id("input-1-0-value"), intermediaryNumber)
     }
@@ -127,6 +134,16 @@ object Auth extends BasePage {
       }
 
       sendKeys(By.id("input-1-0-value"), iossNumber)
+    }
+
+    if (accountType startsWith "multiplePreviousRegistrations") {
+      sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-2-0-name"), "IntNumber")
+      sendKeys(By.id("input-2-0-value"), "IN9001230002")
+
+      sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-3-0-name"), "IntNumber")
+      sendKeys(By.id("input-3-0-value"), "IN9000230002")
     }
 
     click(By.cssSelector("Input[value='Submit']"))
