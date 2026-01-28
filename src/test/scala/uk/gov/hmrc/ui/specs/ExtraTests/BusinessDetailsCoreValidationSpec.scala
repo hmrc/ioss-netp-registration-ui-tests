@@ -49,6 +49,72 @@ class BusinessDetailsCoreValidationSpec extends BaseSpec {
     }
 
     Scenario(
+      "NETP UK VAT Number matches already active scheme with exclusion that has reached exclusion effective date - can register"
+    ) {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary enters a UK VRN that is already active in another member state")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("client-has-vat-number")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("client-vat-number")
+      registration.enterAnswer("333333337")
+
+      Then(
+        "the intermediary is on the confirm-tax-details page"
+      )
+      registration.checkJourneyUrl("confirm-tax-details")
+    }
+
+    Scenario(
+      "NETP UK VAT Number matches already active scheme with exclusion details containing a reversal therefore still registered - can not register"
+    ) {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary enters a UK VRN that is already active in another member state")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("client-has-vat-number")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("client-vat-number")
+      registration.enterAnswer("333333339")
+
+      Then(
+        "the intermediary is on the client-already-registered page"
+      )
+      registration.checkJourneyUrl("client-already-registered")
+    }
+
+    Scenario(
+      "NETP UK VAT Number matches already active scheme with exclusion that has not reached exclusion effective date - can not register"
+    ) {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary enters a UK VRN that is already active in another member state")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("client-has-vat-number")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("client-vat-number")
+      registration.enterAnswer("333333338")
+
+      Then(
+        "the intermediary is on the client-already-registered page"
+      )
+      registration.checkJourneyUrl("client-already-registered")
+    }
+
+    Scenario(
       "NETP UK VAT Number matches already quarantined scheme"
     ) {
 
@@ -94,6 +160,32 @@ class BusinessDetailsCoreValidationSpec extends BaseSpec {
         "the intermediary is on the client-already-registered page"
       )
       registration.checkJourneyUrl("client-already-registered")
+    }
+
+    Scenario(
+      "NETP NINO matches already active scheme with exclusion that has reached exclusion effective date - can register"
+    ) {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary enters a NINO that is already active in another member state")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("client-has-vat-number")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("client-business-name")
+      registration.enterAnswer("Business-name with nino")
+      registration.checkJourneyUrl("client-has-utr")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("clients-nino-number")
+      registration.enterAnswer("AA112234D")
+
+      Then(
+        "the intermediary is on the client-address page"
+      )
+      registration.checkJourneyUrl("client-address")
     }
 
     Scenario(
@@ -149,6 +241,32 @@ class BusinessDetailsCoreValidationSpec extends BaseSpec {
     }
 
     Scenario(
+      "NETP UTR matches already active scheme - with exclusion that has reached exclusion effective date - can register"
+    ) {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary enters a UTR that is already active in another member state")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("client-has-vat-number")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("client-business-name")
+      registration.enterAnswer("Business-name with nino")
+      registration.checkJourneyUrl("client-has-utr")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("client-utr-number")
+      registration.enterAnswer("1112223336")
+
+      Then(
+        "the intermediary is on the client-address page"
+      )
+      registration.checkJourneyUrl("client-address")
+    }
+
+    Scenario(
       "NETP UTR matches quarantined scheme"
     ) {
 
@@ -196,6 +314,30 @@ class BusinessDetailsCoreValidationSpec extends BaseSpec {
         "the intermediary is on the client-already-registered page"
       )
       registration.checkJourneyUrl("client-already-registered")
+    }
+
+    Scenario(
+      "NETP FTR matches already active scheme - with exclusion that has reached exclusion effective date - can register"
+    ) {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary enters an FTR that is already active in another member state")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("client-has-vat-number")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("client-country-based")
+      registration.selectCountry("Luxembourg")
+      registration.checkJourneyUrl("client-tax-reference")
+      registration.enterAnswer("AB1122336")
+
+      Then(
+        "the intermediary is on the client-business-name page"
+      )
+      registration.checkJourneyUrl("client-business-name")
     }
 
     Scenario(

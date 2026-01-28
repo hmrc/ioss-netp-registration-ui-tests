@@ -287,6 +287,102 @@ class PreviousRegistrationsCoreValidationSpec extends BaseSpec {
     }
 
     Scenario(
+      "NETP Non-NI IOSS Number matches already active scheme - with exclusion that has reached effective date - can register"
+    ) {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary enters an IOSS scheme for a non-NI country that is already active in another member state")
+      registration.answerVatDetailsUkVrn()
+      registration.checkJourneyUrl("confirm-tax-details")
+      registration.continue()
+      registration.checkJourneyUrl("have-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-country/1")
+      registration.selectCountry("Sweden")
+      registration.checkJourneyUrl("previous-scheme/1/1")
+      registration.answerSchemeType("IOSS")
+      registration.checkJourneyUrl("previous-scheme-intermediary/1/1")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-ioss-number/1/1")
+      registration.enterAnswer("IM7521122341")
+
+      Then(
+        "the intermediary is on the previous-scheme-answers/1 page"
+      )
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+    }
+
+    Scenario(
+      "NETP Non-NI IOSS Number matches already active scheme - with exclusion details that contain a reversal therefore are still registered - can not register"
+    ) {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary enters an IOSS scheme for a non-NI country that is already active in another member state")
+      registration.answerVatDetailsUkVrn()
+      registration.checkJourneyUrl("confirm-tax-details")
+      registration.continue()
+      registration.checkJourneyUrl("have-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-country/1")
+      registration.selectCountry("Sweden")
+      registration.checkJourneyUrl("previous-scheme/1/1")
+      registration.answerSchemeType("IOSS")
+      registration.checkJourneyUrl("previous-scheme-intermediary/1/1")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-ioss-number/1/1")
+      registration.enterAnswer("IM7521122343")
+
+      Then(
+        "the intermediary is on the client-already-registered page"
+      )
+      registration.checkJourneyUrl("client-already-registered")
+    }
+
+    Scenario(
+      "NETP Non-NI IOSS Number matches already active scheme - with exclusion has not reached exclusion effective date - can not register"
+    ) {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary enters an IOSS scheme for a non-NI country that is already active in another member state")
+      registration.answerVatDetailsUkVrn()
+      registration.checkJourneyUrl("confirm-tax-details")
+      registration.continue()
+      registration.checkJourneyUrl("have-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-country/1")
+      registration.selectCountry("Sweden")
+      registration.checkJourneyUrl("previous-scheme/1/1")
+      registration.answerSchemeType("IOSS")
+      registration.checkJourneyUrl("previous-scheme-intermediary/1/1")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-ioss-number/1/1")
+      registration.enterAnswer("IM7521122342")
+
+      Then(
+        "the intermediary is on the client-already-registered page"
+      )
+      registration.checkJourneyUrl("client-already-registered")
+    }
+
+    Scenario(
       "NETP Non-NI IOSS Number matches quarantined scheme"
     ) {
 
