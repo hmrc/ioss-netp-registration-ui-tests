@@ -452,7 +452,7 @@ object AmendRegistration extends BasePage {
       case "ukExcluded"         =>
         Assert.assertTrue(
           body.contains(
-            "You removed NETP Exclusion NINO from your account on 1 March 2025.\n" +
+            "You removed NETP Exclusion NINO from your account on 1 April 2025.\n" +
               "Registration details\n" +
               "Based in UK Yes\n" +
               "Has UK VAT registration number No\n" +
@@ -469,11 +469,11 @@ object AmendRegistration extends BasePage {
               "http://anothertest.co\n" +
               "Contact name Rocky Balboa Change\n" +
               //              Change hidden text start
-              "their contact name\n" +
+              "Contact name\n" +
               //              Change hidden text end
               "Telephone number 028 123 4567 Change\n" +
               //              Change hidden text start
-              "their telephone number\n" +
+              "Telephone number\n" +
               //              Change hidden text end
               "Email address rocky.balboa@chartoffwinkler.co.uk Change"
           )
@@ -509,11 +509,11 @@ object AmendRegistration extends BasePage {
               "Trading websites www.test.com\n" +
               "Contact name Test name Change\n" +
               //              Change hidden text start
-              "their contact name\n" +
+              "Contact name\n" +
               //              Change hidden text end
               "Telephone number 1234567890 Change\n" +
               //              Change hidden text start
-              "their telephone number\n" +
+              "Telephone number\n" +
               //              Change hidden text end
               "Email address email@test.com Change"
           )
@@ -554,11 +554,11 @@ object AmendRegistration extends BasePage {
               "http://anothertest.co\n" +
               "Contact name Rocky Balboa Change\n" +
               //              Change hidden text start
-              "their contact name\n" +
+              "Contact name\n" +
               //              Change hidden text end
               "Telephone number 028 123 4567 Change\n" +
               //              Change hidden text start
-              "their telephone number\n" +
+              "Telephone number\n" +
               //              Change hidden text end
               "Email address rocky.balboa@chartoffwinkler.co.uk Change"
           )
@@ -582,11 +582,11 @@ object AmendRegistration extends BasePage {
               "http://anothertest.co\n" +
               "Contact name Rocky Balboa Change\n" +
               //              Change hidden text start
-              "their contact name\n" +
+              "Contact name\n" +
               //              Change hidden text end
               "Telephone number 028 123 4567 Change\n" +
               //              Change hidden text start
-              "their telephone number\n" +
+              "Telephone number\n" +
               //              Change hidden text end
               "Email address rocky.balboa@chartoffwinkler.co.uk Change"
           )
