@@ -50,7 +50,7 @@ object AmendRegistration extends BasePage {
               "Has UK VAT registration number No\n" +
               "Trading name Third Client Change\n" +
               //          Hidden change text start
-              "your Clients trading name\n" +
+              "Trading name\n" +
               //          Hidden change text end
               "Has Unique Taxpayer Reference (UTR) number Yes\n" +
               "UTR number 1234567890\n" +
@@ -69,7 +69,7 @@ object AmendRegistration extends BasePage {
               "Has UK VAT registration number No\n" +
               "Trading name Updated 3rd client name Change\n" +
               //          Hidden change text start
-              "your Clients trading name\n" +
+              "Trading name\n" +
               //          Hidden change text end
               "Has Unique Taxpayer Reference (UTR) number Yes\n" +
               "UTR number 1234567890\n" +
@@ -87,7 +87,7 @@ object AmendRegistration extends BasePage {
               "Has UK VAT registration number No" +
               "\nTrading name Eighth Client Change\n" +
               //          Hidden change text start
-              "your Clients trading name\n" +
+              "Trading name\n" +
               //          Hidden change text end
               "Has Unique Taxpayer Reference (UTR) number No\n" +
               "National Insurance number (NINO) AA112211A\n" +
@@ -106,7 +106,7 @@ object AmendRegistration extends BasePage {
               "Has UK VAT registration number No" +
               "\nTrading name Updated 8th client name Change\n" +
               //          Hidden change text start
-              "your Clients trading name\n" +
+              "Trading name\n" +
               //          Hidden change text end
               "Has Unique Taxpayer Reference (UTR) number No\n" +
               "National Insurance number (NINO) AA112211A\n" +
@@ -129,7 +129,7 @@ object AmendRegistration extends BasePage {
               //          Hidden change text end
               "Trading name in Spain Fifth Client Change\n" +
               //          Hidden change text start
-              "your Clients trading name\n" +
+              "Trading name in Spain\n" +
               //          Hidden change text end
               "Principal place of business address 123 Street Name\n" +
               "Suburb\n" +
@@ -150,7 +150,7 @@ object AmendRegistration extends BasePage {
               //          Hidden change text end
               "Trading name in Christmas Island New 5th client name Change\n" +
               //          Hidden change text start
-              "your Clients trading name\n" +
+              "Trading name in Christmas Island\n" +
               //          Hidden change text end
               "Principal place of business address 123 Street Name\n" +
               "New Suburb\n" +
@@ -169,11 +169,11 @@ object AmendRegistration extends BasePage {
               //          Hidden change text end
               "National tax number FR112233 Change\n" +
               //          Hidden change text start
-              "your client's tax reference number\n" +
+              "National tax number\n" +
               //          Hidden change text end
               "Trading name in France Seventh Client Change\n" +
               //          Hidden change text start
-              "your Clients trading name\n" +
+              "Trading name in France\n" +
               //          Hidden change text end
               "Principal place of business address 100 Road Name\n" +
               "Suburb\n" +
@@ -193,11 +193,11 @@ object AmendRegistration extends BasePage {
               //          Hidden change text end
               "National tax number CA112233 Change\n" +
               //          Hidden change text start
-              "your client's tax reference number\n" +
+              "National tax number\n" +
               //          Hidden change text end
               "Trading name in Canada New 7th client name Change\n" +
               //          Hidden change text start
-              "your Clients trading name\n" +
+              "Trading name in Canada\n" +
               //          Hidden change text end
               "Principal place of business address 200 Street Name\n" +
               "Suburb\n" +
@@ -452,7 +452,7 @@ object AmendRegistration extends BasePage {
       case "ukExcluded"         =>
         Assert.assertTrue(
           body.contains(
-            "You removed NETP Exclusion NINO from your account on 1 March 2025.\n" +
+            "You removed NETP Exclusion NINO from your account on 1 April 2025.\n" +
               "Registration details\n" +
               "Based in UK Yes\n" +
               "Has UK VAT registration number No\n" +
@@ -469,11 +469,11 @@ object AmendRegistration extends BasePage {
               "http://anothertest.co\n" +
               "Contact name Rocky Balboa Change\n" +
               //              Change hidden text start
-              "their contact name\n" +
+              "Contact name\n" +
               //              Change hidden text end
               "Telephone number 028 123 4567 Change\n" +
               //              Change hidden text start
-              "their telephone number\n" +
+              "Telephone number\n" +
               //              Change hidden text end
               "Email address rocky.balboa@chartoffwinkler.co.uk Change"
           )
@@ -509,11 +509,11 @@ object AmendRegistration extends BasePage {
               "Trading websites www.test.com\n" +
               "Contact name Test name Change\n" +
               //              Change hidden text start
-              "their contact name\n" +
+              "Contact name\n" +
               //              Change hidden text end
               "Telephone number 1234567890 Change\n" +
               //              Change hidden text start
-              "their telephone number\n" +
+              "Telephone number\n" +
               //              Change hidden text end
               "Email address email@test.com Change"
           )
@@ -554,11 +554,11 @@ object AmendRegistration extends BasePage {
               "http://anothertest.co\n" +
               "Contact name Rocky Balboa Change\n" +
               //              Change hidden text start
-              "their contact name\n" +
+              "Contact name\n" +
               //              Change hidden text end
               "Telephone number 028 123 4567 Change\n" +
               //              Change hidden text start
-              "their telephone number\n" +
+              "Telephone number\n" +
               //              Change hidden text end
               "Email address rocky.balboa@chartoffwinkler.co.uk Change"
           )
@@ -582,11 +582,11 @@ object AmendRegistration extends BasePage {
               "http://anothertest.co\n" +
               "Contact name Rocky Balboa Change\n" +
               //              Change hidden text start
-              "their contact name\n" +
+              "Contact name\n" +
               //              Change hidden text end
               "Telephone number 028 123 4567 Change\n" +
               //              Change hidden text start
-              "their telephone number\n" +
+              "Telephone number\n" +
               //              Change hidden text end
               "Email address rocky.balboa@chartoffwinkler.co.uk Change"
           )
