@@ -1,0 +1,12 @@
+{
+  "add":[
+    {
+      "reason":"No content, this is a page that is not accessible in this journey",
+      "contextId":1,
+      "url":"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/remove-all-previous-registrations?waypoints=change-your-registration",
+      "ruleId":10038,
+      "newLevel":-1
+    }
+
+  ]
+}
