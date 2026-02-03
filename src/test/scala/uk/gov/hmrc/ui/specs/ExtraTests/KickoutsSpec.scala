@@ -59,5 +59,17 @@ class KickoutsSpec extends BaseSpec {
       Then("the intermediary is on the cannot-use-this-service page")
       registration.checkJourneyUrl("cannot-use-this-service")
     }
+
+    Scenario(
+      "Intermediary cannot access amend registration for a client not registered to them"
+    ) {
+
+      Given("the intermediary attempts to access amend registration for a client not registered to them")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "notAClient")
+
+      Then("the intermediary is presented with the access-denied page")
+      registration.checkJourneyUrl("access-denied")
+    }
   }
 }

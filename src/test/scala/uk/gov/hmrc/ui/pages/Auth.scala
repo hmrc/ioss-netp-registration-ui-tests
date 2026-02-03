@@ -64,7 +64,7 @@ object Auth extends BasePage {
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144774"
       case "ftrExcluded"                            =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144776"
-      case "minimalAmend"                           =>
+      case "minimalAmend" | "notAClient"            =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144881"
       case "selfExcludedFuture"                     =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002223331"
