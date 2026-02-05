@@ -108,15 +108,15 @@ object Auth extends BasePage {
       sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
       sendKeys(By.id("input-1-0-name"), "IntNumber")
       val intermediaryNumber = accountType match {
-        case "pending"                                                => "IN9001112223"
-        case "multipleSaved"                                          => "IN9001114567"
-        case "oneSaved"                                               => "IN9002224567"
-        case "minimalAmend"                                           => "IN9008888887"
-        case "failureAmend"                                           => "IN900666001"
-        case "excludedIntermediary"                                   => "IN9000306831"
-        case "multiplePreviousRegistrations"                          => "IN9002230002"
-        case "selfExcludedFuture" | "hmrcExcludedFuture" | "reversal" => "IN9002223331"
-        case _                                                        => "IN9001234567"
+        case "pending"                                                        => "IN9001112223"
+        case "multipleSaved"                                                  => "IN9001114567"
+        case "oneSaved"                                                       => "IN9002224567"
+        case "minimalAmend"                                                   => "IN9008888887"
+        case "failureAmend"                                                   => "IN900666001"
+        case "excludedIntermediary"                                           => "IN9000306831"
+        case multiple if multiple.startsWith("multiplePreviousRegistrations") => "IN9002230002"
+        case "selfExcludedFuture" | "hmrcExcludedFuture" | "reversal"         => "IN9002223331"
+        case _                                                                => "IN9001234567"
       }
       sendKeys(By.id("input-1-0-value"), intermediaryNumber)
     }
@@ -138,6 +138,7 @@ object Auth extends BasePage {
     }
 
     if (accountType startsWith "multiplePreviousRegistrations") {
+      println("Yes I am a multiple previous registration")
       sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
       sendKeys(By.id("input-2-0-name"), "IntNumber")
       sendKeys(By.id("input-2-0-value"), "IN9001230002")
