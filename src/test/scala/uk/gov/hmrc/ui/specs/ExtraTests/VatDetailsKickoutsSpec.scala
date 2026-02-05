@@ -119,7 +119,7 @@ class VatDetailsKickoutsSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard(true, true, "notFound")
 
       Then("the intermediary is shown the sorry there is a problem page")
-      registration.checkRegistrationUrl()
+      registration.checkJourneyUrl("no-registration-found")
       registration.checkProblemPage()
     }
 
@@ -132,7 +132,7 @@ class VatDetailsKickoutsSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard(true, false, "notRequired")
 
       Then("the intermediary is shown the sorry there is a problem page")
-      registration.checkRegistrationUrl()
+      registration.checkJourneyUrl("credential-unsupported")
       registration.checkProblemPage()
     }
 
