@@ -52,8 +52,8 @@ object AmendRegistration extends BasePage {
               //          Hidden change text start
               "Trading name\n" +
               //          Hidden change text end
-              "Has Unique Taxpayer Reference (UTR) number Yes\n" +
-              "UTR number 1234567890\n" +
+              "Has Unique Taxpayer Reference (UTR) Yes\n" +
+              "UTR 1234567890\n" +
               "Principal place of business address Other Address Line 1\n" +
               "Other Address Line 2\n" +
               "Other Town or City\n" +
@@ -71,8 +71,8 @@ object AmendRegistration extends BasePage {
               //          Hidden change text start
               "Trading name\n" +
               //          Hidden change text end
-              "Has Unique Taxpayer Reference (UTR) number Yes\n" +
-              "UTR number 1234567890\n" +
+              "Has Unique Taxpayer Reference (UTR) Yes\n" +
+              "UTR 1234567890\n" +
               "Principal place of business address 1 New Address Line\n" +
               "Other Address Line 2\n" +
               "New Town-Name\n" +
@@ -89,7 +89,7 @@ object AmendRegistration extends BasePage {
               //          Hidden change text start
               "Trading name\n" +
               //          Hidden change text end
-              "Has Unique Taxpayer Reference (UTR) number No\n" +
+              "Has Unique Taxpayer Reference (UTR) No\n" +
               "National Insurance number (NINO) AA112211A\n" +
               "Principal place of business address Other Address Line 1\n" +
               "Other Address Line 2\n" +
@@ -108,7 +108,7 @@ object AmendRegistration extends BasePage {
               //          Hidden change text start
               "Trading name\n" +
               //          Hidden change text end
-              "Has Unique Taxpayer Reference (UTR) number No\n" +
+              "Has Unique Taxpayer Reference (UTR) No\n" +
               "National Insurance number (NINO) AA112211A\n" +
               "Principal place of business address Other Address Line 1\n" +
               "New Suburb\n" +
@@ -457,7 +457,7 @@ object AmendRegistration extends BasePage {
               "Based in UK Yes\n" +
               "Has UK VAT registration number No\n" +
               "Trading name NETP Exclusion NINO\n" +
-              "Has Unique Taxpayer Reference (UTR) number No\n" +
+              "Has Unique Taxpayer Reference (UTR) No\n" +
               "National Insurance number (NINO) AA112233D\n" +
               "Principal place of business address 1 Street Name\n" +
               "Town\n" +
