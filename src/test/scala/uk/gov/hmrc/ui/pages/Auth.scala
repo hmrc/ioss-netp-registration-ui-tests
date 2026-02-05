@@ -138,7 +138,6 @@ object Auth extends BasePage {
     }
 
     if (accountType startsWith "multiplePreviousRegistrations") {
-      println("Yes I am a multiple previous registration")
       sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
       sendKeys(By.id("input-2-0-name"), "IntNumber")
       sendKeys(By.id("input-2-0-value"), "IN9001230002")
