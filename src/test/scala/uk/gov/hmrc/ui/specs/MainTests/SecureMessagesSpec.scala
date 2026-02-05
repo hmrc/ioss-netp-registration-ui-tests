@@ -160,7 +160,7 @@ class SecureMessagesSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(false, false, "noNetpEnrolment")
 
-      Then("the intermediary is on the access-denied page")
+      Then("the user is on the access-denied page")
       registration.checkJourneyUrl("access-denied")
     }
 
