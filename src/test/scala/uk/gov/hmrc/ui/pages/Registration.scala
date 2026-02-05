@@ -462,12 +462,6 @@ object Registration extends BasePage {
   def saveRegistration(): Unit =
     click(By.id("saveProgress"))
 
-  def checkRegistrationUrl(): Unit = {
-    val url = registrationUrl + journeyUrl
-    fluentWait.until(ExpectedConditions.urlContains(url))
-    getCurrentUrl should startWith(url)
-  }
-
   def clickCancel(): Unit =
     click(By.id("cancel"))
 }
