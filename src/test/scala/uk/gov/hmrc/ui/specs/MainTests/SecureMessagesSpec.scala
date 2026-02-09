@@ -160,8 +160,8 @@ class SecureMessagesSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(false, false, "noNetpEnrolment")
 
-      Then("the NETP is on the cannot-use-not-an-netp page")
-      registration.checkJourneyUrl("cannot-use-not-an-netp")
+      Then("the user is on the access-denied page")
+      registration.checkJourneyUrl("access-denied")
     }
 
     Scenario(
@@ -176,8 +176,8 @@ class SecureMessagesSpec extends BaseSpec {
       When("the intermediary manually accesses the NETP secure message inbox")
       registration.goToPage("secure-messages")
 
-      Then("the intermediary is on the cannot-use-not-an-netp page")
-      registration.checkJourneyUrl("cannot-use-not-an-netp")
+      Then("the intermediary is on the access-denied page")
+      registration.checkJourneyUrl("access-denied")
     }
   }
 }
