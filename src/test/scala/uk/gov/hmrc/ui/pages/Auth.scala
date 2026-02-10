@@ -80,6 +80,8 @@ object Auth extends BasePage {
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144670"
       case "multiplePreviousRegistrationsOldest"    =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144668"
+      case "excludedIntermediaryExcludedNETP"       =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9000306831"
       case "secureMessagesUkBasedUkVrn" | "secureMessagesUkBasedUtr" | "secureMessagesUkBasedNino" |
           "secureMessagesNonUkBasedUkVrn" | "secureMessagesNonUkBasedFtr" | "secureMessagesNone" | "noNetpEnrolment" =>
         s"$registrationUrl$journeyUrl/secure-messages"
@@ -113,7 +115,7 @@ object Auth extends BasePage {
         case "oneSaved"                                                       => "IN9002224567"
         case "minimalAmend"                                                   => "IN9008888887"
         case "failureAmend"                                                   => "IN900666001"
-        case "excludedIntermediary"                                           => "IN9000306831"
+        case "excludedIntermediary" | "excludedIntermediaryExcludedNETP"      => "IN9000306831"
         case multiple if multiple.startsWith("multiplePreviousRegistrations") => "IN9002230002"
         case "selfExcludedFuture" | "hmrcExcludedFuture" | "reversal"         => "IN9002223331"
         case _                                                                => "IN9001234567"

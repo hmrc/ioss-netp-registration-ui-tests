@@ -138,5 +138,16 @@ class AmendExcludedSpec extends BaseSpec {
       Then("there are no exclusions messages displayed on the change-your-registration page")
       amendRegistration.checkChangeLinksExcluded("reversal")
     }
+
+    Scenario(
+      "Excluded intermediary can access view/amend registration for excluded NETP"
+    ) {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "excludedIntermediaryExcludedNETP")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9000306831")
+    }
   }
 }
