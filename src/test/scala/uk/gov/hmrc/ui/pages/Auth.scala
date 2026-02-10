@@ -85,6 +85,8 @@ object Auth extends BasePage {
       case "secureMessagesUkBasedUkVrn" | "secureMessagesUkBasedUtr" | "secureMessagesUkBasedNino" |
           "secureMessagesNonUkBasedUkVrn" | "secureMessagesNonUkBasedFtr" | "secureMessagesNone" | "noNetpEnrolment" =>
         s"$registrationUrl$journeyUrl/secure-messages"
+      case "pendingNotClient"                       =>
+        s"$registrationUrl$journeyUrl/client-not-activated/6bf0b5aa-c9f1-4860-8bf4-a428c033c954"
       case _                                        =>
         s"$registrationUrl$journeyUrl"
     }
@@ -110,7 +112,7 @@ object Auth extends BasePage {
       sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
       sendKeys(By.id("input-1-0-name"), "IntNumber")
       val intermediaryNumber = accountType match {
-        case "pending"                                                        => "IN9001112223"
+        case "pending" | "pendingNotClient"                                   => "IN9001112223"
         case "multipleSaved"                                                  => "IN9001114567"
         case "oneSaved"                                                       => "IN9002224567"
         case "minimalAmend"                                                   => "IN9008888887"

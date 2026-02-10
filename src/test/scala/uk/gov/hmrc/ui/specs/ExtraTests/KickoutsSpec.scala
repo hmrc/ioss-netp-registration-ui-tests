@@ -71,5 +71,15 @@ class KickoutsSpec extends BaseSpec {
       Then("the intermediary is presented with the access-denied page")
       registration.checkJourneyUrl("access-denied")
     }
+
+    Scenario("Intermediary cannot access pending registrations for clients not assigned to them") {
+
+      Given("the intermediary attempts to access a pending registration for a client not registered to them")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "pendingNotClient")
+
+      Then("the intermediary is presented with the access-denied page")
+      registration.checkJourneyUrl("access-denied")
+    }
   }
 }
