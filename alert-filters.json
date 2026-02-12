@@ -6,6 +6,13 @@
       "url":"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/remove-all-previous-registrations?waypoints=change-your-registration",
       "ruleId":10038,
       "newLevel":-1
+    },
+    {
+      "reason":"No PII in this response",
+      "contextId":1,
+      "url":"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/add-website-address",
+      "ruleId":10062,
+      "newLevel":-1
     }
 
   ]
