@@ -47,7 +47,9 @@ class SaveForLaterKickoutsSpec extends BaseSpec {
       registration.checkJourneyUrl("expired-vrn-date")
     }
 
-    Scenario("Intermediary returns to a saved NETP registration where the FTR is now already active in another country") {
+    Scenario(
+      "Intermediary returns to a saved NETP registration where the FTR is now already active in another country"
+    ) {
       Given("the intermediary logs in to the NETP registration service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "saveKickouts")
@@ -89,7 +91,9 @@ class SaveForLaterKickoutsSpec extends BaseSpec {
       registration.checkJourneyUrl("other-country-excluded-and-quarantined?countryCode")
     }
 
-    Scenario("Intermediary returns to a saved NETP registration where a fixed establishment is now still active in another country") {
+    Scenario(
+      "Intermediary returns to a saved NETP registration where a fixed establishment is now still active in another country"
+    ) {
       Given("the intermediary logs in to the NETP registration service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "saveKickouts")
