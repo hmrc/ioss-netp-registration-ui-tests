@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,52 +42,52 @@ object Auth extends BasePage {
     getCurrentUrl should startWith(authUrl)
 
     val redirectUrl = accountType match {
-      case "noVrn"                                  =>
+      case "noVrn"                                                   =>
         s"$registrationUrl$journeyUrl/client-code-start/${getUrlCode()}"
-      case "noVrnPending"                           =>
+      case "noVrnPending"                                            =>
         s"$registrationUrl$journeyUrl/client-code-start/BRJRZF"
-      case "multipleSaved" | "oneSaved" | "noSaved" =>
+      case "multipleSaved" | "oneSaved" | "noSaved" | "saveKickouts" =>
         dashboardUrl
-      case "amend" | "ukBasedUkVrn"                 =>
+      case "amend" | "ukBasedUkVrn"                                  =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144771"
-      case "ukBasedUtr"                             =>
+      case "ukBasedUtr"                                              =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144773"
-      case "ukBasedNino"                            =>
+      case "ukBasedNino"                                             =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144778"
-      case "nonUkBasedUkVrn"                        =>
+      case "nonUkBasedUkVrn"                                         =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144775"
-      case "nonUkBasedFtr"                          =>
+      case "nonUkBasedFtr"                                           =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144777"
-      case "ukExcluded"                             =>
+      case "ukExcluded"                                              =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144772"
-      case "hmrcExcluded"                           =>
+      case "hmrcExcluded"                                            =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144774"
-      case "ftrExcluded"                            =>
+      case "ftrExcluded"                                             =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144776"
-      case "minimalAmend" | "notAClient"            =>
+      case "minimalAmend" | "notAClient"                             =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144881"
-      case "selfExcludedFuture"                     =>
+      case "selfExcludedFuture"                                      =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002223331"
-      case "hmrcExcludedFuture"                     =>
+      case "hmrcExcludedFuture"                                      =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002223332"
-      case "reversal"                               =>
+      case "reversal"                                                =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002223333"
-      case "failureAmend"                           =>
+      case "failureAmend"                                            =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002222222"
-      case "multiplePreviousRegistrationsCurrent"   =>
+      case "multiplePreviousRegistrationsCurrent"                    =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144672"
-      case "multiplePreviousRegistrationsMiddle"    =>
+      case "multiplePreviousRegistrationsMiddle"                     =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144670"
-      case "multiplePreviousRegistrationsOldest"    =>
+      case "multiplePreviousRegistrationsOldest"                     =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144668"
-      case "excludedIntermediaryExcludedNETP"       =>
+      case "excludedIntermediaryExcludedNETP"                        =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9000306831"
       case "secureMessagesUkBasedUkVrn" | "secureMessagesUkBasedUtr" | "secureMessagesUkBasedNino" |
           "secureMessagesNonUkBasedUkVrn" | "secureMessagesNonUkBasedFtr" | "secureMessagesNone" | "noNetpEnrolment" =>
         s"$registrationUrl$journeyUrl/secure-messages"
-      case "pendingNotClient"                       =>
+      case "pendingNotClient"                                        =>
         s"$registrationUrl$journeyUrl/client-not-activated/6bf0b5aa-c9f1-4860-8bf4-a428c033c954"
-      case _                                        =>
+      case _                                                         =>
         s"$registrationUrl$journeyUrl"
     }
 
@@ -103,6 +103,7 @@ object Auth extends BasePage {
         case "notFound"      => "900000001"
         case "multipleSaved" => "100000111"
         case "oneSaved"      => "100000222"
+        case "saveKickouts"  => "100000333"
         case _               => "100000001"
       }
       sendKeys(By.id("input-0-0-value"), vrn)
@@ -115,6 +116,7 @@ object Auth extends BasePage {
         case "pending" | "pendingNotClient"                                   => "IN9001112223"
         case "multipleSaved"                                                  => "IN9001114567"
         case "oneSaved"                                                       => "IN9002224567"
+        case "saveKickouts"                                                   => "IN9008888888"
         case "minimalAmend"                                                   => "IN9008888887"
         case "failureAmend"                                                   => "IN900666001"
         case "excludedIntermediary" | "excludedIntermediaryExcludedNETP"      => "IN9000306831"

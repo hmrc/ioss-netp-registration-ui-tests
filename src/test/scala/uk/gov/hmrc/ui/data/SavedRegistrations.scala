@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -101,6 +101,58 @@ object SavedRegistrations {
          |  }
          |}
          |
-        |""".stripMargin
+        |""".stripMargin,
+      s"""
+         |{
+         |  "_id": {
+         |    "$$oid": "69943ceae6f82aaba6ce4946"
+         |  },
+         |  "journeyId": "6b301bae-3d8f-4e82-ac7b-1eeed1d0d1ea",
+         |  "data": "gMK7gfKL/ztmPWuArYgOcFj+dUo3pTQLcH581djlSUb+0gWxogtJRzilguTYwOza1cVX9xj+DPUqb6PV4NzlTiU2PD6f8tLsKjvFbJvh+aqmW2+5QgUVO3iTbygrQ/Fm+nAF+uJJZmw0BBU4rkPEb38E2bSXxpEANmyZxPBRuSy0szwVYLsxv9gyQeWx+pD1zf5Pn5hdJm4iz7LBzC3MihGFt68l/HCwJJaduXQm+K0+PU8gyeF6bOhxre4pamYJIzPC1uBXhk7MMA==",
+         |  "intermediaryNumber": "IN9008888888",
+         |  "lastUpdated": {
+         |    "$$date": "${yesterday}T10:03:22.071Z"
+         |  }
+         |}
+         |""".stripMargin,
+      s"""
+         |{
+         |  "_id": {
+         |    "$$oid": "6994400ae6f82aaba6d158f8"
+         |  },
+         |  "journeyId": "46d06582-735b-4ffa-8e24-781f0e9dc49d",
+         |  "data": "i5qK91xfbdoJTfzr5Cv0uJ+31MICJSPYebm0UErzEEbn+TqgYGu3N0RD1vsbL8JLuwOVorkQVV0Tz83PXWrvXPnvjztsZGVDLyq9j9f+5cpLyQFrcTNaxwrEBMLjKzRmJnBQogsXkAGomgQUvnLS0V0JHtOJ/t1tug8sVFYuvLh0I5idT2RVsntLkjzU+Zj+vvc0SKMYuTOJkX30lC62KDEkU+yyfzKKIumQXn+DlOqvzwR191la2ZChgNBkeklg1cX5+cG+IwK8BrsB6IlwJvsBnqivrX7eqBfGfqfv8WNvrba+7MvoAsqOCzx22lxM+RXUMUmKHErIc1SmjPdC6bl/bSSMT+y/BVYRU8RlkX0BNx4QeXqIyHG33tpHcKaVoSEpPSf/SXGxM+2Rvz+e3bEsllg8BLLK71xnlbmcOFv4P8mTSjhGgiZUd8fXoV72IQ8gYrzrMJz8v2eF5oE7d4CrVOHMqBDOE5ijLgxH9T5K3Zl8vQI+QWzje/pg5CufuL5EL+IEiGpwQBG1HTWqGsuwNerD4d0b1Bb6Uu30pWLgfd/XQIs65qoqsWz2cbhJA6K9Hk4eNs8AtpfKtVnzy9MRpohpS8MpEYcFpq3HeClz+blT3SSGZ5w/E/obPot5ZD+NIibeKvvwRSvwf9o6oDujcnX3uPgw6IpEVi2e6F5pAVoWg62a",
+         |  "intermediaryNumber": "IN9008888888",
+         |  "lastUpdated": {
+         |    "$$date": "${yesterday}T10:16:42.911Z"
+         |  }
+         |}
+         |""".stripMargin,
+      s"""
+         |{
+         |  "_id": {
+         |    "$$oid": "69944afae6f82aaba6dc1115"
+         |  },
+         |  "journeyId": "c8d5c883-c605-44d6-b405-0da3090b58e9",
+         |  "data": "grO+8wOUw8VXHC3q3Br9LsmbLJB0L+wlkSGUM5Tf7Kzb4Pt72GKD9aYJsdKfJ6AIAPthUmou7R//RZ9bUdPldTCCdVndZclEyz9b1+wb90xxlWGciLohdfVnrBmKKdHJ7TLCDYG96a5PfaYNAa/crhPElMRQoQn5ucYedK/vXbdAg8suUyotuSKo4BhOS27ddh7Mq2aKCj8g0xiAh8ZXd8oZcpIDYorDol2Tj9Qe/4DY2yMSq7ZPM5grlg7Bp49urCyVFTCVR8hr5Q4xhmwu4t8PeRvhNpkqXFEKXM5pfC5mNzDX1DwUjVvS3/96Riw/vsaMzAgZXiW16G2U9uNKPjPUW/DIYu+WTDUB+KOeP6d/hhLu6McGS9186XfR/CqVi4X9AZKYZ5jIxi4vndcYbT2f7ShWPeYR/xcBCvSviw2mOC+rCOdKxdsMjTA3PWioGR76/rSDtIPT72zg4t0l+1ft6uS5m11sZxrwoMAyBPX+mwIh99+HWY96/A9zfnuxonfbn6e/BLpUwmZyW7jFyUcFPM2Do6R7DyqZfn2VqNRSEyNAiK3o9L4LuXFzb7DHwC/+65LRLxKTHGjc4QKudgIsnLHY6azvt4uRMdtB8eHRCLQO1Y3bDG4Wsg6HS3ucD5l7OTb92KftY7YZUu3lZdo+XD9cFqCdHOYfUOCGptYa0kst9wwoqIg0IEn1/XjE6/VDjie53KmVmc0lQd6P16WPOJgc+IM96AEU9WpxOKa/sWEkOsaqMyXpDmhldaFILipwqQvm5POuHCr9mj7Rncn7HQ9V5/jQ0Fwh5XrZ",
+         |  "intermediaryNumber": "IN9008888888",
+         |  "lastUpdated": {
+         |    "$$date": "${yesterday}T11:03:22.681Z"
+         |  }
+         |}
+         |""".stripMargin,
+      s"""
+         |{
+         |  "_id": {
+         |    "$$oid": "69945c0ee6f82aaba6ece134"
+         |  },
+         |  "journeyId": "8a33675c-7320-466f-8934-d39c2df60eca",
+         |  "data": "fswoNt7FLIk2Tf8dn0oeqywgtizmQ7hafNGgwI7DLj7qcqodQ0f/6LJl8OUNKRSulrP0PlGw+Qr/mkw7ccpZwOOWdftISUTB6Z25AYA/Wcmr2hhje868k8JIyHSIk/9ZR0kc+mdiPJj8W3hJrWmueUG2uH44QyXNPgvqrbYvQ+t0uQth46Sewliq5FPvmmKDEABHTcoedNv419pcM3TZJch2vuaBxvA0DlsAyUoUUf6XLhsW9k14VyHGswYaqwaZrPcG08R4wRii5zoQIynpu/fHzdfgMn0kf7tpeYjRQvhVYV6p2qnm8RKhQcZ10ElkoNYaimskmUWk7JMcxnSt73i8kWh4b9cn+sJwSxI4Zq1DIbJzBE3EQhYhXO4UW+7dabYm26aRv2kWov7zo79X2WBznCHUKq6pMXIO9/gwG/6eg2I5FIaj7aPDdU1DzmDTYBKeSwlRHU7UWHjrd2d2yLL2ZdJMiI7Uwely08eQXyHr1QBbaUCt5P6Zc6TG/KLNNujBAkVwXBlk65lkqrc7ZsrAfwSBxY8OA4jKS6+hQkz586q0hQtH3vArH2/uz8Xui6795ep0eobw8ggjQbfHGy9FEzpcsL+ctQcZEdm9aKaRBmnPNGQo0eWoyKRulQ7VJI3Dm0x/kA8YS/f168DbG+/9GJhI/uNodbYng8m1/c4IEW5tpRUToHoF5uFByrlepOAQozoSOp/fscKll6Cw+Q6XP5dzUbIA1OmsNlfm1kvSEYlPUWL/Kkl/AuyQ3cVypVOiVkTpbr8d4X/36Tu9uMm6YUXel+01WegXh8uZHSpYxwhIVq/9Xf64CleGhTQbg5P6MjW3KQAHkGZDhrY6zzfSsyrwYjeVsEov7g9qzZPmSHQMsYRmutV3V0czH4kXmvUdeUNFFMQfEzMoxyU5sRB5U+BRPYLVMBksfQvQMPLwF1FOKk5WJTouG8WblXCwjvWPrNqyjsVeSWScza+vUkUnbLsDjwI/ZhA0lmTpriz3Rk+JGaOAg+bEP/iC/U58rVtZFF+GX3JKpXQSzkq9+W88Vrq2I1xSXVSILuQsVr8vwSybiNtkUvPCtTJyHbxmtlREBU9eqeG9ba7d0PO5gKHPwWl2CO0okxxnf2VkY0oHxg==",
+         |  "intermediaryNumber": "IN9008888888",
+         |  "lastUpdated": {
+         |    "$$date": "${yesterday}T12:16:14.380Z"
+         |  }
+         |}
+         |""".stripMargin
     )
 }
