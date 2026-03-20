@@ -292,7 +292,6 @@ class NewRegistrationAlreadySavedSpec extends BaseSpec {
       registration.checkJourneyUrl("client-tax-reference")
       registration.enterAnswer("123MCDONALD456")
 
-
       Then("the intermediary is directed to the client-registration-already-pending page")
       registration.checkJourneyUrl("client-registration-already-pending")
 
