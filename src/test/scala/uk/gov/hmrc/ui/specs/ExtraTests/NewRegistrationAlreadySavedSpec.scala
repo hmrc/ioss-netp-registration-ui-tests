@@ -238,7 +238,7 @@ class NewRegistrationAlreadySavedSpec extends BaseSpec {
       registration.continue()
 
       And("the intermediary is redirected to the correct page of their saved registration")
-      registration.checkJourneyUrl("website-address/1")
+      registration.checkJourneyUrl("add-website-address")
     }
 
     Scenario("Non-UK based client with UK VRN - already saved - delete registration") {
