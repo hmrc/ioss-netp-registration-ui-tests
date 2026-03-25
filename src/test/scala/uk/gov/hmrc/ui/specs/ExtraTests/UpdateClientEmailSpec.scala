@@ -44,22 +44,22 @@ class UpdateClientEmailSpec extends BaseSpec {
       registration.checkDashboardJourneyUrl("client-awaiting-activation")
 
       And("the intermediary selects the only client in the list")
-      registration.selectClientLink("client-not-activated\\/4aa0d14f-4737-45a6-a3b4-051c95cc8cfe")
+      registration.selectClientLink("client-not-activated\\/edd256ce-a345-4236-b810-da8c0944b85f")
 
       And("the intermediary is on the client-not-activated page for the only client in the list")
-      registration.checkJourneyUrl("client-not-activated/4aa0d14f-4737-45a6-a3b4-051c95cc8cfe")
+      registration.checkJourneyUrl("client-not-activated/edd256ce-a345-4236-b810-da8c0944b85f")
 
       When("the intermediary selects the update email address link")
-      registration.selectClientLink("update-client-email-address\\/4aa0d14f-4737-45a6-a3b4-051c95cc8cfe")
+      registration.selectClientLink("update-client-email-address\\/edd256ce-a345-4236-b810-da8c0944b85f")
 
       And("the intermediary is on the update-client-email-address page")
-      registration.checkJourneyUrl("update-client-email-address/4aa0d14f-4737-45a6-a3b4-051c95cc8cfe")
+      registration.checkJourneyUrl("update-client-email-address/edd256ce-a345-4236-b810-da8c0944b85f")
 
       When("the intermediary submits a new email address")
       registration.enterAnswer("newemail@test.com")
 
       Then("the intermediary is on the client-email-updated page")
-      registration.checkJourneyUrl("client-email-updated/4aa0d14f-4737-45a6-a3b4-051c95cc8cfe")
+      registration.checkJourneyUrl("client-email-updated/edd256ce-a345-4236-b810-da8c0944b85f")
 
       And("the NETP can login, agree to the declaration and submit their registration")
       auth.goToAuthorityWizard()

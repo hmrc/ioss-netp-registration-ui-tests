@@ -45,7 +45,7 @@ object Auth extends BasePage {
       case "noVrn"                                                   =>
         s"$registrationUrl$journeyUrl/client-code-start/${getUrlCode()}"
       case "noVrnPending"                                            =>
-        s"$registrationUrl$journeyUrl/client-code-start/BRJRZF"
+        s"$registrationUrl$journeyUrl/client-code-start/RNPMMN"
       case "multipleSaved" | "oneSaved" | "noSaved" | "saveKickouts" =>
         dashboardUrl
       case "amend" | "ukBasedUkVrn"                                  =>
