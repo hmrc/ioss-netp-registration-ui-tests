@@ -379,13 +379,13 @@ object Registration extends BasePage {
 
   def completeActivationCodePendingClient(): Unit = {
     get(
-      "http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/test-only/get-client-code/BRJRZF"
+      "http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/test-only/get-client-code/RNPMMN"
     )
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     activationCode = htmlBody.split(">")(1).substring(0, 6)
 
     get(
-      "http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-start/BRJRZF"
+      "http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-start/RNPMMN"
     )
     sendKeys(By.id("value"), activationCode)
     click(continueButton)
