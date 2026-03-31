@@ -100,11 +100,11 @@ object Auth extends BasePage {
       sendKeys(By.id("input-0-0-name"), "VRN")
 
       val vrn = accountType match {
-        case "notFound"      => "900000001"
-        case "multipleSaved" => "100000111"
-        case "oneSaved"      => "100000222"
-        case "saveKickouts"  => "100000333"
-        case _               => "100000001"
+        case "notFound"                                       => "900000001"
+        case "multipleSaved" | "multipleSavedNewRegistration" => "100000111"
+        case "oneSaved"                                       => "100000222"
+        case "saveKickouts"                                   => "100000333"
+        case _                                                => "100000001"
       }
       sendKeys(By.id("input-0-0-value"), vrn)
     }
@@ -114,7 +114,7 @@ object Auth extends BasePage {
       sendKeys(By.id("input-1-0-name"), "IntNumber")
       val intermediaryNumber = accountType match {
         case "pending" | "pendingNotClient"                                   => "IN9001112223"
-        case "multipleSaved"                                                  => "IN9001114567"
+        case "multipleSaved" | "multipleSavedNewRegistration"                 => "IN9001114567"
         case "oneSaved"                                                       => "IN9002224567"
         case "saveKickouts"                                                   => "IN9008888888"
         case "minimalAmend"                                                   => "IN9008888887"
