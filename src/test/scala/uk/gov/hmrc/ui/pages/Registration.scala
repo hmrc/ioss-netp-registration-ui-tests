@@ -464,4 +464,26 @@ object Registration extends BasePage {
 
   def clickCancel(): Unit =
     click(By.id("cancel"))
+
+  def selectCssLink(link: String): Unit =
+    click(By.cssSelector(s"a[href*=$link]"))
+
+  def checkAlreadyPending(version: String): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+
+    version match {
+      case "ukVrn"    =>
+        Assert.assertTrue(htmlBody.contains("UK VAT registration number 123456777"))
+      case "ukUtr"    =>
+        Assert.assertTrue(htmlBody.contains("UTR 1234567888"))
+      case "ukNino"   =>
+        Assert.assertTrue(htmlBody.contains("National Insurance number (NINO) QQ123444C"))
+      case "nonUkVrn" =>
+        Assert.assertTrue(htmlBody.contains("UK VAT registration number 123456888"))
+      case "nonUkFtr" =>
+        Assert.assertTrue(htmlBody.contains("National tax number 654654654"))
+      case _          =>
+        throw new Exception("This version does not exist")
+    }
+  }
 }
