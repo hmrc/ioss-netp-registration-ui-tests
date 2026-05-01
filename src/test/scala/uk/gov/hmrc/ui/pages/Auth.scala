@@ -115,6 +115,7 @@ object Auth extends BasePage {
       val intermediaryNumber = accountType match {
         case "pending" | "pendingNotClient"                                   => "IN9001112223"
         case "multipleSaved" | "multipleSavedNewRegistration"                 => "IN9001114567"
+        case "newRegistrationsAlreadyPending"                                 => "IN9009988771"
         case "oneSaved"                                                       => "IN9002224567"
         case "saveKickouts"                                                   => "IN9008888888"
         case "minimalAmend"                                                   => "IN9008888887"
