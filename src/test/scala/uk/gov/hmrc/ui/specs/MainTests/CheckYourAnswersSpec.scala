@@ -294,6 +294,8 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.enterAnswer("IM2468787877")
       registration.checkJourneyUrl("previous-scheme-answers/3")
       registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.answerRadioButton("no")
 
       Then("the intermediary adds more tax details")
       registration.checkJourneyUrl("check-your-answers")
