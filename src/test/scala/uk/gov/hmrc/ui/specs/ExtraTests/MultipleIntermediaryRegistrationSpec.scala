@@ -39,12 +39,24 @@ class MultipleIntermediaryRegistrationSpec extends BaseSpec {
       Then("the correct Registration details are displayed")
       amendRegistration.checkIossNumber("IM9001144672")
 
-      When("the intermediary submits the registration without amending any details")
-      registration.clickSubmit()
+      And("it shows that no details have been amended")
+      registration.noAmendments()
 
-      Then("the successful-amend page shows that no information in the registration has been amended")
+      When("the intermediary clicks change for contact details")
+      registration.selectChangeOrRemoveLink(
+        "business-contact-details\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can update their phone number and email address")
+      registration.checkJourneyUrl("business-contact-details?waypoints=change-your-registration")
+      registration.updateField("telephoneNumber", "+441234567890")
+      registration.updateField("emailAddress", "amend-test@email.com")
+      registration.continue()
+
+      And("the intermediary submits the amended registration")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.clickSubmit()
       registration.checkJourneyUrl("successful-amend")
-      amendRegistration.checkAmendedAnswers("noAmendedAnswers")
 
       Given("the intermediary views a NETP registration for their previous registration")
       auth.goToAuthorityWizard()
@@ -54,12 +66,24 @@ class MultipleIntermediaryRegistrationSpec extends BaseSpec {
       Then("the correct Registration details are displayed")
       amendRegistration.checkIossNumber("IM9001144670")
 
-      When("the intermediary submits the registration without amending any details")
-      registration.clickSubmit()
+      And("it shows that no details have been amended")
+      registration.noAmendments()
 
-      Then("the successful-amend page shows that no information in the registration has been amended")
+      When("the intermediary clicks change for contact details")
+      registration.selectChangeOrRemoveLink(
+        "business-contact-details\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can update their phone number and email address")
+      registration.checkJourneyUrl("business-contact-details?waypoints=change-your-registration")
+      registration.updateField("telephoneNumber", "+441234567890")
+      registration.updateField("emailAddress", "amend-test@email.com")
+      registration.continue()
+
+      And("the intermediary submits the amended registration")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.clickSubmit()
       registration.checkJourneyUrl("successful-amend")
-      amendRegistration.checkAmendedAnswers("noAmendedAnswers")
 
       Given("the intermediary views a NETP registration for their oldest previous registration")
       auth.goToAuthorityWizard()
@@ -69,12 +93,24 @@ class MultipleIntermediaryRegistrationSpec extends BaseSpec {
       Then("the correct Registration details are displayed")
       amendRegistration.checkIossNumber("IM9001144668")
 
-      When("the intermediary submits the registration without amending any details")
-      registration.clickSubmit()
+      And("it shows that no details have been amended")
+      registration.noAmendments()
 
-      Then("the successful-amend page shows that no information in the registration has been amended")
+      When("the intermediary clicks change for contact details")
+      registration.selectChangeOrRemoveLink(
+        "business-contact-details\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can update their phone number and email address")
+      registration.checkJourneyUrl("business-contact-details?waypoints=change-your-registration")
+      registration.updateField("telephoneNumber", "+441234567890")
+      registration.updateField("emailAddress", "amend-test@email.com")
+      registration.continue()
+
+      And("the intermediary submits the amended registration")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.clickSubmit()
       registration.checkJourneyUrl("successful-amend")
-      amendRegistration.checkAmendedAnswers("noAmendedAnswers")
     }
   }
 }

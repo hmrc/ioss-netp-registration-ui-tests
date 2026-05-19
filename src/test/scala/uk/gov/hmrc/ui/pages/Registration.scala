@@ -486,4 +486,9 @@ object Registration extends BasePage {
         throw new Exception("This version does not exist")
     }
   }
+
+  def noAmendments(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You have not made any changes."))
+  }
 }

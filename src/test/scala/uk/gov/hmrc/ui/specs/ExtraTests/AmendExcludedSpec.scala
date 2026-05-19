@@ -40,12 +40,20 @@ class AmendExcludedSpec extends BaseSpec {
       Then("the correct change links are available on the change-your-registration page")
       amendRegistration.checkChangeLinksExcluded("ukExcluded")
 
-      When("the intermediary submits the registration without amending any details")
-      registration.clickSubmit()
+      When("the intermediary clicks change for contact details")
+      registration.selectChangeOrRemoveLink(
+        "business-contact-details\\?waypoints\\=change-your-registration"
+      )
 
-      Then("the successful-amend page shows that no information in the registration has been amended")
+      Then("the intermediary can update their phone number and email address")
+      registration.checkJourneyUrl("business-contact-details?waypoints=change-your-registration")
+      registration.updateField("telephoneNumber", "+441234567890")
+      registration.updateField("emailAddress", "amend-test@email.com")
+      registration.continue()
+
+      And("the intermediary can successfully submit their amended registration")
+      registration.clickSubmit()
       registration.checkJourneyUrl("successful-amend")
-      amendRegistration.checkAmendedAnswers("noAmendedAnswers")
     }
 
     Scenario(

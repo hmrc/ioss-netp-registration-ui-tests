@@ -34,18 +34,14 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the intermediary views the NETP registration")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "ukBasedUkVrn")
+
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       Then("the correct Registration details are displayed for a UK based client with a UK VRN")
       amendRegistration.checkIossNumber("IM9001144771")
       amendRegistration.checkRegistrationDetails("ukBasedUkVrn")
-
-      When("the intermediary submits the registration without amending any details")
-      registration.clickSubmit()
-
-      Then("the successful-amend page shows that no information in the registration has been amended")
-      registration.checkJourneyUrl("successful-amend")
-      amendRegistration.checkAmendedAnswers("noAmendedAnswers")
     }
 
     Scenario(
@@ -55,7 +51,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the intermediary views the NETP registration")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "ukBasedUtr")
+
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       Then("the correct Registration details are displayed for a UK based client with a UTR")
       amendRegistration.checkIossNumber("IM9001144773")
@@ -104,7 +103,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the intermediary views the NETP registration")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "ukBasedNino")
+
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       Then("the correct Registration details are displayed for a UK based client with a NINO")
       amendRegistration.checkIossNumber("IM9001144778")
@@ -152,7 +154,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the intermediary views the NETP registration")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "nonUkBasedUkVrn")
+
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       Then("the correct Registration details are displayed for a Non-UK based client with a UK VRN")
       amendRegistration.checkIossNumber("IM9001144775")
@@ -213,7 +218,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the intermediary views the NETP registration")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "nonUkBasedFtr")
+
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       Then("the correct Registration details are displayed for a Non-UK based client with an FTR")
       amendRegistration.checkIossNumber("IM9001144777")
@@ -282,7 +290,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "amend")
+
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
       amendRegistration.checkIossNumber("IM9001144771")
 
       When("the intermediary clicks change for contact details")
@@ -313,7 +324,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "amend")
+
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
       amendRegistration.checkIossNumber("IM9001144771")
 
       When("the intermediary clicks change for Other trading names")
@@ -395,7 +409,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "ukBasedUkVrn")
+
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
       amendRegistration.checkIossNumber("IM9001144771")
 
       When("the intermediary clicks change for Have a different trading name")
@@ -443,7 +460,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "minimalAmend")
+
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
       amendRegistration.checkIossNumber("IM9001144881")
 
       When("the intermediary clicks change for Have a different trading name")
@@ -604,7 +624,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "minimalAmend")
+
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
       amendRegistration.checkIossNumber("IM9001144881")
 
       When("the intermediary clicks change for Trading websites")
@@ -648,7 +671,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "amend")
+
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
       amendRegistration.checkIossNumber("IM9001144771")
 
       When("the intermediary attempts to access the remove-all-previous-registrations in amend journey")
@@ -666,7 +692,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "amend")
+
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
       amendRegistration.checkIossNumber("IM9001144771")
 
       When(
@@ -790,7 +819,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "minimalAmend")
+
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
       amendRegistration.checkIossNumber("IM9001144881")
 
       When("the intermediary clicks change for Trading websites")
@@ -836,14 +868,48 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "failureAmend")
+
+      And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
       amendRegistration.checkIossNumber("IM9002222222")
 
-      When("the intermediary submits the registration without amending any details")
+      When("the intermediary clicks change for contact details")
+      registration.selectChangeOrRemoveLink(
+        "business-contact-details\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary can update their phone number and email address")
+      registration.checkJourneyUrl("business-contact-details?waypoints=change-your-registration")
+      registration.updateField("telephoneNumber", "+441234567890")
+      registration.updateField("emailAddress", "amend-test@email.com")
+      registration.continue()
+      registration.checkJourneyUrl("change-your-registration")
+
+      When("the intermediary submits the amended registration")
       registration.clickSubmit()
 
       Then("the submission failure page is displayed")
       registration.checkJourneyUrl("error-submitting-amend")
+    }
+
+    Scenario(
+      "Intermediary does not make changes to NETP registration and goes back to client list"
+    ) {
+
+      Given("the intermediary views the NETP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "ukBasedUkVrn")
+
+      And("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
+
+      When("the intermediary clicks on the Return to your list of clients link")
+      registration.clickLink("return-to-client-list")
+
+      Then("the intermediary is back to their client list")
+      registration.checkDashboardJourneyUrl("client-list")
     }
   }
 }
