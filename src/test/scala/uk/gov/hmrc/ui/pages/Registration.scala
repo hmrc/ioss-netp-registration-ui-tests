@@ -201,7 +201,7 @@ object Registration extends BasePage {
     checkJourneyUrl("add-website-address")
     answerRadioButton("no")
     checkJourneyUrl("business-contact-details")
-    fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
+    fillContactDetails("Firstname Surname", "+44123456789", "iossint@iossint.hmrc.gov.uk")
   }
 
   def enterOnePreviousRegistration(): Unit = {
@@ -318,8 +318,9 @@ object Registration extends BasePage {
     urlCode
 
   def setActivationCode(): Unit = {
+
     val testOnlyUrl =
-      s"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/test-only/get-client-code/$urlCode"
+      s"$registrationUrl/pay-clients-vat-on-eu-sales/register-new-ioss-client/test-only/get-client-code/$urlCode"
     get(testOnlyUrl)
     fluentWait.until(ExpectedConditions.urlContains(testOnlyUrl))
 
@@ -328,10 +329,10 @@ object Registration extends BasePage {
   }
 
   def enterActivationCode(): Unit = {
-    get(s"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-start/$urlCode")
+    get(s"$registrationUrl/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-start/$urlCode")
     fluentWait.until(
       ExpectedConditions.urlContains(
-        s"http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-entry/$urlCode"
+        s"$registrationUrl/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-entry/$urlCode"
       )
     )
 
@@ -379,13 +380,13 @@ object Registration extends BasePage {
 
   def completeActivationCodePendingClient(): Unit = {
     get(
-      "http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/test-only/get-client-code/RNPMMN"
+      s"$registrationUrl/pay-clients-vat-on-eu-sales/register-new-ioss-client/test-only/get-client-code/RNPMMN"
     )
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     activationCode = htmlBody.split(">")(1).substring(0, 6)
 
     get(
-      "http://localhost:10181/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-start/RNPMMN"
+      s"$registrationUrl/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-start/RNPMMN"
     )
     sendKeys(By.id("value"), activationCode)
     click(continueButton)
