@@ -288,7 +288,7 @@ object AmendRegistration extends BasePage {
           body.contains(
             "You changed the following details:\n" +
               "Telephone number +441234567890\n" +
-              "Email address amend-test@email.com"
+              "Email address amend-iossint@iossint.hmrc.gov.uk"
           )
         )
       case "editExisting"                        =>
@@ -371,7 +371,7 @@ object AmendRegistration extends BasePage {
             "You changed the following details:\n" +
               "Contact name New Name\n" +
               "Telephone number +441234567890\n" +
-              "Email address amend-test@email.com"
+              "Email address amend-iossint@iossint.hmrc.gov.uk"
           )
         )
       case "ukBasedUtrAmended"                   =>

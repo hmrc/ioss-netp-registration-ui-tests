@@ -304,7 +304,7 @@ class AmendRegistrationSpec extends BaseSpec {
       Then("the intermediary can update their phone number and email address")
       registration.checkJourneyUrl("business-contact-details?waypoints=change-your-registration")
       registration.updateField("telephoneNumber", "+441234567890")
-      registration.updateField("emailAddress", "amend-test@email.com")
+      registration.updateField("emailAddress", "amend-iossint@iossint.hmrc.gov.uk")
       registration.continue()
 
       And("the intermediary is on the change-your-registration page")
@@ -882,7 +882,7 @@ class AmendRegistrationSpec extends BaseSpec {
       Then("the intermediary can update their phone number and email address")
       registration.checkJourneyUrl("business-contact-details?waypoints=change-your-registration")
       registration.updateField("telephoneNumber", "+441234567890")
-      registration.updateField("emailAddress", "amend-test@email.com")
+      registration.updateField("emailAddress", "amend-iossint@iossint.hmrc.gov.uk")
       registration.continue()
       registration.checkJourneyUrl("change-your-registration")
 

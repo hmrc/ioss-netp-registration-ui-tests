@@ -56,7 +56,7 @@ class UpdateClientEmailSpec extends BaseSpec {
       registration.checkJourneyUrl("update-client-email-address/edd256ce-a345-4236-b810-da8c0944b85f")
 
       When("the intermediary submits a new email address")
-      registration.enterAnswer("newemail@test.com")
+      registration.enterAnswer("iossint@iossint.hmrc.gov.uk")
 
       Then("the intermediary is on the client-email-updated page")
       registration.checkJourneyUrl("client-email-updated/edd256ce-a345-4236-b810-da8c0944b85f")

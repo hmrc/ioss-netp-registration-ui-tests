@@ -277,7 +277,7 @@ class RegistrationSpec extends BaseSpec {
 
       Then("the intermediary enters credentials on contact-details page")
       registration.checkJourneyUrl("business-contact-details")
-      registration.fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
+      registration.fillContactDetails("Firstname Surname", "+44123456789", "iossint@iossint.hmrc.gov.uk")
 
       And("the intermediary continues through the check-your-answers page")
       registration.checkJourneyUrl("check-your-answers")

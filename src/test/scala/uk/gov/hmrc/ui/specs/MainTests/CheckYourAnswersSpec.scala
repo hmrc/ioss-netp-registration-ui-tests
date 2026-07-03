@@ -56,7 +56,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("add-website-address")
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("business-contact-details")
-      registration.fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
+      registration.fillContactDetails("Firstname Surname", "+44123456789", "iossint@iossint.hmrc.gov.uk")
 
       When("the intermediary selects change for Have a different trading name on the check-your-answers page")
       registration.checkJourneyUrl("check-your-answers")
@@ -106,7 +106,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("add-website-address")
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("business-contact-details")
-      registration.fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
+      registration.fillContactDetails("Firstname Surname", "+44123456789", "iossint@iossint.hmrc.gov.uk")
 
       When(
         "the intermediary selects change for Previously registered for an IOSS scheme on the check-your-answers page"
@@ -156,7 +156,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("add-website-address")
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("business-contact-details")
-      registration.fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
+      registration.fillContactDetails("Firstname Surname", "+44123456789", "iossint@iossint.hmrc.gov.uk")
 
       When(
         "the intermediary selects change for Have a fixed establishment in an EU country on the check-your-answers page"
@@ -265,7 +265,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("add-website-address")
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("business-contact-details")
-      registration.fillContactDetails("Firstname Surname", "+44123456789", "test-email@test.co.uk")
+      registration.fillContactDetails("Firstname Surname", "+44123456789", "iossint@iossint.hmrc.gov.uk")
 
       Then("the intermediary adds another trading name")
       registration.checkJourneyUrl("check-your-answers")
