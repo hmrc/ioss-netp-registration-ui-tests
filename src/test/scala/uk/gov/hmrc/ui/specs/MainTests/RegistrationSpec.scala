@@ -267,13 +267,9 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("eu-fixed-establishment")
       registration.answerRadioButton("no")
 
-      Then("the intermediary adds the first client website address")
+      Then("the intermediary leaves the client website address blank")
       registration.checkJourneyUrl("website-address/1")
-      registration.enterAnswer("www.1st-website.co.uk")
-
-      Then("the intermediary answers yes to add another client website address")
-      registration.checkJourneyUrl("add-website-address")
-      registration.answerRadioButton("no")
+      registration.continue()
 
       Then("the intermediary enters credentials on contact-details page")
       registration.checkJourneyUrl("business-contact-details")
@@ -281,6 +277,7 @@ class RegistrationSpec extends BaseSpec {
 
       And("the intermediary continues through the check-your-answers page")
       registration.checkJourneyUrl("check-your-answers")
+      registration.noWebsitesAdded()
       registration.continue()
 
       When("the intermediary accepts the declaration")

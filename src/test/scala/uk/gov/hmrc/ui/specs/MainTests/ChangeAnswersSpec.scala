@@ -441,5 +441,65 @@ class ChangeAnswersSpec extends BaseSpec {
       And("the NETP can complete the declaration and submit the registration")
       registration.submitDeclarationAndRegistrationNETP()
     }
+
+    Scenario("Intermediary adds websites on their NETP registration and then removes them") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "standard")
+      registration.checkJourneyUrl("client-uk-based")
+
+      And("the intermediary answers questions for a UK based NETP")
+      registration.answerVatDetailsUkVrn()
+
+      When(
+        "the intermediary selects change for Based in UK on the confirm-tax-details page"
+      )
+      registration.checkJourneyUrl("confirm-tax-details")
+      registration.continue()
+
+      When("the intermediary answers no to all questions leading up to websites")
+      registration.checkJourneyUrl("have-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("eu-fixed-establishment")
+      registration.answerRadioButton("no")
+
+      Then("the intermediary adds website addresses")
+      registration.checkJourneyUrl("website-address/1")
+      registration.enterAnswer("www.first-website.com")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("website-address/2")
+      registration.enterAnswer("http://websiteno2.co.uk")
+
+      Then("the intermediary removes the websites they have added")
+      registration.checkJourneyUrl("add-website-address")
+      registration.selectChangeOrRemoveLink("remove-website-address\\/2")
+      registration.checkJourneyUrl("remove-website-address/2")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("add-website-address")
+      registration.selectChangeOrRemoveLink("remove-website-address\\/1")
+      registration.checkJourneyUrl("remove-website-address/1")
+      registration.answerRadioButton("yes")
+
+      Then("the intermediary leaves the client website address page blank")
+      registration.checkJourneyUrl("website-address/1")
+      registration.continue()
+
+      Then("the intermediary completes the rest of the registration journey")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Firstname Surname", "+44123456789", "iossint@iossint.hmrc.gov.uk")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.noWebsitesAdded()
+      registration.continue()
+      registration.checkJourneyUrl("declaration")
+      registration.selectCheckbox()
+      registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
+    }
   }
 }

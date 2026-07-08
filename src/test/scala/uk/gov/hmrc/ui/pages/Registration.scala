@@ -197,9 +197,7 @@ object Registration extends BasePage {
     checkJourneyUrl("eu-fixed-establishment")
     answerRadioButton("no")
     checkJourneyUrl("website-address/1")
-    enterAnswer("www.1st-website.co.uk")
-    checkJourneyUrl("add-website-address")
-    answerRadioButton("no")
+    continue()
     checkJourneyUrl("business-contact-details")
     fillContactDetails("Firstname Surname", "+44123456789", "iossint@iossint.hmrc.gov.uk")
   }
@@ -491,5 +489,10 @@ object Registration extends BasePage {
   def noAmendments(): Unit = {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You have not made any changes."))
+  }
+
+  def noWebsitesAdded(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("Trading websites None supplied Add"))
   }
 }

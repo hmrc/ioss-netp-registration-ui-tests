@@ -665,6 +665,45 @@ class AmendRegistrationSpec extends BaseSpec {
       amendRegistration.checkAmendedAnswers("websites")
     }
 
+    Scenario("Intermediary can add website details in a NETP registration with no websites") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "noWebsitesAmend")
+
+      And("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
+      amendRegistration.checkIossNumber("IM9001144882")
+
+      When("the intermediary clicks Add for Trading websites")
+      registration.selectChangeOrRemoveLink(
+        "website-address\\/1\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary adds websites")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.checkJourneyUrl("website-address/1?waypoints=change-your-registration")
+      registration.enterAnswer("https://newwebsite.co")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("website-address/2?waypoints=change-your-registration")
+      registration.enterAnswer("https://newwebsite2.co")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
+
+      And("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144881")
+
+      When("the intermediary submits the amended registration")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct amendments to the registration")
+      registration.checkJourneyUrl("successful-amend")
+      amendRegistration.checkAmendedAnswers("websites")
+    }
+
     Scenario(
       "Intermediary cannot access the remove all previous registrations functionality during an amend journey"
     ) {
