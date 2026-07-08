@@ -338,6 +338,14 @@ object AmendRegistration extends BasePage {
               "http://anothertest.co"
           )
         )
+      case "noWebsites"                          =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Trading websites removed www.test.com\n" +
+              "http://anothertest.co"
+          )
+        )
       case "previousRegistrations"               =>
         Assert.assertTrue(
           body.contains(
