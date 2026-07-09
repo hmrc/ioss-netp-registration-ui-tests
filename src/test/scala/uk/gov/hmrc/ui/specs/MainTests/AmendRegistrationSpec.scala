@@ -692,7 +692,7 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.answerRadioButton("yes")
 
       And("leaves websites address blank")
-      registration.checkJourneyUrl("website-address/1?waypoints=add-website-address%2Cchange-your-registration")
+      registration.checkJourneyUrl("website-address/1?waypoints=change-your-registration")
       registration.continue()
 
       And("the intermediary is on the change-your-registration page")
@@ -725,26 +725,25 @@ class AmendRegistrationSpec extends BaseSpec {
       )
 
       Then("the intermediary adds websites")
-      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
       registration.checkJourneyUrl("website-address/1?waypoints=change-your-registration")
       registration.enterAnswer("https://newwebsite.co")
       registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
       registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("website-address/2?waypoints=change-your-registration")
+      registration.checkJourneyUrl("website-address/2?waypoints=add-website-address%2Cchange-your-registration")
       registration.enterAnswer("https://newwebsite2.co")
       registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
       registration.answerRadioButton("no")
 
       And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
-      amendRegistration.checkIossNumber("IM9001144881")
+      amendRegistration.checkIossNumber("IM9001144882")
 
       When("the intermediary submits the amended registration")
       registration.clickSubmit()
 
       Then("the successful-amend page shows the correct amendments to the registration")
       registration.checkJourneyUrl("successful-amend")
-      amendRegistration.checkAmendedAnswers("websites")
+      amendRegistration.checkAmendedAnswers("websitesAdded")
     }
 
     Scenario(

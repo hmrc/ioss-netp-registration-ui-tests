@@ -401,6 +401,8 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("website-address/2")
       registration.enterAnswer("http://websiteno2.co.uk")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
 
       Then("the intermediary adds contact details")
       registration.checkJourneyUrl("business-contact-details")
@@ -411,7 +413,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.selectChangeOrRemoveLink("add-website-address\\?waypoints\\=check-your-answers")
       registration.checkJourneyUrl("add-website-address?waypoints=check-your-answers")
       registration.selectChangeOrRemoveLink("remove-website-address\\/2\\?waypoints\\=check-your-answers")
-      registration.checkJourneyUrl("?waypoints=check-your-answers")
+      registration.checkJourneyUrl("remove-website-address/2?waypoints=check-your-answers")
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("add-website-address?waypoints=check-your-answers")
       registration.selectChangeOrRemoveLink("remove-website-address\\/1\\?waypoints\\=check-your-answers")
