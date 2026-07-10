@@ -665,6 +665,87 @@ class AmendRegistrationSpec extends BaseSpec {
       amendRegistration.checkAmendedAnswers("websites")
     }
 
+    Scenario("Intermediary can remove all websites from the client registration") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "minimalAmend")
+
+      And("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
+      amendRegistration.checkIossNumber("IM9001144881")
+
+      When("the intermediary clicks change for Trading websites")
+      registration.selectChangeOrRemoveLink(
+        "add-website-address\\?waypoints\\=change-your-registration"
+      )
+
+      And("the intermediary removes both websites")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.selectChangeOrRemoveLink("remove-website-address\\/1\\?waypoints\\=change-your-registration")
+      registration.checkJourneyUrl("remove-website-address/1?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.selectChangeOrRemoveLink("remove-website-address\\/1\\?waypoints\\=change-your-registration")
+      registration.checkJourneyUrl("remove-website-address/1?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+
+      And("leaves websites address blank")
+      registration.checkJourneyUrl("website-address/1?waypoints=change-your-registration")
+      registration.continue()
+
+      And("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144881")
+      registration.noWebsitesAdded()
+
+      When("the intermediary submits the amended registration")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct amendments to the registration")
+      registration.checkJourneyUrl("successful-amend")
+      amendRegistration.checkAmendedAnswers("noWebsites")
+    }
+
+    Scenario("Intermediary can add website details in a NETP registration with no websites") {
+
+      Given("the intermediary accesses the IOSS NETP Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "noWebsitesAmend")
+
+      And("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
+      amendRegistration.checkIossNumber("IM9001144882")
+
+      When("the intermediary clicks Add for Trading websites")
+      registration.selectChangeOrRemoveLink(
+        "website-address\\/1\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the intermediary adds websites")
+      registration.checkJourneyUrl("website-address/1?waypoints=change-your-registration")
+      registration.enterAnswer("https://newwebsite.co")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("website-address/2?waypoints=add-website-address%2Cchange-your-registration")
+      registration.enterAnswer("https://newwebsite2.co")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
+
+      And("the intermediary is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+      amendRegistration.checkIossNumber("IM9001144882")
+
+      When("the intermediary submits the amended registration")
+      registration.clickSubmit()
+
+      Then("the successful-amend page shows the correct amendments to the registration")
+      registration.checkJourneyUrl("successful-amend")
+      amendRegistration.checkAmendedAnswers("websitesAdded")
+    }
+
     Scenario(
       "Intermediary cannot access the remove all previous registrations functionality during an amend journey"
     ) {

@@ -66,6 +66,8 @@ object Auth extends BasePage {
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144776"
       case "minimalAmend" | "notAClient"                             =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144881"
+      case "noWebsitesAmend"                                         =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144882"
       case "selfExcludedFuture"                                      =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002223331"
       case "hmrcExcludedFuture"                                      =>
@@ -118,7 +120,7 @@ object Auth extends BasePage {
         case "newRegistrationsAlreadyPending"                                 => "IN9009988771"
         case "oneSaved"                                                       => "IN9002224567"
         case "saveKickouts"                                                   => "IN9008888888"
-        case "minimalAmend"                                                   => "IN9008888887"
+        case "minimalAmend" | "noWebsitesAmend"                               => "IN9008888887"
         case "failureAmend"                                                   => "IN900666001"
         case "excludedIntermediary" | "excludedIntermediaryExcludedNETP"      => "IN9000306831"
         case multiple if multiple.startsWith("multiplePreviousRegistrations") => "IN9002230002"
