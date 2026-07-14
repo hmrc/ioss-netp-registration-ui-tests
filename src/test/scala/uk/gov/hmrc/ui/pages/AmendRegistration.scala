@@ -39,7 +39,8 @@ object AmendRegistration extends BasePage {
               "UK VAT registration number 100000001\n" +
               "Principal place of business address 1 The Street\n" +
               "Some Town\n" +
-              "AA11 1AA"
+              "AA11 1AA\n" +
+              "UK VAT group No"
           )
         )
       case "ukBasedUtr"             =>
@@ -562,6 +563,7 @@ object AmendRegistration extends BasePage {
               "Principal place of business address 1 The Street\n" +
               "Some Town\n" +
               "AA11 1AA\n" +
+              "UK VAT group No\n" +
               "Import One Stop Shop details\n" +
               "Have a different trading name No\n" +
               "Other One Stop Shop registrations No\n" +
@@ -590,6 +592,7 @@ object AmendRegistration extends BasePage {
               "Principal place of business address 1 The Street\n" +
               "Some Town\n" +
               "AA11 1AA\n" +
+              "UK VAT group No\n" +
               "Import One Stop Shop details\n" +
               "Have a different trading name No\n" +
               "Other One Stop Shop registrations No\n" +
