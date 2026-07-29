@@ -451,6 +451,14 @@ object AmendRegistration extends BasePage {
               "Tax reference AB1122332"
           )
         )
+      case "reviewRegistration"                  =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Trading websites added https://updatedwebsite.co\n" +
+              "Trading websites removed http://anothertest.co"
+          )
+        )
       case _                                     =>
         throw new Exception("This amend variation does not exist")
     }

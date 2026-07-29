@@ -24,14 +24,17 @@ import uk.gov.hmrc.ui.pages.Registration.*
 
 object Auth extends BasePage {
 
-  private val authUrl: String         = TestEnvironment.url("auth-login-stub") + "/auth-login-stub/gg-sign-in"
-  private val registrationUrl: String =
+  private val authUrl: String              = TestEnvironment.url("auth-login-stub") + "/auth-login-stub/gg-sign-in"
+  private val registrationUrl: String      =
     TestEnvironment.url("ioss-netp-registration-frontend")
-  private val journeyUrl: String      = "/pay-clients-vat-on-eu-sales/register-new-ioss-client"
-  private val dashboardUrl: String    =
+  private val journeyUrl: String           = "/pay-clients-vat-on-eu-sales/register-new-ioss-client"
+  private val dashboardUrl: String         =
     TestEnvironment.url(
       "ioss-intermediary-dashboard-frontend"
     ) + "/pay-clients-vat-on-eu-sales/manage-ioss-returns-payments-clients"
+  private val iossReturn: String           =
+    TestEnvironment.url("ioss-returns-frontend")
+  private val iossReturnJourneyUrl: String = "/pay-vat-on-goods-sold-to-eu/import-one-stop-shop-returns-payments"
 
   def goToAuthorityWizard(): Unit =
     get(authUrl)
@@ -89,6 +92,8 @@ object Auth extends BasePage {
         s"$registrationUrl$journeyUrl/secure-messages"
       case "pendingNotClient"                                        =>
         s"$registrationUrl$journeyUrl/client-not-activated/6bf0b5aa-c9f1-4860-8bf4-a428c033c954"
+      case "returnChangeDate"                                        =>
+        s"$iossReturn$iossReturnJourneyUrl/start-return-as-intermediary/IM9002221223"
       case _                                                         =>
         s"$registrationUrl$journeyUrl"
     }
@@ -125,6 +130,7 @@ object Auth extends BasePage {
         case "excludedIntermediary" | "excludedIntermediaryExcludedNETP"      => "IN9000306831"
         case multiple if multiple.startsWith("multiplePreviousRegistrations") => "IN9002230002"
         case "selfExcludedFuture" | "hmrcExcludedFuture" | "reversal"         => "IN9002223331"
+        case "returnChangeDate"                                               => "IN9002221223"
         case _                                                                => "IN9001234567"
       }
       sendKeys(By.id("input-1-0-value"), intermediaryNumber)

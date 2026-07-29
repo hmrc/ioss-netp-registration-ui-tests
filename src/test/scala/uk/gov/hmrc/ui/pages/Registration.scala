@@ -495,4 +495,14 @@ object Registration extends BasePage {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("Trading websites None supplied Add"))
   }
+
+  def checkAmendHeading(version: String): Unit = {
+    val heading = Driver.instance.findElement(By.tagName("h1")).getText
+
+    if (version == "review") {
+      Assert.assertTrue(heading.equals("Review First Company registration"))
+    } else {
+      Assert.assertTrue(heading.equals("Change First Company registration"))
+    }
+  }
 }
