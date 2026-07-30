@@ -33,6 +33,7 @@ class AmendCoreValidationSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "minimalAmend")
       registration.checkJourneyUrl("change-your-registration")
+      registration.checkAmendHeading("amend")
       amendRegistration.checkIossNumber("IM9001144881")
 
       When("the intermediary clicks change for Fixed establishments in other countries to add details in this section")
