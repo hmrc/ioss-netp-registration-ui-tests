@@ -24,7 +24,7 @@ class ReviewRegistrationSpec extends BaseSpec {
   lazy val registration      = Registration
   lazy val auth              = Auth
   lazy val amendRegistration = AmendRegistration
-  lazy val iossReturn = IOSSReturn
+  lazy val iossReturn        = IOSSReturn
 
   Feature("Change date over two years journeys") {
 

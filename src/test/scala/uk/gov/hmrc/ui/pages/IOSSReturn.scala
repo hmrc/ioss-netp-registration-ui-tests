@@ -22,7 +22,7 @@ import uk.gov.hmrc.configuration.TestEnvironment
 
 object IOSSReturn extends BasePage {
 
-  private val iossReturn: String =
+  private val iossReturn: String           =
     TestEnvironment.url("ioss-returns-frontend")
   private val iossReturnJourneyUrl: String = "/pay-vat-on-goods-sold-to-eu/import-one-stop-shop-returns-payments"
 
