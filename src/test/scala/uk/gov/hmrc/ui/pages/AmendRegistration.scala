@@ -135,7 +135,11 @@ object AmendRegistration extends BasePage {
               "Principal place of business address 123 Street Name\n" +
               "Suburb\n" +
               "Barcelona\n" +
-              "ES123456 Change"
+              "ES123456 Change\n" +
+              //          Hidden change text start
+              "Principal place of business address\n" +
+              //          Hidden change text end
+              "UK VAT group No"
           )
         )
       case "nonUkBasedUkVrnAmended" =>
@@ -156,7 +160,11 @@ object AmendRegistration extends BasePage {
               "Principal place of business address 123 Street Name\n" +
               "New Suburb\n" +
               "Barcelona\n" +
-              "State Change"
+              "State Change\n" +
+              //          Hidden change text start
+              "Principal place of business address\n" +
+              //          Hidden change text end
+              "UK VAT group No"
           )
         )
       case "nonUkBasedFtr"          =>
