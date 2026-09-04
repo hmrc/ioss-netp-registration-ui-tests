@@ -166,6 +166,24 @@ object PendingRegistration {
          |    "intermediaryName": "Intermediary Company Name"
          |  }
          |}
+         |""".stripMargin,
+      s"""
+         |{
+         |  "_id": {
+         |    "$$oid": "6a9a94901fbc051464be1585"
+         |  },
+         |  "journeyId": "9d0025f8-9897-4777-9416-0c07a3f81620",
+         |  "uniqueUrlCode": "HVHDXC",
+         |  "data": "3VRCoHYsjtIFLHPOZMlFYqG5fl/UeZS0M5YwpdaMQ0YeyLdUVhoQvXmIL2q6Wse05ln+OTZX5s/xvYygWxflB3NMQJdHGLa/nfxaaA3AaVxt2Xi1/qDWfToOsE0ljyCk9MmOEQl0b/DRqRPy5E+1K8ByX1GeCzt7HYhCeJxfyJW9BEE/+O+ZlIF0r0B8fSWrGbbDrScBxTPvw46syT4+inKKk7wUUxnz6/KDhfnhEXHlCd/rXBmObykkn9pUZUoTolj2OiTi5dQAOp8/KIaPo7WFLTAgRwunaib/JQNEJ9Zfjjh1v0dcNaT/veCkC8SG0Ty8D8Apk4IyK5V0gMCad//lGQisbCIoUcsS2SiO+SVR8nz8Wxrk+L1whZblHrN6oJi51enoI1evrdIFxJob/EZ35mHznQUyYxD3+K1M9ehkIgISwV69Jy4NWHT6Mb9bYQIk/49gXwe+KwGVz4lMSWgM+K8fhWJBy/mxAe4uYWMCak++WAcb03vy/WY3AYUHP5mCa3ipbT41peNTV6IL3972Y1ZJ6qfHsjPzzft4FeZKwDRh5CkcHYCyEEKzWwBe8H9K4BgVzj1MWng6qrm5tj55As4cOYGH6zY2VsMSnUw+PyikRfsTu6IFVKe+yR/uxyE/c/9DP7AQYsQUjemEW1drexm3+Y+QXdww/vH5rG1CaZtXNHEhih+gOS+c078GWoXiCMfWVZFxU1c7HfHRjFcDC8OpmnXa8zbnKjzPE9JNQ5GVoSGTgB1//dhK6bPFEZt9yg2mAKvL3uwiEQDrpYsZR2cxjQn3K7musVvuRHDgf0D4GT/K9tzsR2FEbxWQ9zl73tLOHLvnTj5M6eTFaxao26MQmpyVwRxmQbrxYBoQXITo96TFZDP5g42s+FYca8B2tCuxKwQyY8bto0uxWXbWb5vB/4a1oL8zG4qD41hoIKYoIKlUAE0oisj755abEXFSKwxtSkvCRzz6nl4YzWIV+R79FQmW+NcyewHZ6+LmL6oDSFADqegh+FgCv1I90J+H5MqaQCV86SH1eXBufohH/XAF4dnzR5vOdsKCimEUtMcLM0evebpqs+RaCndB7SX54fOf//cm4plJfBv4tHNSjSus8uALlofxgPLzjb74cDp7KOu+cR5eP1O8SZX5KAhsFrHu3gYwJl5SXnPmix0jAg==",
+         |  "lastUpdated": {
+         |    "$$date": "${yesterday}T09:51:12.522Z"
+         |  },
+         |  "uniqueActivationCode": "PdYSqTv41oSF1w4h8fgvahCfYX+0CG7NL29uPeec8/Ji8qlM/1M=",
+         |  "intermediaryDetails": {
+         |    "intermediaryNumber": "IN9002111002",
+         |    "intermediaryName": "Intermediary Company Name"
+         |  }
+         |}
          |""".stripMargin
     )
 }

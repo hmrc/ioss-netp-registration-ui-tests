@@ -141,7 +141,9 @@ class VatGroupSpec extends BaseSpec {
       registration.submitDeclarationAndRegistrationNETP()
     }
 
-    Scenario("Intermediary can amend contact details in a NETP registration") {
+    Scenario(
+      "Amend registration where the NETP had fixed establishments in their registration but is now a VAT group"
+    ) {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
@@ -184,11 +186,29 @@ class VatGroupSpec extends BaseSpec {
 
       Given("the NETP logs into the service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(false, false, "vatGroupYesPending")
+      auth.loginUsingAuthorityWizard(false, false, "vatGroupYesToNoPending")
 
       When("the NETP enters their activation code and submits the declaration")
       registration.checkJourneyUrl("client-code-entry")
       registration.completeActivationCodePendingClient("LFTRLQ")
+      registration.checkJourneyUrl("declaration-client")
+      registration.selectNETPCheckbox()
+
+      Then("the NETP is on the successful-registration page")
+      registration.checkJourneyUrl("successful-registration")
+    }
+
+    Scenario(
+      "NETP submits their declaration where they previously were not a VAT Group and had fixed establishments when the Intermediary registered however they are now are a VAT group"
+    ) {
+
+      Given("the NETP logs into the service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(false, false, "vatGroupNoToYesPending")
+
+      When("the NETP enters their activation code and submits the declaration")
+      registration.checkJourneyUrl("client-code-entry")
+      registration.completeActivationCodePendingClient("HVHDXC")
       registration.checkJourneyUrl("declaration-client")
       registration.selectNETPCheckbox()
 
