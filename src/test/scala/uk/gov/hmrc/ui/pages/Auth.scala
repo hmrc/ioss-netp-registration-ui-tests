@@ -49,6 +49,8 @@ object Auth extends BasePage {
         s"$registrationUrl$journeyUrl/client-code-start/${getUrlCode()}"
       case "noVrnPending"                                            =>
         s"$registrationUrl$journeyUrl/client-code-start/RNPMMN"
+      case "vatGroupYesPending"                                      =>
+        s"$registrationUrl$journeyUrl/client-code-start/LFTRLQ"
       case "multipleSaved" | "oneSaved" | "noSaved" | "saveKickouts" =>
         dashboardUrl
       case "amend" | "ukBasedUkVrn"                                  =>
@@ -133,6 +135,7 @@ object Auth extends BasePage {
         case multiple if multiple.startsWith("multiplePreviousRegistrations") => "IN9002230002"
         case "selfExcludedFuture" | "hmrcExcludedFuture" | "reversal"         => "IN9002223331"
         case "returnChangeDate"                                               => "IN9002221223"
+        case "amendVatGroupYes" | "pendingVatGroupYes"                        => "IN9002111002"
         case _                                                                => "IN9001234567"
       }
       sendKeys(By.id("input-1-0-value"), intermediaryNumber)

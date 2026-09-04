@@ -148,6 +148,24 @@ object PendingRegistration {
          |    "intermediaryName": "Intermediary Company Name"
          |  }
          |}
+         |""".stripMargin,
+      s"""
+         |{
+         |  "_id": {
+         |    "$$oid": "6a9a8c0e1fbc051464b51685"
+         |  },
+         |  "journeyId": "ab9f4643-b049-40b5-9d54-01e9fd28f3bc",
+         |  "uniqueUrlCode": "LFTRLQ",
+         |  "data": "1LMT9BuWMI644NdJgHjZqQy79jsSoVfCgt34veQG70vRHwjX2daZwVc1rUd7W6ryWtWC1hqV4KovDdiTZtAXmzsaqIiPEpy6eM5P4UqWArgZ0ZIdS8+C865gOg6ErMzu00Rpy0u6PZT8BnY01OvU6u1XTBGCtfwnuFrUcLPbosT5l5xesmFlSn+WTuJ3QSMlA6ebILjqx4a2YNxYraFLD6yhB7dLopDfAYAMTeBA+yngIPjOZg8egJBqeqaHfAVhRpXMPJAmdy38mzL83h5g7l/i0kz9zr3Zc05C4li4f1kGofQLh2kjMCkL/m0FI/CdRT1YFj9/UUt9L/DKuhR7Uxu9pf7QB8GVZNZAKo0qvhIMdS41poDSTQIVGaun4DQWkT4PGrb5yuPKz3eMWEmWfJuxuw4LcjWucaOUic+KjmY9KH0C3Sg/nM9Vb7friqxQaq0cE2aGrQM9DGaywUNoI31Rxb141chtzm/viDFOwO7TYlAqAfVaMd6icTnHKpq7IjgdLoyi6v7rB5rR/Kz5IhaFVPv+QyBOsJbGn0VbFPFQCGop4x6xKxEH3kG9OoPZmt52hIQa1sIJC8bpFB/c2Jv7NRVkyCdJwZMd+jBop9fJFkAUIo+EXHJ1oYG5y7tLVy8oAvdbRdvoyb3E4nH47Uz9ayVF",
+         |  "lastUpdated": {
+         |    "$$date": "${yesterday}T09:14:54.163Z"
+         |  },
+         |  "uniqueActivationCode": "TAZ1TbQnILCK6PJc9KFeXR8l8n6qiAs6HuRiGefwXSZknpCIDF4=",
+         |  "intermediaryDetails": {
+         |    "intermediaryNumber": "IN9002111002",
+         |    "intermediaryName": "Intermediary Company Name"
+         |  }
+         |}
          |""".stripMargin
     )
 }

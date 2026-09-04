@@ -65,7 +65,7 @@ class UpdateClientEmailSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(false, false, "noVrnPending")
       registration.checkJourneyUrl("client-code-entry")
-      registration.completeActivationCodePendingClient()
+      registration.completeActivationCodePendingClient("RNPMMN")
       registration.checkJourneyUrl("declaration-client")
       registration.selectNETPCheckbox()
       registration.checkJourneyUrl("successful-registration")

@@ -21,8 +21,8 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 
 class VatGroupSpec extends BaseSpec {
 
-  lazy val registration = Registration
-  lazy val auth         = Auth
+  lazy val registration      = Registration
+  lazy val auth              = Auth
   lazy val amendRegistration = AmendRegistration
 
   Feature("Vat Group Journeys") {
@@ -147,6 +147,7 @@ class VatGroupSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "amendVatGroupYes")
 
+//      Intercept page to be added in a later ticket
       And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9002111002")
@@ -173,18 +174,26 @@ class VatGroupSpec extends BaseSpec {
       When("the intermediary submits the amended registration")
       registration.clickSubmit()
 
-      Then("the successful-amend page shows the correct amendments to the registration")
+      Then("the successful-amend page is displayed")
       registration.checkJourneyUrl("successful-amend")
-//      amendRegistration.checkAmendedAnswers("")
     }
 
+    Scenario(
+      "NETP submits their declaration where they previously were a VAT Group when the Intermediary registered however they are no longer a VAT group"
+    ) {
 
-//    Other scenarios - notes
-//    Amend vat group changed - submit
-//    Rejoin vat group changed - submit
-//vat group yes - submit reg for int, vat group no - submit client
-    //reg change answers in vat section scenarios?
+      Given("the NETP logs into the service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(false, false, "vatGroupYesPending")
 
+      When("the NETP enters their activation code and submits the declaration")
+      registration.checkJourneyUrl("client-code-entry")
+      registration.completeActivationCodePendingClient("LFTRLQ")
+      registration.checkJourneyUrl("declaration-client")
+      registration.selectNETPCheckbox()
 
+      Then("the NETP is on the successful-registration page")
+      registration.checkJourneyUrl("successful-registration")
+    }
   }
 }
