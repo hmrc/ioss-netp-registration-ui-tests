@@ -105,6 +105,14 @@ object Registration extends BasePage {
     enterAnswer("GB111222333")
   }
 
+  def answerVatDetailsVatGroup(): Unit = {
+    answerRadioButton("yes")
+    checkJourneyUrl("client-has-vat-number")
+    answerRadioButton("yes")
+    checkJourneyUrl("client-vat-number")
+    enterAnswer("222111001")
+  }
+
   def answerVatDetailsRegistrationFailures(vrn: String): Unit = {
     answerRadioButton("yes")
     checkJourneyUrl("client-has-vat-number")
@@ -376,15 +384,15 @@ object Registration extends BasePage {
   def selectClientLink(link: String): Unit =
     click(By.cssSelector(s"a[href*=$link]"))
 
-  def completeActivationCodePendingClient(): Unit = {
+  def completeActivationCodePendingClient(code: String): Unit = {
     get(
-      s"$registrationUrl/pay-clients-vat-on-eu-sales/register-new-ioss-client/test-only/get-client-code/RNPMMN"
+      s"$registrationUrl/pay-clients-vat-on-eu-sales/register-new-ioss-client/test-only/get-client-code/$code"
     )
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     activationCode = htmlBody.split(">")(1).substring(0, 6)
 
     get(
-      s"$registrationUrl/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-start/RNPMMN"
+      s"$registrationUrl/pay-clients-vat-on-eu-sales/register-new-ioss-client/client-code-start/$code"
     )
     sendKeys(By.id("value"), activationCode)
     click(continueButton)
@@ -504,5 +512,11 @@ object Registration extends BasePage {
     } else {
       Assert.assertTrue(heading.equals("Change First Company registration"))
     }
+  }
+
+  def noFixedEstablishments(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertFalse(htmlBody.contains("Fixed establishments in other countries"))
+    Assert.assertFalse(htmlBody.contains("Countries established in"))
   }
 }
