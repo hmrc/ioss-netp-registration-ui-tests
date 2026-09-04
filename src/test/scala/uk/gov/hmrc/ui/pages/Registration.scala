@@ -105,6 +105,14 @@ object Registration extends BasePage {
     enterAnswer("GB111222333")
   }
 
+  def answerVatDetailsVatGroup(): Unit = {
+    answerRadioButton("yes")
+    checkJourneyUrl("client-has-vat-number")
+    answerRadioButton("yes")
+    checkJourneyUrl("client-vat-number")
+    enterAnswer("222111001")
+  }
+
   def answerVatDetailsRegistrationFailures(vrn: String): Unit = {
     answerRadioButton("yes")
     checkJourneyUrl("client-has-vat-number")
@@ -504,5 +512,11 @@ object Registration extends BasePage {
     } else {
       Assert.assertTrue(heading.equals("Change First Company registration"))
     }
+  }
+
+  def noFixedEstablishments(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertFalse(htmlBody.contains("Fixed establishments in other countries"))
+    Assert.assertFalse(htmlBody.contains("Countries established in"))
   }
 }

@@ -94,6 +94,8 @@ object Auth extends BasePage {
         s"$registrationUrl$journeyUrl/client-not-activated/6bf0b5aa-c9f1-4860-8bf4-a428c033c954"
       case "returnChangeDate"                                        =>
         s"$iossReturn$iossReturnJourneyUrl/start-return-as-intermediary/IM9002221223"
+      case "amendVatGroupYes"                                        =>
+        s"$registrationUrl$journeyUrl/start-amend-journey/IM9002111002"
       case _                                                         =>
         s"$registrationUrl$journeyUrl"
     }
