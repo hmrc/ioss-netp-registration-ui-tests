@@ -45,62 +45,64 @@ object Auth extends BasePage {
     getCurrentUrl should startWith(authUrl)
 
     val redirectUrl = accountType match {
-      case "noVrn"                                                   =>
+      case "noVrn"                                                                        =>
         s"$registrationUrl$journeyUrl/client-code-start/${getUrlCode()}"
-      case "noVrnPending"                                            =>
+      case "noVrnPending"                                                                 =>
         s"$registrationUrl$journeyUrl/client-code-start/RNPMMN"
-      case "vatGroupYesToNoPending"                                  =>
+      case "vatGroupYesToNoPending"                                                       =>
         s"$registrationUrl$journeyUrl/client-code-start/LFTRLQ"
-      case "vatGroupNoToYesPending"                                  =>
+      case "vatGroupNoToYesPending"                                                       =>
         s"$registrationUrl$journeyUrl/client-code-start/HVHDXC"
-      case "multipleSaved" | "oneSaved" | "noSaved" | "saveKickouts" =>
+      case "multipleSaved" | "oneSaved" | "noSaved" | "saveKickouts" | "savedVatGroupYes" =>
         dashboardUrl
-      case "amend" | "ukBasedUkVrn"                                  =>
+      case "amend" | "ukBasedUkVrn"                                                       =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144771"
-      case "ukBasedUtr"                                              =>
+      case "ukBasedUtr"                                                                   =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144773"
-      case "ukBasedNino"                                             =>
+      case "ukBasedNino"                                                                  =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144778"
-      case "nonUkBasedUkVrn"                                         =>
+      case "nonUkBasedUkVrn"                                                              =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144775"
-      case "nonUkBasedFtr"                                           =>
+      case "nonUkBasedFtr"                                                                =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144777"
-      case "ukExcluded"                                              =>
+      case "ukExcluded"                                                                   =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144772"
-      case "hmrcExcluded"                                            =>
+      case "hmrcExcluded"                                                                 =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144774"
-      case "ftrExcluded"                                             =>
+      case "ftrExcluded"                                                                  =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144776"
-      case "minimalAmend" | "notAClient"                             =>
+      case "minimalAmend" | "notAClient"                                                  =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144881"
-      case "noWebsitesAmend"                                         =>
+      case "noWebsitesAmend"                                                              =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144882"
-      case "selfExcludedFuture"                                      =>
+      case "selfExcludedFuture"                                                           =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002223331"
-      case "hmrcExcludedFuture"                                      =>
+      case "hmrcExcludedFuture"                                                           =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002223332"
-      case "reversal"                                                =>
+      case "reversal"                                                                     =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002223333"
-      case "failureAmend"                                            =>
+      case "failureAmend"                                                                 =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002222222"
-      case "multiplePreviousRegistrationsCurrent"                    =>
+      case "multiplePreviousRegistrationsCurrent"                                         =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144672"
-      case "multiplePreviousRegistrationsMiddle"                     =>
+      case "multiplePreviousRegistrationsMiddle"                                          =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144670"
-      case "multiplePreviousRegistrationsOldest"                     =>
+      case "multiplePreviousRegistrationsOldest"                                          =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9001144668"
-      case "excludedIntermediaryExcludedNETP"                        =>
+      case "excludedIntermediaryExcludedNETP"                                             =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9000306831"
       case "secureMessagesUkBasedUkVrn" | "secureMessagesUkBasedUtr" | "secureMessagesUkBasedNino" |
           "secureMessagesNonUkBasedUkVrn" | "secureMessagesNonUkBasedFtr" | "secureMessagesNone" | "noNetpEnrolment" =>
         s"$registrationUrl$journeyUrl/secure-messages"
-      case "pendingNotClient"                                        =>
+      case "pendingNotClient"                                                             =>
         s"$registrationUrl$journeyUrl/client-not-activated/6bf0b5aa-c9f1-4860-8bf4-a428c033c954"
-      case "returnChangeDate"                                        =>
+      case "returnChangeDate"                                                             =>
         s"$iossReturn$iossReturnJourneyUrl/start-return-as-intermediary/IM9002221223"
-      case "amendVatGroupYes"                                        =>
+      case "amendVatGroupYes"                                                             =>
         s"$registrationUrl$journeyUrl/start-amend-journey/IM9002111002"
-      case _                                                         =>
+      case "returnVatGroupYes"                                                            =>
+        s"$iossReturn$iossReturnJourneyUrl/start-return-as-intermediary/IM9002111002"
+      case _                                                                              =>
         s"$registrationUrl$journeyUrl"
     }
 
@@ -126,19 +128,21 @@ object Auth extends BasePage {
       sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
       sendKeys(By.id("input-1-0-name"), "IntNumber")
       val intermediaryNumber = accountType match {
-        case "pending" | "pendingNotClient"                                           => "IN9001112223"
-        case "multipleSaved" | "multipleSavedNewRegistration"                         => "IN9001114567"
-        case "newRegistrationsAlreadyPending"                                         => "IN9009988771"
-        case "oneSaved"                                                               => "IN9002224567"
-        case "saveKickouts"                                                           => "IN9008888888"
-        case "minimalAmend" | "noWebsitesAmend"                                       => "IN9008888887"
-        case "failureAmend"                                                           => "IN900666001"
-        case "excludedIntermediary" | "excludedIntermediaryExcludedNETP"              => "IN9000306831"
-        case multiple if multiple.startsWith("multiplePreviousRegistrations")         => "IN9002230002"
-        case "selfExcludedFuture" | "hmrcExcludedFuture" | "reversal"                 => "IN9002223331"
-        case "returnChangeDate"                                                       => "IN9002221223"
-        case "amendVatGroupYes" | "vatGroupYesToNoPending" | "vatGroupNoToYesPending" => "IN9002111002"
-        case _                                                                        => "IN9001234567"
+        case "pending" | "pendingNotClient"                                   => "IN9001112223"
+        case "multipleSaved" | "multipleSavedNewRegistration"                 => "IN9001114567"
+        case "newRegistrationsAlreadyPending"                                 => "IN9009988771"
+        case "oneSaved"                                                       => "IN9002224567"
+        case "saveKickouts"                                                   => "IN9008888888"
+        case "minimalAmend" | "noWebsitesAmend"                               => "IN9008888887"
+        case "failureAmend"                                                   => "IN900666001"
+        case "excludedIntermediary" | "excludedIntermediaryExcludedNETP"      => "IN9000306831"
+        case multiple if multiple.startsWith("multiplePreviousRegistrations") => "IN9002230002"
+        case "selfExcludedFuture" | "hmrcExcludedFuture" | "reversal"         => "IN9002223331"
+        case "returnChangeDate"                                               => "IN9002221223"
+        case "amendVatGroupYes" | "vatGroupYesToNoPending" | "vatGroupNoToYesPending" | "returnVatGroupYes" |
+            "savedVatGroupYes" =>
+          "IN9002111002"
+        case _                                                                => "IN9001234567"
       }
       sendKeys(By.id("input-1-0-value"), intermediaryNumber)
     }

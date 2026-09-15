@@ -153,6 +153,19 @@ object SavedRegistrations {
          |    "$$date": "${yesterday}T10:46:59.077Z"
          |  }
          |}
+         |""".stripMargin,
+      s"""
+         |{
+         |  "_id": {
+         |    "$$oid": "6aa922d74d9ffa3181447054"
+         |  },
+         |  "journeyId": "6400e295-38cf-4b4f-83d8-b4a70fa3cdf5",
+         |  "data": "A1T/w74pu9QKcmIwFCZIvQ2KqdW7R2Rm3eZUsiYw4gyU1RrlRHby6gs6hgXXftMJXRUhY+8flgKe4ZsTLW66XC29wWDaGBgYOz44og8f3zBMhB2MZ1GoPQWKYzbaWk+w0oURYBhW5+0kZPx2j/AUQrQ8e8LXLCtmYhYbBoAcmFoYl8lCFR2MfykNVgMKRoA4My5Tm09FbtY7IWKTud1zSmvdLmIdDLBZ62hCNJKlnOYE5NIca0zNMoup4LQUZ3FjMuTKtYobX9wBY1ByTCTR8GvPcYR2DPezt/AIwImJEKnhxAock6AhQdweE8dR9lbsslOFD90GGoMJUV+Bh46pS3Y2BaVgrXpR6vlH6ltcaeVn+5Ajcvh0cvB6g3nSmX1JggFjqEoj4kKKakxfgv6brYnvMy1D8SUUKfK/nzfE7tGXJ00QA0WEqQf/Hi38VgEDyPfO40Goy18AU1ZJbwxbQhBhkB1lJERckOW8E30MqZq5Up8ToKMwsLdS+VgjJMG51QoiVX1quvUo7somPOt72g3cJ1WCzJpIxtcwiy4bslIMkWcMost/e11rX6ZrTReN2iySrJ/bRJDthiec2Ow10Kl06hV4MTCMfu+siuJcUDeNRLrLOp0PYAI5K4jHppVf811MUl3YLe8GwiOrD1r6Ro3biSTUywcxpvYsQWZ2Hz1kR9ch5uG2i3vCuqtaK4xE5O7JzdwTlw06qDiu+RE8Gk3Ehm0TK5zndYxIH0B8gvpGZCXeEM1IL5bq1eZiXVS+9PY1cxcURmNNK6Y2cOVpOxopsdZPhJDvUl4r3cZXR1hD3yetv5A1AID1kG36U2Hvk8GKcqW2aS7hhC3bX6G5E/tnpw7L2tDZt0NJX7AIkcum5BrLSki9UFnjxA1Vp6fucs2+2uK1cf+TbjQc5nCkg7XYVw0Tzo610Wzy4NtYGPggtUuSjkZwBazNUxdSrWgH7+2BT1nKlXY2pL+t/4CT0YehsSRXxlQqePIfL6eV1MiTk9JDH7u/weMZDlLWZFthklNuTehK2JqugUv3xZGW6u+7zMrQQVWZ6QCAHUNfp5OicxVsBlRSpj7UnybCpuaz5haiQJSWi1Ri6UF7ZKmC",
+         |  "intermediaryNumber": "IN9002111002",
+         |  "lastUpdated": {
+         |    "$$date": "${yesterday}T10:49:59.629Z"
+         |  }
+         |}
          |""".stripMargin
     )
 }
