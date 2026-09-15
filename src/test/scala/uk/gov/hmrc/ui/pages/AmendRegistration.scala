@@ -468,6 +468,15 @@ object AmendRegistration extends BasePage {
               "Trading websites removed http://anothertest.co"
           )
         )
+      case "vatGroupFixedEstablishments"         =>
+        Assert.assertTrue(
+          body.contains(
+            "You changed the following details:\n" +
+              "Fixed establishments in other countries No\n" +
+              "EU tax details removed Germany\n" +
+              "France"
+          )
+        )
       case _                                     =>
         throw new Exception("This amend variation does not exist")
     }

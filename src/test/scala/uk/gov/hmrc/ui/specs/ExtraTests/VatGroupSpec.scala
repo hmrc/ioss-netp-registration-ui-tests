@@ -149,7 +149,6 @@ class VatGroupSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard(true, true, "amendVatGroupYes")
 
-//      Intercept page to be added in a later ticket
       And("the intermediary is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
       amendRegistration.checkIossNumber("IM9002111002")
@@ -214,6 +213,77 @@ class VatGroupSpec extends BaseSpec {
 
       Then("the NETP is on the successful-registration page")
       registration.checkJourneyUrl("successful-registration")
+    }
+
+    Scenario(
+      "Remove fixed establishments from registration where the client is now in a VAT Group and Intermediary starts a return"
+    ) {
+
+      Given("the intermediary starts a return for their client")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "returnVatGroupYes")
+
+      When("the intermediary is on the delete-all-fixed-establishment/IM9002111002 page")
+      registration.checkJourneyUrl("delete-all-fixed-establishment/IM9002111002")
+
+      And("the intermediary clicks on the continue button")
+      registration.continue()
+
+      Then("the successful-amend page is displayed")
+      registration.checkJourneyUrl("successful-amend")
+
+      And("the fixed establishments are shown as removed")
+      amendRegistration.checkAmendedAnswers("vatGroupFixedEstablishments")
+    }
+
+    Scenario(
+      "Remove fixed establishments from saved registration where the client is now in a VAT Group"
+    ) {
+
+      Given("the intermediary accesses the dashboard")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "savedVatGroupYes")
+      registration.checkDashboardJourneyUrl("your-account")
+
+      When("the intermediary clicks the 'Continue a registration in progress' link on the dashboard")
+      registration.clickLink("continue-saved-answers")
+
+      And("the intermediary answers yes to access the saved registration")
+      registration.checkJourneyUrl("clients-continue-registration")
+      registration.clickLink("continueProgress")
+      registration.continue()
+
+      Then("the intermediary is on the removing-clients-fixed-establishment-details page")
+      registration.checkJourneyUrl("removing-clients-fixed-establishment-details")
+
+      And("the intermediary clicks continue")
+      registration.continue()
+
+      And("the intermediary is back on the clients-continue-registration page")
+      registration.checkJourneyUrl("clients-continue-registration")
+
+      When("the intermediary continues the registration")
+      registration.clickLink("continueProgress")
+      registration.continue()
+      registration.checkJourneyUrl("website-address/1")
+      registration.continue()
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Firstname Surname", "+44123456789", "iossint@iossint.hmrc.gov.uk")
+
+      And("there is no fixed establishment information on the check-your-answers page")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.noFixedEstablishments()
+      registration.continue()
+
+      And("the intermediary accepts the declaration")
+      registration.checkJourneyUrl("declaration")
+      registration.selectCheckbox()
+
+      Then("the intermediary is on the client-application-complete page")
+      registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
     }
   }
 }
