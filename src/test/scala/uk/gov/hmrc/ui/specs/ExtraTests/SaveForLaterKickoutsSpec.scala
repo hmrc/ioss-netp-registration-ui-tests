@@ -43,8 +43,8 @@ class SaveForLaterKickoutsSpec extends BaseSpec {
       Then("the intermediary answers yes to continue the registration")
       registration.selectContinueRegistration("continueProgress")
 
-      And("the intermediary is redirected to the expired-vrn-date page")
-      registration.checkJourneyUrl("expired-vrn-date")
+      And("the intermediary is redirected to the saved-progress-expired-vrn-date page")
+      registration.checkJourneyUrl("saved-progress-expired-vrn-date")
     }
 
     Scenario(
@@ -66,8 +66,8 @@ class SaveForLaterKickoutsSpec extends BaseSpec {
       Then("the intermediary answers yes to continue the registration")
       registration.selectContinueRegistration("continueProgress")
 
-      And("the intermediary is redirected to the client-already-registered page")
-      registration.checkJourneyUrl("client-already-registered")
+      And("the intermediary is redirected to the saved-progress-client-already-registered page")
+      registration.checkJourneyUrl("saved-progress-client-already-registered")
     }
 
     Scenario("Intermediary returns to a saved NETP registration where the previous NI OSS scheme is quarantined") {
@@ -87,8 +87,8 @@ class SaveForLaterKickoutsSpec extends BaseSpec {
       registration.checkJourneyUrl("clients-continue-registration")
       registration.selectContinueRegistration("continueProgress")
 
-      And("the intermediary is redirected to the other-country-excluded-and-quarantined page")
-      registration.checkJourneyUrl("other-country-excluded-and-quarantined?countryCode")
+      And("the intermediary is redirected to the saved-progress-quarantined page")
+      registration.checkJourneyUrl("saved-progress-quarantined")
     }
 
     Scenario(
@@ -110,8 +110,8 @@ class SaveForLaterKickoutsSpec extends BaseSpec {
       registration.checkJourneyUrl("clients-continue-registration")
       registration.selectContinueRegistration("continueProgress")
 
-      And("the intermediary is redirected to the client-already-registered page")
-      registration.checkJourneyUrl("client-already-registered")
+      And("the intermediary is redirected to the saved-progress-client-already-registered page")
+      registration.checkJourneyUrl("saved-progress-client-already-registered")
     }
   }
 }
