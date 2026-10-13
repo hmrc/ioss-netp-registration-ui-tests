@@ -506,12 +506,7 @@ object Registration extends BasePage {
 
   def checkAmendHeading(version: String): Unit = {
     val heading = Driver.instance.findElement(By.tagName("h1")).getText
-
-    if (version == "review") {
-      Assert.assertTrue(heading.equals("Review First Company registration"))
-    } else {
-      Assert.assertTrue(heading.equals("Change First Company registration"))
-    }
+    Assert.assertTrue(heading.equals("Change First Company registration"))
   }
 
   def noFixedEstablishments(): Unit = {
