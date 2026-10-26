@@ -315,7 +315,7 @@ object AmendRegistration extends BasePage {
         Assert.assertTrue(
           body.contains(
             "You changed the following details:\n" +
-              "Is their only trading name No\n" +
+              "Is their only trading name Yes\n" +
               "Trading names removed tradingName1\n" +
               "tradingName2\n" +
               "Fixed establishments in other countries No\n" +
@@ -327,7 +327,7 @@ object AmendRegistration extends BasePage {
         Assert.assertTrue(
           body.contains(
             "You changed the following details:\n" +
-              "Is their only trading name Yes\n" +
+              "Is their only trading name No\n" +
               "Trading names added amend trading name 1\n" +
               "amend trading name 2\n" +
               "Other One Stop Shop registrations Yes\n" +

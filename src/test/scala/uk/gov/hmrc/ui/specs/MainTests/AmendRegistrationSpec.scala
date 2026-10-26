@@ -404,7 +404,7 @@ class AmendRegistrationSpec extends BaseSpec {
       amendRegistration.checkAmendedAnswers("editExisting")
     }
 
-    Scenario("Intermediary can remove all trading names and fixed establishments in a NETP registration - yes to no") {
+    Scenario("Intermediary can remove all trading names and fixed establishments in a NETP registration") {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
@@ -455,7 +455,7 @@ class AmendRegistrationSpec extends BaseSpec {
       amendRegistration.checkAmendedAnswers("yesToNo")
     }
 
-    Scenario("Intermediary can add fresh data to a NETP registration - no to yes") {
+    Scenario("Intermediary can add fresh data to a NETP registration - adding non-mandatory answers") {
 
       Given("the intermediary accesses the IOSS NETP Registration Service")
       auth.goToAuthorityWizard()
