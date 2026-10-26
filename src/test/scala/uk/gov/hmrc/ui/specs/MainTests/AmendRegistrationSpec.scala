@@ -415,14 +415,14 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.noAmendments()
       amendRegistration.checkIossNumber("IM9001144771")
 
-      When("the intermediary clicks change for Have a different trading name")
+      When("the intermediary clicks change for Is their only trading name")
       registration.selectChangeOrRemoveLink(
-        "have-trading-name\\?waypoints\\=change-your-registration"
+        "have-no-other-trading-names\\?waypoints\\=change-your-registration"
       )
 
-      Then("the intermediary answers no on the have-trading-name page")
-      registration.checkJourneyUrl("have-trading-name?waypoints=change-your-registration")
-      registration.answerRadioButton("no")
+      Then("the intermediary answers yes on the have-no-other-trading-names page")
+      registration.checkJourneyUrl("have-no-other-trading-names?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
 
       And("the intermediary answers yes on the remove-all-trading-names page")
       registration.checkJourneyUrl("remove-all-trading-names?waypoints=change-your-registration")
@@ -466,14 +466,14 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.noAmendments()
       amendRegistration.checkIossNumber("IM9001144881")
 
-      When("the intermediary clicks change for Have a different trading name")
+      When("the intermediary clicks change for Is their only trading name")
       registration.selectChangeOrRemoveLink(
-        "have-trading-name\\?waypoints\\=change-your-registration"
+        "have-no-other-trading-names\\?waypoints\\=change-your-registration"
       )
 
       Then("the intermediary adds two trading names")
-      registration.checkJourneyUrl("have-trading-name?waypoints=change-your-registration")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-trading-names?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("trading-name/1?waypoints=add-trading-name%2Cchange-your-registration")
       registration.enterAnswer("amend trading name 1")
       registration.checkJourneyUrl("add-trading-name?waypoints=change-your-registration")

@@ -39,9 +39,9 @@ class VatGroupSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      And("the intermediary selects no on the have-trading-name page")
-      registration.checkJourneyUrl("have-trading-name")
-      registration.answerRadioButton("no")
+      And("the intermediary selects yes on the have-no-other-trading-names page")
+      registration.checkJourneyUrl("have-no-other-trading-names")
+      registration.answerRadioButton("yes")
 
       And("the intermediary selects no on the previous-oss page")
       registration.checkJourneyUrl("previous-oss")
@@ -86,9 +86,9 @@ class VatGroupSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      And("the intermediary selects no on the have-trading-name page")
-      registration.checkJourneyUrl("have-trading-name")
-      registration.answerRadioButton("no")
+      And("the intermediary selects yes on the have-no-other-trading-names page")
+      registration.checkJourneyUrl("have-no-other-trading-names")
+      registration.answerRadioButton("yes")
 
       When("the intermediary selects yes on the previous-oss page")
       registration.checkJourneyUrl("previous-oss")

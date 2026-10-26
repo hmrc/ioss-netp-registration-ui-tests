@@ -315,7 +315,7 @@ object AmendRegistration extends BasePage {
         Assert.assertTrue(
           body.contains(
             "You changed the following details:\n" +
-              "Have a different trading name No\n" +
+              "Is their only trading name No\n" +
               "Trading names removed tradingName1\n" +
               "tradingName2\n" +
               "Fixed establishments in other countries No\n" +
@@ -327,7 +327,7 @@ object AmendRegistration extends BasePage {
         Assert.assertTrue(
           body.contains(
             "You changed the following details:\n" +
-              "Have a different trading name Yes\n" +
+              "Is their only trading name Yes\n" +
               "Trading names added amend trading name 1\n" +
               "amend trading name 2\n" +
               "Other One Stop Shop registrations Yes\n" +
@@ -496,7 +496,7 @@ object AmendRegistration extends BasePage {
               "Principal place of business address 1 Street Name\n" +
               "Town\n" +
               "Import One Stop Shop details\n" +
-              "Have a different trading name No\n" +
+              "Is their only trading name No\n" +
               "Other One Stop Shop registrations No\n" +
               "Fixed establishments in other countries No\n" +
               "Trading websites www.test.com\n" +
@@ -533,7 +533,7 @@ object AmendRegistration extends BasePage {
               "Region\n" +
               "10050\n" +
               "Import One Stop Shop details\n" +
-              "Have a different trading name Yes\n" +
+              "Is their only trading name Yes\n" +
               "Other trading names tradingName1\n" +
               "tradingName2\n" +
               "Other One Stop Shop registrations Yes\n" +
@@ -582,7 +582,7 @@ object AmendRegistration extends BasePage {
               "AA11 1AA\n" +
               "UK VAT group No\n" +
               "Import One Stop Shop details\n" +
-              "Have a different trading name No\n" +
+              "Is their only trading name No\n" +
               "Other One Stop Shop registrations No\n" +
               "Fixed establishments in other countries No\n" +
               "Trading websites www.test.com\n" +
@@ -611,7 +611,7 @@ object AmendRegistration extends BasePage {
               "AA11 1AA\n" +
               "UK VAT group No\n" +
               "Import One Stop Shop details\n" +
-              "Have a different trading name No\n" +
+              "Is their only trading name No\n" +
               "Other One Stop Shop registrations No\n" +
               "Fixed establishments in other countries No\n" +
               "Trading websites www.test.com\n" +

@@ -43,8 +43,8 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.continue()
 
       When("the intermediary enters two trading names")
-      registration.checkJourneyUrl("have-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("trading-name/1")
       registration.enterAnswer("1")
       registration.checkJourneyUrl("add-trading-name")
@@ -147,9 +147,9 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      When("the intermediary selects no on the have-trading-name page")
-      registration.checkJourneyUrl("have-trading-name")
-      registration.answerRadioButton("no")
+      When("the intermediary selects yes on the have-no-other-trading-names page")
+      registration.checkJourneyUrl("have-no-other-trading-names")
+      registration.answerRadioButton("yes")
 
       When("the intermediary selects yes on the previous-oss page")
       registration.checkJourneyUrl("previous-oss")
@@ -284,9 +284,9 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      When("the intermediary selects no on the have-trading-name page")
-      registration.checkJourneyUrl("have-trading-name")
-      registration.answerRadioButton("no")
+      When("the intermediary selects yes on the have-no-other-trading-names page")
+      registration.checkJourneyUrl("have-no-other-trading-names")
+      registration.answerRadioButton("yes")
 
       When("the intermediary selects no on the previous-oss page")
       registration.checkJourneyUrl("previous-oss")
@@ -458,9 +458,9 @@ class ChangeAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      When("the intermediary answers no to all questions leading up to websites")
-      registration.checkJourneyUrl("have-trading-name")
-      registration.answerRadioButton("no")
+      When("the intermediary gives minimal answers to all questions leading up to websites")
+      registration.checkJourneyUrl("have-no-other-trading-names")
+      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("previous-oss")
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("eu-fixed-establishment")

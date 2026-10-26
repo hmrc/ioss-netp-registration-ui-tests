@@ -38,9 +38,9 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      When("the intermediary selects yes on the have-trading-name page")
-      registration.checkJourneyUrl("have-trading-name")
-      registration.answerRadioButton("yes")
+      When("the intermediary selects no on the have-no-other-trading-names page")
+      registration.checkJourneyUrl("have-no-other-trading-names")
+      registration.answerRadioButton("no")
 
       Then("the intermediary adds the first trading name")
       registration.checkJourneyUrl("trading-name/1")
@@ -255,9 +255,9 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      When("the intermediary selects no on the have-trading-name page")
-      registration.checkJourneyUrl("have-trading-name")
-      registration.answerRadioButton("no")
+      When("the intermediary selects yes on the have-no-other-trading-names page")
+      registration.checkJourneyUrl("have-no-other-trading-names")
+      registration.answerRadioButton("yes")
 
       When("the intermediary selects no on the previous-oss page")
       registration.checkJourneyUrl("previous-oss")
