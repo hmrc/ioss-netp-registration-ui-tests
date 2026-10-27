@@ -109,7 +109,6 @@ class SaveForLaterSpec extends BaseSpec {
       registration.checkDashboardJourneyUrl("your-account")
     }
 
-    // Need to update saved data - 1122331122333 - d90be96a-0e14-4214-b4c0-32537f8b7233
     Scenario(
       "Intermediary can return to a saved registration, submit their declaration and the registration is removed from the saved list"
     ) {
