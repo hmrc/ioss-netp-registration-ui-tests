@@ -78,8 +78,8 @@ class NewRegistrationAlreadySavedSpec extends BaseSpec {
       When("the intermediary clicks continue")
       registration.continue()
 
-      Then("the intermediary is on the have-trading-name page")
-      registration.checkJourneyUrl("have-trading-name")
+      Then("the intermediary is on the have-no-other-trading-names page")
+      registration.checkJourneyUrl("have-no-other-trading-names")
     }
 
     Scenario("UK based client with UTR - already saved - continue registration") {
@@ -145,8 +145,8 @@ class NewRegistrationAlreadySavedSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      Then("the intermediary is on the have-trading-name page")
-      registration.checkJourneyUrl("have-trading-name")
+      Then("the intermediary is on the have-no-other-trading-names page")
+      registration.checkJourneyUrl("have-no-other-trading-names")
     }
 
     Scenario("UK based client with NINO - already saved - continue registration") {
@@ -212,8 +212,8 @@ class NewRegistrationAlreadySavedSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      Then("the intermediary is on the have-trading-name page")
-      registration.checkJourneyUrl("have-trading-name")
+      Then("the intermediary is on the have-no-other-trading-names page")
+      registration.checkJourneyUrl("have-no-other-trading-names")
     }
 
     Scenario("Non-UK based client with UK VRN - already saved - continue registration") {
@@ -272,8 +272,8 @@ class NewRegistrationAlreadySavedSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      Then("the intermediary is on the have-trading-name page")
-      registration.checkJourneyUrl("have-trading-name")
+      Then("the intermediary is on the have-no-other-trading-names page")
+      registration.checkJourneyUrl("have-no-other-trading-names")
     }
 
     Scenario("Non-UK based client with FTR - already saved - continue registration") {
@@ -334,8 +334,8 @@ class NewRegistrationAlreadySavedSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-tax-details")
       registration.continue()
 
-      Then("the intermediary is on the have-trading-name page")
-      registration.checkJourneyUrl("have-trading-name")
+      Then("the intermediary is on the have-no-other-trading-names page")
+      registration.checkJourneyUrl("have-no-other-trading-names")
     }
   }
 }

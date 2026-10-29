@@ -195,12 +195,12 @@ class SaveForLaterSpec extends BaseSpec {
       And(
         "the intermediary can add details to the trading name section, save their progress and return to the correct pages"
       )
-      registration.checkJourneyUrl("have-trading-name")
+      registration.checkJourneyUrl("have-no-other-trading-names")
       registration.saveRegistration()
       registration.checkJourneyUrl("progress-saved")
       registration.clickLink("continueToYourRegistration")
-      registration.checkJourneyUrl("have-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("trading-name/1")
       registration.enterAnswer("1st trading-name")
       registration.checkJourneyUrl("add-trading-name")
