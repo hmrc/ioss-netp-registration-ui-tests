@@ -285,5 +285,61 @@ class VatGroupSpec extends BaseSpec {
       And("the NETP can complete the declaration and submit the registration")
       registration.submitDeclarationAndRegistrationNETP()
     }
+
+    Scenario(
+      "Intermediary attempts to start a registration when there is already one saved for a NETP who is now part of a VAT group and has fixed establishments"
+    ) {
+
+      Given("the intermediary logs in to the NETP registration service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(true, true, "savedVatGroupYesReg")
+      registration.checkJourneyUrl("client-uk-based")
+
+      When("the intermediary enters a UK VRN that already exists in a saved registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("client-has-vat-number")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("client-vat-number")
+      registration.enterAnswer("222111006")
+
+      Then("the intermediary is directed to the client-registration-already-pending page")
+      registration.checkJourneyUrl("client-registration-already-pending")
+
+      And("the intermediary selects yes to continue the saved registration")
+      registration.clickLink("continueProgress")
+      registration.continue()
+
+      Then("the intermediary is on the removing-clients-fixed-establishment-details page")
+      registration.checkJourneyUrl("removing-clients-fixed-establishment-details")
+
+      And("the intermediary clicks continue")
+      registration.continue()
+
+      And("the intermediary selects yes to continue the saved registration")
+      registration.clickLink("continueProgress")
+      registration.continue()
+
+      Then("the intermediary leaves the client website address blank")
+      registration.checkJourneyUrl("website-address/1")
+      registration.continue()
+
+      Then("the intermediary enters credentials on contact-details page")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Firstname Surname", "+44123456789", "iossint@iossint.hmrc.gov.uk")
+
+      And("the intermediary continues through the check-your-answers page")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.continue()
+
+      When("the intermediary accepts the declaration")
+      registration.checkJourneyUrl("declaration")
+      registration.selectCheckbox()
+
+      Then("the intermediary is on the client-application-complete page")
+      registration.checkJourneyUrl("client-application-complete")
+
+      And("the NETP can complete the declaration and submit the registration")
+      registration.submitDeclarationAndRegistrationNETP()
+    }
   }
 }
