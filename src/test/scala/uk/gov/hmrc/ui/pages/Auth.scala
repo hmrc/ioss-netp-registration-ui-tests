@@ -138,7 +138,7 @@ object Auth extends BasePage {
         case "selfExcludedFuture" | "hmrcExcludedFuture" | "reversal"         => "IN9002223331"
         case "returnChangeDate"                                               => "IN9002221223"
         case "amendVatGroupYes" | "vatGroupYesToNoPending" | "vatGroupNoToYesPending" | "returnVatGroupYes" |
-            "savedVatGroupYes" =>
+            "savedVatGroupYes" | "savedVatGroupYesReg" =>
           "IN9002111002"
         case _                                                                => "IN9001234567"
       }
