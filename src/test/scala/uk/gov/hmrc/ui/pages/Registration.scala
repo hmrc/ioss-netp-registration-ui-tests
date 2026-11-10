@@ -484,7 +484,7 @@ object Registration extends BasePage {
       case "ukUtr"    =>
         Assert.assertTrue(htmlBody.contains("UTR 1234567888"))
       case "ukNino"   =>
-        Assert.assertTrue(htmlBody.contains("National Insurance number (NINO) QQ123444C"))
+        Assert.assertTrue(htmlBody.contains("National Insurance number QQ123444C"))
       case "nonUkVrn" =>
         Assert.assertTrue(htmlBody.contains("UK VAT registration number 123456888"))
       case "nonUkFtr" =>
